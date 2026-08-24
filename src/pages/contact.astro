@@ -8,18 +8,21 @@ const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
 
 const contactPaths = [
   {
+    id: "collaborate",
     number: "01",
     title: "合作交流 Collaborate with Us",
     body: "我们欢迎与儿童发展、家庭研究、心理与教育技术、行为测量及相关交叉领域的研究团队开展合作。",
     note: "如有合作想法，可通过实验室邮箱联系我们。",
   },
   {
+    id: "join",
     number: "02",
     title: "加入我们 Join the Team",
     body: "我们欢迎对儿童早期发展研究感兴趣的本科生、研究助理及其他研究伙伴关注实验室机会。",
     note: "具体岗位、申请要求与开放时间将在此页面持续更新。",
   },
   {
+    id: "families",
     number: "03",
     title: "家庭参与 For Families",
     body: "我们长期邀请婴幼儿与家庭参与儿童发展研究及“小小科学家 Kid Scientists”计划，在轻松、安全的活动中一起探索儿童成长。",
@@ -41,7 +44,7 @@ const contactPaths = [
   <div class="container-page py-12">
     <div class="grid gap-5 lg:grid-cols-3">
       {contactPaths.map((item) => (
-        <section class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg">
+        <section id={item.id} class="group relative scroll-mt-24 overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg">
           <div class="absolute -right-2 -top-5 font-mono text-7xl font-semibold text-primary-50 transition-colors group-hover:text-primary-100">
             {item.number}
           </div>
