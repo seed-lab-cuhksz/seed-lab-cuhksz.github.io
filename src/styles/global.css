@@ -97,20 +97,88 @@
   padding: 4.75rem 0 4rem !important;
 }
 
-.research-hero {
-  padding: clamp(4rem, 6vw, 5.5rem) 0 clamp(3.75rem, 5.5vw, 4.75rem) !important;
-}
-
-.people-hero h1,
-.research-hero h1 {
+.people-hero h1 {
   font-size: clamp(2.8rem, 5.2vw, 4.8rem) !important;
   line-height: 0.98 !important;
   letter-spacing: -0.045em !important;
 }
 
-.people-hero h1 span,
-.research-hero h1 span {
+.people-hero h1 span {
   font-size: 0.92em;
+}
+
+/* Research header: compact academic page header, aligned with Projects. */
+.research-hero {
+  padding: 4.6rem 0 4.3rem !important;
+}
+
+.research-hero .hero-inner {
+  display: block !important;
+}
+
+.research-hero .eyebrow {
+  margin: 0 !important;
+  color: #297d75 !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+}
+
+.research-hero .eyebrow::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 2px;
+  margin-top: 1rem;
+  border-radius: 999px;
+  background: #359b90;
+}
+
+.research-hero h1 {
+  margin: 1rem 0 0 !important;
+  font-size: clamp(2.25rem, 4vw, 3rem) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.035em !important;
+  font-weight: 650 !important;
+  color: #0f172a !important;
+}
+
+.research-hero h1 span {
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: 1em !important;
+  font-style: normal !important;
+  font-weight: inherit !important;
+}
+
+.research-hero .hero-lead {
+  margin: 1.25rem 0 0 !important;
+  max-width: 44rem !important;
+  font-size: 1.05rem !important;
+  line-height: 1.8 !important;
+  color: #475569 !important;
+}
+
+.research-page .directions {
+  padding-top: 0 !important;
+}
+
+.research-page .research-item:first-child {
+  padding-top: clamp(3.5rem, 5vw, 4.5rem) !important;
+}
+
+@media (max-width: 640px) {
+  .research-hero {
+    padding: 3.5rem 0 3.4rem !important;
+  }
+
+  .research-hero h1 {
+    font-size: 2.25rem !important;
+  }
+
+  .research-hero .hero-lead {
+    font-size: 0.98rem !important;
+  }
 }
 
 /* Shared motion primitives. Motion is disabled for visitors who prefer reduced motion. */
