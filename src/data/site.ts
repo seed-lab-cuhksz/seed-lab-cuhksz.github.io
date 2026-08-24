@@ -1,10 +1,4 @@
-// Site-wide singletons (identity, contact, social, navigation).
-// Kept here rather than in a content collection so layout components can
-// import them directly.
-//
-// ⚙️  EDIT THIS FIRST: replace every placeholder below with your lab's details.
-//    (Tip: ask Claude to "fill in src/data/site.ts for my lab" and paste your
-//    name, institution, and a one-line mission.)
+// Site-wide identity, contact information, and navigation for SEED Lab.
 
 export interface NavItem {
   label: string;
@@ -32,36 +26,26 @@ export interface SiteConfig {
 }
 
 export const site: SiteConfig = {
-  name: "Example Laboratory",
-  shortName: "Example Lab",
-  pi: "Jane Doe, PhD",
-  institution: "Your Institution",
-  university: "Your University",
-  // Your production URL (used for canonical links + sitemap). Set your domain.
-  url: "https://example.com",
+  name: "SEED 儿童早期社会发展实验室",
+  shortName: "SEED Lab",
+  pi: "曾广宇",
+  institution: "香港中文大学（深圳）",
+  university: "",
+  url: "https://chachacuacua.github.io/seed-lab-website/",
   description:
-    "One or two sentences describing what your lab studies and why it matters. " +
-    "This shows as the homepage lead and the default meta description.",
-  email: "lab@example.edu",
-  phone: "000-000-0000",
-  address: [
-    "Example Laboratory",
-    "Your Department",
-    "123 University Way",
-    "City, ST 00000",
-  ],
-  mapQuery: "123 University Way, City, ST 00000",
-  social: {
-    scholar: "https://scholar.google.com/citations?user=XXXXXXXX&hl=en",
-    // twitter: "https://twitter.com/yourhandle",
-    // github: "https://github.com/yourorg",
-  },
+    "我们关注婴幼儿早期的认知、情感与社会发展，并结合行为观察、眼动、脑成像与计算方法，理解儿童个体差异及其发展机制。",
+  email: "",
+  phone: "",
+  address: ["SEED 儿童早期社会发展实验室", "香港中文大学（深圳）"],
+  mapQuery: "The Chinese University of Hong Kong, Shenzhen",
+  social: {},
   nav: [
-    { label: "People", href: "/people" },
-    { label: "Research", href: "/research" },
-    { label: "Publications", href: "/publications" },
-    { label: "Figures", href: "/figures" },
-    { label: "Lab Life", href: "/lab-life" },
-    { label: "Contact", href: "/contact" },
+    { label: "首页 Home", href: "/" },
+    { label: "研究团队 People", href: "/people" },
+    { label: "研究方向 Research", href: "/research" },
+    { label: "在研项目 Projects", href: "/projects" },
+    { label: "研究成果 Publications", href: "/publications" },
+    { label: "实验室日常 Lab Life", href: "/lab-life" },
+    { label: "联系我们 Contact", href: "/contact" },
   ],
 };
