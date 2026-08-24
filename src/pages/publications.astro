@@ -1,207 +1,359 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
-import PubList from "../components/PubList.astro";
-import { getPublications, getAreaCounts, AREA_LABELS, FILTER_GROUPS } from "../lib/content";
 
-const pubs = await getPublications();
-const areaCounts = await getAreaCounts();
-const areaChips = FILTER_GROUPS.flatMap((g) => g.slugs);
-
-const chip =
-  "rounded-full border border-slate-300 px-3 py-1 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 data-[active]:border-primary-600 data-[active]:bg-primary-600 data-[active]:text-white";
-
-const filters = [
-  { key: "all", label: "All" },
-  { key: "mentee", label: "Mentee-led" },
-  { key: "pi", label: "PI first/senior" },
-  { key: "collaboration", label: "Collaboration" },
-  { key: "openaccess", label: "Open access" },
+const publications = [
+  {
+    year: 2026,
+    type: "Conference Proceeding",
+    title: "The Gift of the Tenth Month: Early Design of a Partner-Inclusive Prenatal Education Serious Game",
+    venue: "ACM CHI PLAY Companion ’26",
+    url: "https://doi.org/10.1145/3800965.3834320",
+  },
+  {
+    year: 2026,
+    type: "Preprint",
+    title: "ManyBabies 6: A Multi-Lab Investigation of Neonatal and Early Imitation",
+    venue: "PsyArXiv / ManyBabies",
+    url: "https://manybabies.org/publications/",
+  },
+  {
+    year: 2026,
+    type: "Journal Article",
+    title: "Neonatal Mimicry of Caregivers at Home: Feasibility of an Asynchronous Online Paradigm",
+    venue: "Infancy, 31(1), e70070",
+    url: "https://doi.org/10.1111/infa.70070",
+  },
+  {
+    year: 2025,
+    type: "Journal Article",
+    title: "Newborn Auditory Brainstem Response and Sudden Infant Death Syndrome",
+    venue: "Journal of Neuroscience Research, 103(11), e70083",
+    url: "https://doi.org/10.1002/jnr.70083",
+  },
+  {
+    year: 2025,
+    type: "Journal Article",
+    title: "Automated Detection of Mouth Opening in Newborn Infants",
+    venue: "Behavior Research Methods, 57(12), 322",
+    url: "https://doi.org/10.3758/s13428-025-02842-9",
+  },
+  {
+    year: 2025,
+    type: "Journal Article",
+    title: "Stability of Individual Differences in Social and Nonsocial Visual Attention From Newborn to 14 Months",
+    venue: "Developmental Psychobiology, 67(4), e70054",
+    url: "https://doi.org/10.1002/dev.70054",
+  },
+  {
+    year: 2025,
+    type: "Registered Report",
+    title: "The Story of Sickness: Improving Children's Sick Face Perception",
+    venue: "Infant and Child Development, 34, e70024",
+    url: "https://doi.org/10.1002/icd.70024",
+  },
+  {
+    year: 2024,
+    type: "Journal Article",
+    title: "Emerging Adults Mirror Infants’ Emotions and Yawns",
+    venue: "Developmental Psychobiology, 66(6), e22539",
+    url: "https://doi.org/10.1002/dev.22539",
+  },
+  {
+    year: 2024,
+    type: "Science Outreach",
+    title: "Infection Detection: Children Avoid Sick Faces",
+    venue: "Frontiers for Young Minds, 12, 1268913",
+    url: "https://doi.org/10.3389/frym.2024.1268913",
+  },
+  {
+    year: 2024,
+    type: "Journal Article",
+    title: "Infants’ Salivary Oxytocin and Positive Affective Reactions to People",
+    venue: "Hormones and Behavior, 164, 105579",
+    url: "https://doi.org/10.1016/j.yhbeh.2024.105579",
+  },
+  {
+    year: 2024,
+    type: "Journal Article",
+    title: "Infection Detection in Faces: Children’s Development of Pathogen Avoidance",
+    venue: "Child Development, 95(1), e35–e46",
+    url: "https://doi.org/10.1111/cdev.13983",
+  },
+  {
+    year: 2024,
+    type: "Journal Article",
+    title: "Measurement of Emotionality and Emotion Regulation in a Clinical Sample of Children: The Psychometric Properties of the How I Feel Scale",
+    venue: "Journal of Psychoeducational Assessment, 42(1), 110–118",
+    url: "https://doi.org/10.1177/07342829231207923",
+  },
+  {
+    year: 2024,
+    type: "Registered Report",
+    title: "Newborn Auditory Brainstem Response and Sudden Infant Death Syndrome — Stage 1 Registered Report",
+    venue: "Journal of Neuroscience Research, 102(6), e25362",
+    url: "https://doi.org/10.1002/jnr.25362",
+  },
+  {
+    year: 2023,
+    type: "Journal Article",
+    title: "Elevated Risk for Developmental Disabilities in Children With Congenital Heart Defects",
+    venue: "Birth Defects Research, 115(18), 1708–1722",
+    url: "https://doi.org/10.1002/bdr2.2246",
+  },
+  {
+    year: 2023,
+    type: "Journal Article",
+    title: "Social Motivation Predicts Gaze Following Development in 2- to 14-Month-Old Infants",
+    venue: "Infancy, 28(4), 836–860",
+    url: "https://doi.org/10.1111/infa.12544",
+  },
+  {
+    year: 2023,
+    type: "Journal Article",
+    title: "Behavioral and Physiological Sensitivity to Natural Sick Faces",
+    venue: "Brain, Behavior, and Immunity, 110, 195–211",
+    url: "https://doi.org/10.1016/j.bbi.2023.03.007",
+  },
+  {
+    year: 2023,
+    type: "Journal Article",
+    title: "Maximizing Valid Eye-Tracking Data in Human and Macaque Infants by Optimizing Calibration and Adjusting Areas of Interest",
+    venue: "Behavior Research Methods, 56, 881–907",
+    url: "https://doi.org/10.3758/s13428-022-02056-3",
+  },
+  {
+    year: 2022,
+    type: "Journal Article",
+    title: "Temperamental Fear, Eye Contact, and Gaze Aversion in Early Infancy",
+    venue: "Developmental Psychobiology, 64(7), e22324",
+    url: "https://doi.org/10.1002/dev.22324",
+  },
+  {
+    year: 2021,
+    type: "Journal Article",
+    title: "Newborn Auditory Brainstem Responses of Children With Developmental Disabilities",
+    venue: "Journal of Autism and Developmental Disorders, 53, 776–788",
+    url: "https://doi.org/10.1007/s10803-021-05126-1",
+  },
+  {
+    year: 2021,
+    type: "Journal Article",
+    title: "Prolonged Auditory Brainstem Response in Universal Hearing Screening of Newborns With Autism Spectrum Disorder",
+    venue: "Autism Research, 14(1), 46–52",
+    url: "https://doi.org/10.1002/aur.2422",
+  },
+  {
+    year: 2020,
+    type: "Journal Article",
+    title: "Face Detection in 2- to 6-Month-Old Infants Is Influenced by Gaze Direction and Species",
+    venue: "Developmental Science, 23(2), e12902",
+    url: "https://doi.org/10.1111/desc.12902",
+  },
 ];
+
+const years = [...new Set(publications.map((publication) => publication.year))].sort((a, b) => b - a);
 ---
 
 <BaseLayout
-  title="Publications"
-  description="Peer-reviewed publications from the lab. Filter by role or research area, sort by date or citations."
+  title="研究成果 Publications"
+  description="SEED Lab 负责人曾广宇教授的研究成果与学术发表。"
 >
   <PageHeader
-    eyebrow="Research output"
-    title="Publications"
-    lead="Peer-reviewed work from the lab and its collaborators. Filter by role or by research area, sort by date or citation count; counts are from Google Scholar."
+    eyebrow="研究成果"
+    title="研究成果 Publications"
+    lead="这里汇总 SEED Lab 负责人曾广宇教授参与发表的期刊论文、会议论文、注册报告与预印本，并按年份倒序排列。"
   />
-  <div class="container-page py-12">
-    <div class="mb-8 space-y-3">
-      <button
-        type="button"
-        id="filters-toggle"
-        class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50 md:hidden"
-        aria-controls="pub-filters"
-        aria-expanded="false"
-      >
-        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h18M6 12h12M10 19h4" />
-        </svg>
-        Filters
-      </button>
 
-      <div id="pub-filters" class="hidden space-y-3 md:block">
-        <div class="flex flex-wrap items-center gap-2">
-          {
-            filters.map((f) => (
-              <button class={chip} data-filter={f.key} data-active={f.key === "all" ? "" : undefined}>
-                {f.label} <span data-count />
-              </button>
-            ))
-          }
-        </div>
-
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="mr-1 text-xs font-semibold tracking-wide text-slate-500 uppercase">Area</span>
-        <button class={chip} data-area="all" data-active>All areas</button>
-        {
-          areaChips.map((slug) => (
-            <button class={chip} data-area={slug}>
-              {AREA_LABELS[slug]}{" "}
-              <span class="opacity-70">({areaCounts[slug] ?? 0})</span>
-            </button>
-          ))
-        }
-        </div>
-      </div>
-
-      <div class="flex flex-wrap items-center gap-3">
-        <input
-          type="search"
-          id="pub-search"
-          placeholder="Search title or author…"
-          class="min-w-56 flex-1 rounded-md border border-slate-300 px-3 py-1.5 text-sm focus:border-primary-500 focus:outline-none"
-        />
-        <div class="flex items-center gap-2 text-sm text-slate-600">
-          <span>Sort</span>
-          <button class={chip} data-sort="date" data-active>Newest</button>
-          <button class={chip} data-sort="citations">Most cited</button>
-        </div>
-        <span id="pub-count" class="text-sm text-slate-600"></span>
+  <main class="container-page pb-20 pt-10 sm:pt-12">
+    <div class="publication-toolbar">
+      <p>完整列表持续更新。最新引用与版本信息可通过 Google Scholar 或学校个人主页查看。</p>
+      <div class="publication-links">
+        <a href="https://scholar.google.com/citations?user=wwkuG-YAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar ↗</a>
+        <a href="https://myweb.cuhk.edu.cn/zenggy/Home/AcademicPublications" target="_blank" rel="noreferrer">学校发表列表 ↗</a>
       </div>
     </div>
 
-    <PubList pubs={pubs} />
+    <div class="year-list">
+      {years.map((year) => (
+        <section class="year-section" aria-labelledby={`year-${year}`}>
+          <div class="year-heading">
+            <h2 id={`year-${year}`}>{year}</h2>
+            <span>{publications.filter((publication) => publication.year === year).length} outputs</span>
+          </div>
 
-    <p id="pub-empty" class="hidden py-10 text-center text-slate-600">
-      No publications match your filters.
-    </p>
-  </div>
-
-  <script>
-    const list = document.getElementById("pub-list");
-    const items = list
-      ? ([...list.querySelectorAll<HTMLElement>("[data-pub]")] as HTMLElement[])
-      : [];
-    const search = document.getElementById("pub-search") as HTMLInputElement | null;
-    const countEl = document.getElementById("pub-count");
-    const emptyEl = document.getElementById("pub-empty");
-    // Mobile: toggle the (collapsed) filter panel.
-    const filtersToggle = document.getElementById("filters-toggle");
-    const filtersPanel = document.getElementById("pub-filters");
-    filtersToggle?.addEventListener("click", () => {
-      const open = filtersToggle.getAttribute("aria-expanded") === "true";
-      filtersToggle.setAttribute("aria-expanded", String(!open));
-      filtersPanel?.classList.toggle("hidden");
-    });
-
-    const filterBtns = [...document.querySelectorAll<HTMLElement>("[data-filter]")];
-    const areaBtns = [...document.querySelectorAll<HTMLElement>("[data-area]")];
-    const sortBtns = [...document.querySelectorAll<HTMLElement>("[data-sort]")];
-
-    // role filter key -> the li dataset flag it tests ("all" tests nothing)
-    const FLAG: Record<string, string> = {
-      mentee: "mentee",
-      pi: "piSenior",
-      collaboration: "collaboration",
-      openaccess: "openaccess",
-    };
-    let filter = "all";
-    let area = "all";
-    let sort = "date";
-
-    const num = (li: HTMLElement, k: string) => Number(li.dataset[k] ?? 0);
-
-    function fillCounts() {
-      for (const b of filterBtns) {
-        const f = b.dataset.filter!;
-        const c =
-          f === "all" ? items.length : items.filter((li) => li.dataset[FLAG[f]] === "true").length;
-        const span = b.querySelector("[data-count]");
-        if (span) span.textContent = `(${c})`;
-      }
-    }
-
-    function applySort() {
-      if (!list) return;
-      const arr = [...items].sort((a, b) =>
-        sort === "citations"
-          ? num(b, "citations") - num(a, "citations") || num(b, "year") - num(a, "year")
-          : num(b, "year") - num(a, "year"),
-      );
-      for (const li of arr) list.appendChild(li);
-    }
-
-    function applyFilter() {
-      const q = (search?.value ?? "").trim().toLowerCase();
-      let n = 0;
-      for (const li of items) {
-        const okFilter = filter === "all" || li.dataset[FLAG[filter]] === "true";
-        const okArea = area === "all" || (li.dataset.areas ?? "").split(" ").includes(area);
-        const okSearch = !q || (li.dataset.search ?? "").includes(q);
-        const show = okFilter && okArea && okSearch;
-        li.hidden = !show;
-        if (show) n++;
-      }
-      if (countEl) countEl.textContent = `${n} of ${items.length}`;
-      if (emptyEl) emptyEl.classList.toggle("hidden", n !== 0);
-    }
-
-    const setActive = (btns: HTMLElement[], active: HTMLElement) => {
-      for (const x of btns) {
-        if (x === active) x.setAttribute("data-active", "");
-        else x.removeAttribute("data-active");
-      }
-    };
-
-    for (const b of filterBtns)
-      b.addEventListener("click", () => {
-        filter = b.dataset.filter ?? "all";
-        setActive(filterBtns, b);
-        applyFilter();
-      });
-    for (const b of areaBtns)
-      b.addEventListener("click", () => {
-        area = b.dataset.area ?? "all";
-        setActive(areaBtns, b);
-        applyFilter();
-      });
-    for (const b of sortBtns)
-      b.addEventListener("click", () => {
-        sort = b.dataset.sort ?? "date";
-        setActive(sortBtns, b);
-        applySort();
-      });
-    search?.addEventListener("input", applyFilter);
-
-    // Deep link: /publications#<area-slug> pre-selects that area filter.
-    const hash = decodeURIComponent(location.hash.replace(/^#/, ""));
-    if (hash) {
-      const btn = areaBtns.find((b) => b.dataset.area === hash);
-      if (btn) {
-        area = hash;
-        setActive(areaBtns, btn);
-        filtersPanel?.classList.remove("hidden"); // reveal on mobile so the active chip shows
-        filtersToggle?.setAttribute("aria-expanded", "true");
-      }
-    }
-
-    fillCounts();
-    applySort();
-    applyFilter();
-  </script>
+          <div class="publication-list">
+            {publications
+              .filter((publication) => publication.year === year)
+              .map((publication) => (
+                <article class="publication-row">
+                  <div class="publication-type">{publication.type}</div>
+                  <div class="publication-copy">
+                    <h3>{publication.title}</h3>
+                    <p>{publication.venue}</p>
+                  </div>
+                  <a class="publication-link" href={publication.url} target="_blank" rel="noreferrer" aria-label={`Open ${publication.title}`}>
+                    ↗
+                  </a>
+                </article>
+              ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </main>
 </BaseLayout>
+
+<style>
+  .publication-toolbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 0 0 2.4rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .publication-toolbar > p {
+    margin: 0;
+    max-width: 42rem;
+    color: #64748b;
+    font-size: .94rem;
+    line-height: 1.8;
+  }
+
+  .publication-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: .7rem 1.25rem;
+  }
+
+  .publication-links a {
+    color: #336d50;
+    font-size: .84rem;
+    font-weight: 650;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .publication-links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .year-list {
+    display: grid;
+  }
+
+  .year-section {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    padding: clamp(3rem, 5vw, 4.5rem) 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .year-heading h2 {
+    margin: 0;
+    color: #17312a;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    line-height: 1;
+    letter-spacing: -.04em;
+  }
+
+  .year-heading span {
+    display: block;
+    margin-top: .65rem;
+    color: #94a3b8;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .publication-list {
+    display: grid;
+  }
+
+  .publication-row {
+    display: grid;
+    grid-template-columns: 9rem minmax(0, 1fr) 2rem;
+    gap: 1.25rem;
+    align-items: start;
+    padding: 1.45rem 0;
+    border-top: 1px solid #edf2f7;
+  }
+
+  .publication-row:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .publication-type {
+    padding-top: .2rem;
+    color: #428863;
+    font-size: .68rem;
+    font-weight: 750;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .publication-copy h3 {
+    margin: 0;
+    color: #1e293b;
+    font-family: var(--font-serif);
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .publication-copy p {
+    margin: .45rem 0 0;
+    color: #64748b;
+    font-size: .87rem;
+    line-height: 1.6;
+  }
+
+  .publication-link {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border: 1px solid #dbe5df;
+    border-radius: 999px;
+    color: #336d50;
+    text-decoration: none;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+  }
+
+  .publication-row:hover .publication-link {
+    transform: translate(2px, -2px);
+    border-color: #91c2a3;
+    background: #f2f8f4;
+  }
+
+  @media (max-width: 760px) {
+    .publication-toolbar {
+      display: grid;
+    }
+
+    .publication-links {
+      justify-content: flex-start;
+    }
+
+    .year-section {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .publication-row {
+      grid-template-columns: 1fr 2rem;
+      gap: .75rem 1rem;
+    }
+
+    .publication-type {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
