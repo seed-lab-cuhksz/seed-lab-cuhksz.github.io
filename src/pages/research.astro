@@ -1,55 +1,498 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
-import PageHeader from "../components/PageHeader.astro";
-import PubList from "../components/PubList.astro";
-import { getResearchGroups } from "../lib/content";
 
-// Data-driven: papers group by their `areas` tags. Each area shows its most
-// recent few with a link to the full, area-filtered Publications list.
-const groups = await getResearchGroups(4);
+const directions = [
+  {
+    number: "01",
+    title: "早期社会认知与神经行为机制",
+    titleEn: "Early Social Cognition & Neurobehavioral Development",
+    question: "婴幼儿如何逐渐形成共同注意、目光行为、社会动机和情绪理解等早期社会能力？",
+    description:
+      "我们关注婴幼儿早期社会认知与情感能力的发展，并探索这些能力背后的行为、生理与神经机制。研究结合行为观察、眼动及其他生理指标，理解社会能力如何在生命早期逐步形成，以及儿童之间为何呈现不同的发展模式。",
+    methods: ["Behavioral Observation", "Eye Tracking", "Physiological Measures"],
+    projects: ["催产素与共同注意", "亲子互动与发展"],
+  },
+  {
+    number: "02",
+    title: "个体差异、自闭症风险与早期识别",
+    titleEn: "Individual Differences, Autism Risk & Early Identification",
+    question: "儿童早期社会发展的差异从何而来？我们能否更早识别需要额外发展支持的儿童？",
+    description:
+      "我们研究儿童在注意、社会互动、生理反应和行为表现中的早期个体差异，以及这些差异如何与典型和非典型社会发展相关。通过亲子互动、眼动、EEG、fNIRS、发展评估和家长报告等多模态信息，我们尝试发展更自然、客观和可推广的早期识别方法。",
+    methods: ["Parent–Child Interaction", "Eye Tracking", "EEG", "fNIRS", "Developmental Assessment", "Multimodal Modeling"],
+    projects: ["亲子互动与发展", "“1+1+1”联合资助计划", "催产素与共同注意"],
+  },
+  {
+    number: "03",
+    title: "家庭、自然情境与儿童福祉",
+    titleEn: "Family, Naturalistic Contexts & Child Wellbeing",
+    question: "真实的家庭关系和日常环境如何参与儿童的情绪、行为、社会适应与健康发展？",
+    description:
+      "儿童的发展发生在真实的家庭关系与生活环境中。我们关注亲子互动、家庭经验和自然环境接触如何与儿童的情绪、行为调节、社会适应和整体福祉相关，并探索适合中国家庭使用的发展与福祉测量工具。",
+    methods: ["Parent–Child Interaction", "Longitudinal Tracking", "Parent Report", "Naturalistic Research"],
+    projects: ["亲子互动与发展", "自然童行", "婴幼儿幸福感量表中文版"],
+  },
+  {
+    number: "04",
+    title: "多模态测量、人工智能与数字化支持",
+    titleEn: "Multimodal Measurement, AI & Digital Support",
+    question: "如何利用新的测量与计算方法，让儿童发展研究更客观、更自然，也更容易进入真实应用场景？",
+    description:
+      "我们探索眼动、EEG、fNIRS、行为观察、第一视角记录与计算分析等方法的结合，并运用统计建模、机器学习和人工智能处理复杂的儿童发展数据。我们也关注如何把新的数字技术转化为更低负担、更可扩展的测量与家庭支持工具。",
+    methods: ["Multimodal Data", "First-person Video", "Machine Learning", "AI / LLM", "Digital Support"],
+    projects: ["LLM 项目", "“1+1+1”联合资助计划", "The Gift of the Tenth Month"],
+  },
+];
 ---
 
 <BaseLayout
-  title="Research"
-  description="An overview of the lab's research topics and methods."
+  title="研究方向 Research"
+  description="SEED Lab 的四条核心研究主线：早期社会认知、个体差异与自闭症早期识别、家庭与儿童福祉，以及多模态测量与人工智能。"
 >
-  <PageHeader
-    eyebrow="What we do"
-    title="Research"
-    lead="A short overview of what the lab studies and how. Explore our work by topic or by approach."
-  />
-  <div class="container-page space-y-16 py-12">
-    {
-      groups.map((group) => (
-        <section>
-          <div class="mb-3 h-1 w-12 rounded-full bg-accent-500"></div>
-          <h2 class="font-serif text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">{group.title}</h2>
-          <div class="mt-8 space-y-12">
-            {group.areas.map((area) => (
-              <div id={area.slug} class="scroll-mt-24">
-                <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <h3 class="font-serif text-2xl font-semibold text-slate-900">{area.label}</h3>
-                  {area.total > area.pubs.length && (
-                    <a
-                      href={`/publications#${area.slug}`}
-                      class="group inline-flex shrink-0 items-center gap-1 text-sm font-medium text-primary-700 transition-colors hover:text-accent-600"
-                    >
-                      All {area.total}
-                      <span class="transition-transform group-hover:translate-x-0.5" aria-hidden="true">
-                        &rarr;
-                      </span>
-                    </a>
-                  )}
-                </div>
-                <p class="mt-2 max-w-3xl text-slate-600">{area.blurb}</p>
-                <div class="mt-4">
-                  <PubList pubs={area.pubs} />
+  <main class="research-page">
+    <section class="research-hero">
+      <div class="container-page hero-inner">
+        <div>
+          <p class="eyebrow">SEED LAB · RESEARCH DIRECTIONS</p>
+          <h1>研究方向 <span>Research</span></h1>
+        </div>
+        <p class="hero-lead">
+          我们从发展机制、个体差异、真实生活情境与研究方法四个相互连接的层面，理解儿童早期社会发展的共同规律与差异，并探索更可及的发展测量与支持方式。
+        </p>
+      </div>
+    </section>
+
+    <section class="container-page directions" aria-label="SEED Lab 研究方向">
+      {directions.map((direction) => (
+        <article class="research-item">
+          <aside class="index-rail" aria-hidden="true">
+            <span class="index-number">{direction.number}</span>
+            <span class="rail-line"></span>
+            <span class="leaf-mark"><i></i><b></b></span>
+          </aside>
+
+          <div class="direction-main">
+            <header class="direction-header">
+              <h2>{direction.title}</h2>
+              <p class="title-en">{direction.titleEn}</p>
+            </header>
+
+            <p class="research-question">{direction.question}</p>
+            <p class="research-description">{direction.description}</p>
+
+            <div class="research-meta">
+              <div class="meta-block">
+                <p class="meta-label">研究方法 <span>Methods</span></p>
+                <div class="method-list">
+                  {direction.methods.map((method) => <span>{method}</span>)}
                 </div>
               </div>
-            ))}
+
+              <div class="meta-block projects-block">
+                <p class="meta-label">相关项目 <span>Related Projects</span></p>
+                <div class="project-list">
+                  {direction.projects.map((project) => (
+                    <a href="/projects">{project}<span aria-hidden="true">↗</span></a>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-        </section>
-      ))
-    }
-  </div>
+        </article>
+      ))}
+    </section>
+
+    <section class="research-footer">
+      <div class="container-page footer-inner">
+        <div>
+          <p class="footer-kicker">ONGOING WORK</p>
+          <h2>从研究问题，到正在进行的具体研究。</h2>
+        </div>
+        <a class="projects-link" href="/projects">查看在研项目 <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
+
+<style>
+  .research-page {
+    background: #fbf8ef;
+    color: #20312c;
+  }
+
+  .research-hero {
+    padding: clamp(4.6rem, 8vw, 7.5rem) 0 clamp(4rem, 7vw, 6.2rem);
+    border-bottom: 1px solid rgba(38, 61, 52, .10);
+    background:
+      radial-gradient(circle at 82% 20%, rgba(221, 168, 124, .10), transparent 25%),
+      radial-gradient(circle at 10% 85%, rgba(124, 153, 83, .10), transparent 28%);
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(19rem, .85fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: end;
+  }
+
+  .eyebrow,
+  .footer-kicker {
+    margin: 0;
+    font-size: .72rem;
+    font-weight: 750;
+    letter-spacing: .18em;
+    color: #758f50;
+  }
+
+  .research-hero h1 {
+    margin: .9rem 0 0;
+    font-size: clamp(3.4rem, 7.5vw, 7.2rem);
+    line-height: .92;
+    letter-spacing: -.06em;
+    font-weight: 800;
+    color: #20312c;
+  }
+
+  .research-hero h1 span {
+    color: #d6a07d;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  .hero-lead {
+    margin: 0 0 .4rem;
+    max-width: 38rem;
+    font-size: clamp(.96rem, 1.35vw, 1.08rem);
+    line-height: 1.95;
+    color: #66726d;
+  }
+
+  .directions {
+    padding-top: 1rem;
+    padding-bottom: clamp(5rem, 9vw, 8rem);
+  }
+
+  .research-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    padding: clamp(4.4rem, 7vw, 6.7rem) 0;
+    border-bottom: 1px solid rgba(38, 61, 52, .11);
+  }
+
+  .research-item:last-child {
+    border-bottom: 0;
+  }
+
+  .index-rail {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100%;
+  }
+
+  .index-number {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: #a77d66;
+  }
+
+  .rail-line {
+    width: 1px;
+    flex: 1;
+    min-height: 5rem;
+    margin-top: 1.2rem;
+    background: linear-gradient(to bottom, rgba(121, 148, 83, .48), rgba(121, 148, 83, .06));
+  }
+
+  .leaf-mark {
+    position: absolute;
+    top: 4.1rem;
+    left: 50%;
+    width: 1.5rem;
+    height: 1.7rem;
+    opacity: 0;
+    transform: translate(-50%, .8rem) scale(.75);
+    transition: opacity .35s ease, transform .45s cubic-bezier(.2,.7,.2,1);
+  }
+
+  .leaf-mark::before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 1.25rem;
+    left: 50%;
+    bottom: 0;
+    background: #718f4a;
+  }
+
+  .leaf-mark i,
+  .leaf-mark b {
+    position: absolute;
+    top: .25rem;
+    width: .72rem;
+    height: .42rem;
+    background: #8aa45d;
+  }
+
+  .leaf-mark i {
+    right: 50%;
+    border-radius: 90% 10% 90% 10%;
+    transform: rotate(18deg);
+    transform-origin: right center;
+  }
+
+  .leaf-mark b {
+    left: 50%;
+    border-radius: 10% 90% 10% 90%;
+    transform: rotate(-18deg);
+    transform-origin: left center;
+  }
+
+  .research-item:hover .leaf-mark,
+  .research-item:focus-within .leaf-mark {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  .direction-main {
+    display: grid;
+    grid-template-columns: minmax(18rem, .85fr) minmax(20rem, 1.15fr);
+    column-gap: clamp(3rem, 7vw, 7rem);
+  }
+
+  .direction-header {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(15rem, .95fr);
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 2.4rem;
+  }
+
+  .direction-header h2 {
+    margin: 0;
+    max-width: 48rem;
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 1.12;
+    letter-spacing: -.045em;
+    font-weight: 770;
+    color: #22372f;
+  }
+
+  .title-en {
+    margin: 0 0 .25rem;
+    max-width: 30rem;
+    justify-self: end;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1rem, 1.7vw, 1.3rem);
+    line-height: 1.45;
+    color: #aa806a;
+    text-align: right;
+  }
+
+  .research-question {
+    margin: 0;
+    align-self: start;
+    padding-left: 1.15rem;
+    border-left: 2px solid #819b58;
+    font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+    line-height: 1.8;
+    font-weight: 650;
+    color: #30483d;
+  }
+
+  .research-description {
+    margin: 0;
+    max-width: 48rem;
+    font-size: .94rem;
+    line-height: 2;
+    color: #67736d;
+  }
+
+  .research-meta {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    margin-top: 3rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid rgba(38, 61, 52, .08);
+  }
+
+  .meta-label {
+    margin: 0 0 .85rem;
+    font-size: .68rem;
+    font-weight: 750;
+    letter-spacing: .12em;
+    color: #60795a;
+  }
+
+  .meta-label span {
+    margin-left: .45rem;
+    color: #a78a79;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: .02em;
+  }
+
+  .method-list,
+  .project-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem .65rem;
+  }
+
+  .method-list span {
+    padding: .38rem .66rem;
+    border: 1px solid rgba(68, 94, 81, .12);
+    border-radius: 999px;
+    background: rgba(255,255,255,.38);
+    font-size: .7rem;
+    color: #617068;
+  }
+
+  .project-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .4rem 0;
+    border-bottom: 1px solid rgba(111, 139, 74, .25);
+    font-size: .76rem;
+    color: #557440;
+    transition: border-color .2s ease, color .2s ease;
+  }
+
+  .project-list a span {
+    font-size: .68rem;
+    transition: transform .2s ease;
+  }
+
+  .project-list a:hover {
+    color: #344f38;
+    border-color: rgba(85, 116, 64, .65);
+  }
+
+  .project-list a:hover span {
+    transform: translate(.12rem, -.12rem);
+  }
+
+  .research-footer {
+    padding: clamp(4rem, 7vw, 6rem) 0;
+    background: #273f35;
+    color: #f5f1e7;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .footer-kicker {
+    color: #afc68a;
+  }
+
+  .footer-inner h2 {
+    margin: .75rem 0 0;
+    max-width: 42rem;
+    font-size: clamp(1.8rem, 3.2vw, 3.2rem);
+    line-height: 1.2;
+    letter-spacing: -.035em;
+    font-weight: 680;
+  }
+
+  .projects-link {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
+    padding-bottom: .35rem;
+    border-bottom: 1px solid rgba(225, 190, 163, .48);
+    color: #edc4a7;
+    font-size: .84rem;
+  }
+
+  .projects-link span {
+    transition: transform .2s ease;
+  }
+
+  .projects-link:hover span {
+    transform: translateX(.25rem);
+  }
+
+  @media (max-width: 980px) {
+    .hero-inner,
+    .direction-header,
+    .direction-main,
+    .research-meta {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-inner {
+      gap: 2.2rem;
+    }
+
+    .title-en {
+      justify-self: start;
+      text-align: left;
+    }
+
+    .direction-header {
+      gap: .8rem;
+    }
+
+    .direction-main {
+      row-gap: 1.8rem;
+    }
+
+    .research-description {
+      max-width: 44rem;
+    }
+
+    .research-meta {
+      margin-top: 1rem;
+      gap: 1.8rem;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .research-item {
+      grid-template-columns: 2.6rem minmax(0, 1fr);
+      gap: 1rem;
+      padding: 3.6rem 0;
+    }
+
+    .index-number {
+      font-size: .9rem;
+    }
+
+    .leaf-mark {
+      top: 3.45rem;
+    }
+
+    .research-question {
+      padding-left: .85rem;
+    }
+
+    .footer-inner {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .leaf-mark,
+    .project-list a span,
+    .projects-link span {
+      transition: none;
+    }
+  }
+</style>
