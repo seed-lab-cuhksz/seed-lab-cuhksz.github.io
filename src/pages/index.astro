@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
+import SeedLogo from "../components/SeedLogo.astro";
+import SeedGarden from "../components/SeedGarden.astro";
 import { site } from "../data/site";
 ---
 
@@ -9,28 +11,21 @@ import { site } from "../data/site";
   hideFooter={true}
 >
   <section class="home-stage relative isolate overflow-hidden bg-[#faf7ef]">
-    <div class="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(255,255,255,.28),rgba(255,255,255,0)_36%)]"></div>
+    <div class="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(255,255,255,.30),rgba(255,255,255,0)_38%)]"></div>
+    <div class="soft-orb soft-orb-a" aria-hidden="true"></div>
+    <div class="soft-orb soft-orb-b" aria-hidden="true"></div>
 
-    <svg class="growth-line pointer-events-none absolute -left-16 bottom-[-8%] -z-10 h-[112%] w-[58%] min-w-[520px] opacity-70" viewBox="0 0 760 820" fill="none" aria-hidden="true">
-      <path class="growth-path" d="M132 806C165 696 198 598 239 511C278 426 330 363 389 302C448 242 492 174 509 99" stroke="#77964b" stroke-width="3.2" stroke-linecap="round" />
-      <path d="M394 295C333 255 286 253 246 278C282 316 329 326 394 295Z" fill="#77964b" opacity=".92" />
-      <path d="M491 155C539 119 588 111 626 127C600 174 557 194 491 155Z" fill="#77964b" opacity=".92" />
-      <circle class="peach-dot" cx="509" cy="99" r="11" fill="#efb487" />
-    </svg>
-
-    <div class="container-page grid min-h-[calc(100svh-4.5rem)] items-center gap-12 py-10 lg:grid-cols-[.86fr_1.14fr] lg:gap-20 lg:py-8">
-      <div class="brand-side relative flex min-h-[24rem] items-center justify-center lg:min-h-0 lg:justify-start">
-        <div class="relative w-full max-w-[26rem]">
-          <img
-            src="/seed-lab-logo.webp"
-            alt="SEED Social Excellence for Early Development Lab"
-            class="official-logo mx-auto block w-full max-w-[23rem] lg:mx-0"
-            width="190"
-            height="140"
-          />
-          <p class="mt-8 text-center text-[10px] font-medium tracking-[.2em] text-[#7d817d] uppercase lg:text-left">
+    <div class="container-page grid min-h-[calc(100svh-4.5rem)] items-center gap-10 py-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-20 lg:py-7">
+      <div class="brand-side relative flex min-h-[27rem] flex-col justify-center lg:min-h-0">
+        <div class="relative z-10 w-full max-w-[34rem]">
+          <SeedLogo />
+          <p class="mt-5 text-[10px] font-medium tracking-[.2em] text-[#7d817d] uppercase">
             The Chinese University of Hong Kong, Shenzhen
           </p>
+        </div>
+
+        <div class="garden-wrap relative z-0 -mt-1 w-full max-w-[39rem]">
+          <SeedGarden />
         </div>
       </div>
 
@@ -72,14 +67,40 @@ import { site } from "../data/site";
     min-height: calc(100svh - 4.5rem);
   }
 
-  .official-logo {
-    filter: saturate(.96) contrast(1.01);
-    transform-origin: 42% 64%;
-    transition: transform .55s cubic-bezier(.2,.7,.2,1);
+  .soft-orb {
+    position: absolute;
+    z-index: -10;
+    border-radius: 999px;
+    filter: blur(65px);
+    pointer-events: none;
   }
 
-  .brand-side:hover .official-logo {
-    transform: translateY(-3px) rotate(-.35deg);
+  .soft-orb-a {
+    left: -8rem;
+    bottom: -7rem;
+    width: 28rem;
+    height: 23rem;
+    background: rgba(201, 216, 174, .24);
+  }
+
+  .soft-orb-b {
+    left: 28%;
+    bottom: -11rem;
+    width: 22rem;
+    height: 17rem;
+    background: rgba(239, 190, 151, .10);
+  }
+
+  .brand-side {
+    transform-origin: 40% 55%;
+  }
+
+  .garden-wrap {
+    transition: transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+
+  .brand-side:hover .garden-wrap {
+    transform: translateY(-2px);
   }
 
   .home-link {
@@ -106,31 +127,20 @@ import { site } from "../data/site";
     transform: translate(2px, -2px);
   }
 
-  .growth-path {
-    stroke-dasharray: 950;
-    stroke-dashoffset: 950;
-    animation: grow-line 1.45s .12s cubic-bezier(.2,.7,.2,1) forwards;
-  }
-
-  .peach-dot {
-    transform-origin: 509px 99px;
-    animation: dot-breathe 4.5s 1.5s ease-in-out infinite;
-  }
-
-  @keyframes grow-line {
-    to { stroke-dashoffset: 0; }
-  }
-
-  @keyframes dot-breathe {
-    0%, 100% { transform: scale(1); opacity: .82; }
-    50% { transform: scale(1.16); opacity: 1; }
-  }
-
   @media (max-width: 1023px) {
-    .growth-line {
-      left: -12rem;
-      width: 80%;
-      opacity: .42;
+    .brand-side {
+      align-items: center;
+      min-height: 24rem;
+    }
+
+    .brand-side > div,
+    .garden-wrap {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .brand-side p {
+      text-align: center;
     }
   }
 
@@ -139,30 +149,12 @@ import { site } from "../data/site";
       min-height: auto;
     }
 
-    .growth-line {
-      left: -16rem;
-      bottom: 8%;
-      width: 120%;
-      opacity: .28;
-    }
-
     .brand-side {
-      min-height: 17rem;
+      min-height: 19rem;
     }
 
-    .official-logo {
-      max-width: 17rem;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .growth-path {
-      stroke-dashoffset: 0;
-      animation: none;
-    }
-
-    .peach-dot {
-      animation: none;
+    .garden-wrap {
+      margin-top: -.5rem;
     }
   }
 </style>
