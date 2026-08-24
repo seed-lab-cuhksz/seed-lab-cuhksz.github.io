@@ -1,430 +1,168 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
 import { site } from "../data/site";
-
-const researchAreas = [
-  {
-    index: "01",
-    title: "早期社会认知与互动",
-    en: "Early Social Cognition & Interaction",
-    body: "关注婴幼儿如何感知、理解并回应他人的目光、动作和社会信息，以及这些能力如何在生命早期逐步发展。",
-    signal: "GAZE / JOINT ATTENTION",
-  },
-  {
-    index: "02",
-    title: "个体差异与发展轨迹",
-    en: "Individual Differences & Development",
-    body: "研究儿童在认知、情感与社会发展中的差异，并探索这些差异如何与早期经验和发展环境相联系。",
-    signal: "VARIABILITY / TRAJECTORY",
-  },
-  {
-    index: "03",
-    title: "亲子互动与自然情境",
-    en: "Family & Naturalistic Contexts",
-    body: "把儿童放回真实的关系和活动情境中，通过亲子互动与自然活动理解社会行为如何在日常环境中发生。",
-    signal: "INTERACTION / CONTEXT",
-  },
-  {
-    index: "04",
-    title: "多模态行为测量",
-    en: "Multimodal Behavioral Measurement",
-    body: "结合行为观察、眼动、脑成像与计算方法，从不同尺度捕捉儿童注意、互动与发展过程中的行为信号。",
-    signal: "EYE / BRAIN / BEHAVIOR",
-  },
-];
-
-const methodSteps = [
-  { number: "01", title: "提出发展问题", en: "Question", text: "从儿童真实的发展现象与个体差异出发。" },
-  { number: "02", title: "设计互动情境", en: "Context", text: "在实验室、亲子互动和自然活动中构建可观察的情境。" },
-  { number: "03", title: "捕捉多模态信号", en: "Measure", text: "同步整合行为、眼动与神经生理等不同层面的信息。" },
-  { number: "04", title: "理解发展差异", en: "Understand", text: "用统计与计算方法识别共同规律和个体差异。" },
-];
-
-const projects = [
-  {
-    code: "SOCIAL ATTENTION",
-    title: "早期社会注意与共同注意",
-    body: "通过眼动和行为任务研究婴幼儿如何追随社会线索，以及共同注意能力如何发展。",
-    href: "/projects",
-  },
-  {
-    code: "PARENT–CHILD",
-    title: "亲子互动与早期社会发展",
-    body: "通过结构化与自然互动观察，理解照护者与儿童之间的互动模式及其发展意义。",
-    href: "/projects",
-  },
-  {
-    code: "NATURAL CONTEXT",
-    title: "自然环境中的注意与探索",
-    body: "将儿童研究延伸到自然活动情境，考察环境信息如何吸引注意并参与儿童的探索过程。",
-    href: "/projects",
-  },
-];
 ---
 
 <BaseLayout
   title="首页 Home"
   description={site.description}
+  hideFooter={true}
 >
-  <section id="seed-hero" class="seed-hero relative isolate overflow-hidden">
-    <div class="seed-grid absolute inset-0 -z-20"></div>
-    <div class="seed-glow seed-glow-a absolute -z-10"></div>
-    <div class="seed-glow seed-glow-b absolute -z-10"></div>
+  <section class="home-stage relative isolate overflow-hidden bg-[#faf7ef]">
+    <div class="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(255,255,255,.28),rgba(255,255,255,0)_36%)]"></div>
 
-    <div class="container-page grid min-h-[700px] items-center gap-12 py-16 lg:grid-cols-[1.05fr_.95fr] lg:py-20">
-      <div class="relative z-10 max-w-3xl">
-        <div class="mb-7 inline-flex items-center gap-2 rounded-full border border-primary-200 bg-white/75 px-3.5 py-2 text-xs font-semibold tracking-[0.12em] text-primary-800 shadow-sm backdrop-blur">
-          <span class="relative flex h-2 w-2">
-            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-400 opacity-50"></span>
-            <span class="relative inline-flex h-2 w-2 rounded-full bg-accent-500"></span>
-          </span>
-          {site.institution}
-        </div>
+    <svg class="growth-line pointer-events-none absolute -left-16 bottom-[-8%] -z-10 h-[112%] w-[58%] min-w-[520px] opacity-70" viewBox="0 0 760 820" fill="none" aria-hidden="true">
+      <path class="growth-path" d="M132 806C165 696 198 598 239 511C278 426 330 363 389 302C448 242 492 174 509 99" stroke="#77964b" stroke-width="3.2" stroke-linecap="round" />
+      <path d="M394 295C333 255 286 253 246 278C282 316 329 326 394 295Z" fill="#77964b" opacity=".92" />
+      <path d="M491 155C539 119 588 111 626 127C600 174 557 194 491 155Z" fill="#77964b" opacity=".92" />
+      <circle class="peach-dot" cx="509" cy="99" r="11" fill="#efb487" />
+    </svg>
 
-        <p class="mb-3 text-sm font-semibold tracking-[0.22em] text-accent-700 uppercase">
-          SOCIAL EXCELLENCE FOR EARLY DEVELOPMENT
-        </p>
-        <h1 class="max-w-4xl text-[clamp(3rem,7vw,6.8rem)] font-semibold leading-[0.92] tracking-[-0.055em] text-seed-ink">
-          SEED
-          <span class="mt-2 block text-[clamp(1.65rem,3.6vw,3.4rem)] leading-[1.08] tracking-[-0.035em] text-primary-700">
-            儿童早期社会发展实验室
-          </span>
-        </h1>
-        <p class="mt-7 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-          {site.description}
-        </p>
-
-        <div class="mt-9 flex flex-wrap gap-3">
-          <a href="/research" class="seed-button seed-button-primary group">
-            探索研究方向 <span class="text-xs opacity-65">Research</span>
-            <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">↗</span>
-          </a>
-          <a href="/contact" class="seed-button seed-button-secondary group">
-            参与我们的研究 <span class="text-xs opacity-60">Connect</span>
-            <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-          </a>
-        </div>
-
-        <div class="mt-12 grid max-w-2xl grid-cols-3 gap-3 border-t border-primary-100 pt-6">
-          <div>
-            <p class="font-mono text-[10px] tracking-[.15em] text-primary-500">FOCUS</p>
-            <p class="mt-1 text-sm font-semibold text-seed-ink">0–3 岁早期发展</p>
-          </div>
-          <div>
-            <p class="font-mono text-[10px] tracking-[.15em] text-primary-500">CONTEXT</p>
-            <p class="mt-1 text-sm font-semibold text-seed-ink">互动 × 环境</p>
-          </div>
-          <div>
-            <p class="font-mono text-[10px] tracking-[.15em] text-primary-500">METHOD</p>
-            <p class="mt-1 text-sm font-semibold text-seed-ink">多模态测量</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="relative mx-auto w-full max-w-[620px] lg:mx-0">
-        <div class="signal-panel relative aspect-square overflow-hidden rounded-[2.25rem] border border-primary-100/80 bg-white/68 shadow-[0_35px_90px_rgba(31,76,57,.12)] backdrop-blur-xl">
-          <div class="absolute inset-x-7 top-6 z-10 flex items-center justify-between font-mono text-[10px] tracking-[.16em] text-primary-500">
-            <span>SEED / DEVELOPMENT SIGNALS</span>
-            <span class="flex items-center gap-2"><i class="h-1.5 w-1.5 rounded-full bg-accent-500"></i> LIVE</span>
-          </div>
-
-          <svg viewBox="0 0 600 600" class="absolute inset-0 h-full w-full" aria-hidden="true">
-            <defs>
-              <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#91c2a3" stop-opacity=".48" />
-                <stop offset="100%" stop-color="#91c2a3" stop-opacity="0" />
-              </radialGradient>
-              <linearGradient id="lineGradient" x1="0" x2="1">
-                <stop offset="0%" stop-color="#359b90" stop-opacity=".15" />
-                <stop offset="50%" stop-color="#428863" stop-opacity=".72" />
-                <stop offset="100%" stop-color="#d6a95d" stop-opacity=".24" />
-              </linearGradient>
-            </defs>
-
-            <circle cx="300" cy="300" r="142" fill="url(#coreGlow)" class="core-glow" />
-            <circle cx="300" cy="300" r="103" fill="none" stroke="#bedcc8" stroke-width="1" stroke-dasharray="5 8" class="orbit orbit-a" />
-            <circle cx="300" cy="300" r="178" fill="none" stroke="#deeee3" stroke-width="1" stroke-dasharray="3 10" class="orbit orbit-b" />
-            <circle cx="300" cy="300" r="235" fill="none" stroke="#eef3ef" stroke-width="1" />
-
-            <g class="signal-lines" fill="none" stroke="url(#lineGradient)" stroke-width="1.4" stroke-dasharray="7 7">
-              <path d="M300 300 C230 250, 185 188, 132 142" />
-              <path d="M300 300 C374 246, 418 186, 476 142" />
-              <path d="M300 300 C232 360, 180 414, 128 463" />
-              <path d="M300 300 C365 350, 420 410, 482 466" />
-              <path d="M300 300 C300 220, 302 142, 302 82" />
-            </g>
-
-            <g class="seed-core" data-parallax="8">
-              <circle cx="300" cy="300" r="74" fill="#17312a" />
-              <path d="M300 341 C275 326 261 305 264 281 C267 254 284 237 300 229 C316 237 333 254 336 281 C339 305 325 326 300 341Z" fill="#f2f8f4" opacity=".94" />
-              <path d="M300 292 C303 248 330 223 365 219 C358 249 337 278 300 292Z" fill="#7fd1c5" />
-              <path d="M300 271 C292 236 270 219 242 220 C247 248 263 269 300 281Z" fill="#d6a95d" opacity=".88" />
-              <path d="M300 281V347" stroke="#91c2a3" stroke-width="5" stroke-linecap="round" />
-            </g>
-
-            <g class="node node-gaze" data-parallax="15">
-              <circle cx="132" cy="142" r="14" fill="#359b90" opacity=".12" />
-              <circle cx="132" cy="142" r="5" fill="#359b90" />
-            </g>
-            <g class="node node-interaction" data-parallax="11">
-              <circle cx="476" cy="142" r="14" fill="#428863" opacity=".12" />
-              <circle cx="476" cy="142" r="5" fill="#428863" />
-            </g>
-            <g class="node node-brain" data-parallax="17">
-              <circle cx="128" cy="463" r="14" fill="#d6a95d" opacity=".14" />
-              <circle cx="128" cy="463" r="5" fill="#d6a95d" />
-            </g>
-            <g class="node node-context" data-parallax="13">
-              <circle cx="482" cy="466" r="14" fill="#62a57d" opacity=".13" />
-              <circle cx="482" cy="466" r="5" fill="#62a57d" />
-            </g>
-            <g class="node node-growth" data-parallax="10">
-              <circle cx="302" cy="82" r="14" fill="#e6b990" opacity=".16" />
-              <circle cx="302" cy="82" r="5" fill="#d6a95d" />
-            </g>
-          </svg>
-
-          <div class="signal-label label-gaze" data-parallax="22"><b>目光</b><span>GAZE</span></div>
-          <div class="signal-label label-interaction" data-parallax="17"><b>互动</b><span>INTERACTION</span></div>
-          <div class="signal-label label-brain" data-parallax="20"><b>脑与行为</b><span>BRAIN / BEHAVIOR</span></div>
-          <div class="signal-label label-context" data-parallax="16"><b>环境</b><span>CONTEXT</span></div>
-          <div class="signal-label label-growth" data-parallax="14"><b>发展</b><span>DEVELOPMENT</span></div>
-
-          <div class="absolute inset-x-7 bottom-6 flex items-center justify-between border-t border-primary-100 pt-4 font-mono text-[9px] tracking-[.14em] text-primary-500">
-            <span>OBSERVE</span><span>MEASURE</span><span>UNDERSTAND</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="relative overflow-hidden bg-white py-20 sm:py-24">
-    <div class="container-page">
-      <div class="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-16">
-        <div class="lg:sticky lg:top-28 lg:self-start">
-          <p class="section-kicker">RESEARCH FOCUS</p>
-          <h2 class="section-title">我们关注什么 <span>Research Focus</span></h2>
-          <p class="mt-5 max-w-md leading-7 text-slate-600">
-            我们希望理解儿童早期社会发展的共同规律，也关注同一个发展过程为什么会在不同儿童身上呈现出不同路径。
+    <div class="container-page grid min-h-[calc(100svh-4.5rem)] items-center gap-12 py-10 lg:grid-cols-[.86fr_1.14fr] lg:gap-20 lg:py-8">
+      <div class="brand-side relative flex min-h-[24rem] items-center justify-center lg:min-h-0 lg:justify-start">
+        <div class="relative w-full max-w-[26rem]">
+          <img
+            src="/seed-lab-logo.webp"
+            alt="SEED Social Excellence for Early Development Lab"
+            class="official-logo mx-auto block w-full max-w-[23rem] lg:mx-0"
+            width="190"
+            height="140"
+          />
+          <p class="mt-8 text-center text-[10px] font-medium tracking-[.2em] text-[#7d817d] uppercase lg:text-left">
+            The Chinese University of Hong Kong, Shenzhen
           </p>
-          <a href="/research" class="text-link mt-7 inline-flex">查看完整研究方向 <span>→</span></a>
-        </div>
-
-        <div class="grid gap-4 sm:grid-cols-2">
-          {researchAreas.map((area) => (
-            <a href="/research" class="research-card group">
-              <div class="flex items-start justify-between gap-4">
-                <span class="font-mono text-xs text-primary-400">{area.index}</span>
-                <span class="signal-tag">{area.signal}</span>
-              </div>
-              <h3 class="mt-12 text-2xl font-semibold tracking-[-.025em] text-seed-ink">
-                {area.title}
-              </h3>
-              <p class="mt-1 text-xs font-semibold tracking-[.06em] text-primary-500 uppercase">{area.en}</p>
-              <p class="mt-5 text-sm leading-7 text-slate-600">{area.body}</p>
-              <span class="mt-8 inline-flex h-9 w-9 items-center justify-center rounded-full border border-primary-100 text-primary-700 transition group-hover:translate-x-1 group-hover:border-primary-300 group-hover:bg-primary-50">↗</span>
-            </a>
-          ))}
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="relative overflow-hidden bg-seed-ink py-20 text-white sm:py-24">
-    <div class="method-noise absolute inset-0 opacity-50"></div>
-    <div class="container-page relative">
-      <div class="max-w-3xl">
-        <p class="section-kicker !text-accent-300">HOW WE STUDY</p>
-        <h2 class="section-title !text-white">我们如何研究 <span class="!text-primary-200">How We Study</span></h2>
-        <p class="mt-5 max-w-2xl leading-7 text-primary-100/80">
-          不把单一测量当作答案，而是把不同来源的行为信号放在同一个发展问题中理解。
+      <div class="copy-side relative max-w-[47rem] lg:justify-self-end">
+        <p class="mb-6 text-[11px] font-semibold tracking-[.14em] text-[#769348]">
+          香港中文大学（深圳） · 儿童发展研究
         </p>
-      </div>
 
-      <div class="relative mt-14 grid gap-4 lg:grid-cols-4">
-        <div class="method-line absolute left-[9%] right-[9%] top-8 hidden h-px lg:block"></div>
-        {methodSteps.map((step, i) => (
-          <article class="method-step group relative">
-            <div class="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border border-primary-400/35 bg-seed-ink font-mono text-xs text-accent-300 shadow-[0_0_0_8px_rgba(23,49,42,.75)]">
-              {step.number}
-            </div>
-            <p class="mt-8 font-mono text-[10px] tracking-[.18em] text-primary-300">{step.en.toUpperCase()}</p>
-            <h3 class="mt-2 text-xl font-semibold text-white">{step.title}</h3>
-            <p class="mt-3 max-w-xs text-sm leading-6 text-primary-100/70">{step.text}</p>
-            {i < methodSteps.length - 1 && <span class="mt-6 inline-block text-accent-400 lg:hidden">↓</span>}
-          </article>
-        ))}
-      </div>
+        <h1 class="text-[clamp(2.5rem,5.1vw,5rem)] font-semibold leading-[1.04] tracking-[-.055em] text-[#202c29]">
+          理解儿童如何
+          <span class="block text-[#769348]">看见、互动与成长</span>
+        </h1>
 
-      <div class="mt-16 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {["行为观察 BEHAVIOR", "眼动追踪 EYE TRACKING", "脑成像 BRAIN", "计算分析 COMPUTATION"].map((item) => (
-          <div class="rounded-xl border border-white/10 bg-white/[.045] px-4 py-3 font-mono text-[10px] tracking-[.11em] text-primary-100 backdrop-blur-sm">{item}</div>
-        ))}
-      </div>
-    </div>
-  </section>
+        <p class="mt-5 font-serif text-[clamp(1.1rem,1.5vw,1.35rem)] italic leading-relaxed text-[#9a7460]">
+          Understanding how children see, connect, and grow.
+        </p>
 
-  <section class="bg-seed-cream py-20 sm:py-24">
-    <div class="container-page">
-      <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p class="section-kicker">CURRENT PROJECTS</p>
-          <h2 class="section-title">在研项目 <span>Projects</span></h2>
-        </div>
-        <a href="/projects" class="text-link">查看全部项目 <span>→</span></a>
-      </div>
+        <p class="mt-8 max-w-[42rem] text-[15px] leading-8 text-[#626a66] sm:text-base">
+          我们关注 0–3 岁婴幼儿的认知、情感与社会发展，并通过行为观察、眼动、脑成像与计算方法，理解早期发展中的共同规律与个体差异。
+        </p>
 
-      <div class="mt-10 grid gap-5 lg:grid-cols-3">
-        {projects.map((project, i) => (
-          <a href={project.href} class="project-card group">
-            <div class="flex items-center justify-between font-mono text-[10px] tracking-[.13em] text-primary-500">
-              <span>{project.code}</span>
-              <span>0{i + 1}</span>
-            </div>
-            <div class="project-visual mt-8" aria-hidden="true">
-              <span></span><span></span><span></span><i></i>
-            </div>
-            <h3 class="mt-8 text-2xl font-semibold tracking-[-.025em] text-seed-ink group-hover:text-primary-700">{project.title}</h3>
-            <p class="mt-4 text-sm leading-7 text-slate-600">{project.body}</p>
-            <span class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary-700">了解项目 <i class="not-italic transition-transform group-hover:translate-x-1">→</i></span>
+        <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 text-sm font-semibold">
+          <a href="/research" class="home-link group">
+            了解我们的研究
+            <span aria-hidden="true">↗</span>
           </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="relative overflow-hidden bg-white py-20 sm:py-24">
-    <div class="container-page">
-      <div class="connect-panel relative overflow-hidden rounded-[2rem] border border-primary-100 bg-primary-50/55 p-7 sm:p-10 lg:p-12">
-        <div class="connect-orb absolute -right-20 -top-24 h-72 w-72 rounded-full border border-primary-200"></div>
-        <div class="connect-orb absolute -bottom-36 right-24 h-80 w-80 rounded-full border border-accent-200/60"></div>
-        <div class="relative grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
-          <div>
-            <p class="section-kicker">CONNECT WITH SEED</p>
-            <h2 class="section-title">一起参与 <span>Connect with SEED</span></h2>
-            <p class="mt-5 max-w-xl leading-7 text-slate-600">
-              儿童发展研究需要家庭、研究者与不同学科伙伴共同参与。你可以从最适合自己的入口了解更多。
-            </p>
-          </div>
-          <div class="grid gap-3 sm:grid-cols-3">
-            <a href="/contact#families" class="connect-card group"><span>家庭参与</span><small>For Families</small><b>↗</b></a>
-            <a href="/contact#collaborate" class="connect-card group"><span>合作交流</span><small>Collaborate</small><b>↗</b></a>
-            <a href="/contact#join" class="connect-card group"><span>加入我们</span><small>Join the Team</small><b>↗</b></a>
-          </div>
+          <a href="/contact#families" class="home-link group">
+            家庭参与
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </div>
     </div>
   </section>
-
-  <script>
-    const hero = document.getElementById("seed-hero");
-    const layers = hero?.querySelectorAll<HTMLElement>("[data-parallax]");
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (hero && layers && !reduceMotion) {
-      hero.addEventListener("pointermove", (event) => {
-        const rect = hero.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width - 0.5;
-        const y = (event.clientY - rect.top) / rect.height - 0.5;
-        layers.forEach((layer) => {
-          const strength = Number(layer.dataset.parallax ?? 10);
-          layer.style.transform = `translate3d(${x * strength}px, ${y * strength}px, 0)`;
-        });
-      });
-      hero.addEventListener("pointerleave", () => {
-        layers.forEach((layer) => {
-          layer.style.transform = "translate3d(0,0,0)";
-        });
-      });
-    }
-  </script>
 </BaseLayout>
 
 <style>
-  .seed-hero {
-    background: linear-gradient(135deg, #fbf8ef 0%, #f8fbf8 46%, #eef8f5 100%);
+  .home-stage {
+    min-height: calc(100svh - 4.5rem);
   }
-  .seed-grid {
-    background-image:
-      linear-gradient(rgba(66, 136, 99, .055) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(66, 136, 99, .055) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent 92%);
+
+  .official-logo {
+    filter: saturate(.96) contrast(1.01);
+    transform-origin: 42% 64%;
+    transition: transform .55s cubic-bezier(.2,.7,.2,1);
   }
-  .seed-glow { border-radius: 9999px; filter: blur(2px); }
-  .seed-glow-a { width: 35rem; height: 35rem; right: -10rem; top: 3rem; background: radial-gradient(circle, rgba(127,209,197,.21), rgba(127,209,197,0) 68%); }
-  .seed-glow-b { width: 30rem; height: 30rem; left: -10rem; bottom: -13rem; background: radial-gradient(circle, rgba(214,169,93,.16), rgba(214,169,93,0) 68%); }
 
-  .seed-button { display: inline-flex; align-items: center; gap: .65rem; border-radius: 999px; padding: .82rem 1.2rem; font-size: .875rem; font-weight: 650; transition: all .25s ease; }
-  .seed-button-primary { background: #17312a; color: white; box-shadow: 0 8px 25px rgba(23,49,42,.16); }
-  .seed-button-primary:hover { background: #2b5843; transform: translateY(-1px); box-shadow: 0 12px 28px rgba(23,49,42,.2); }
-  .seed-button-secondary { border: 1px solid rgba(66,136,99,.25); background: rgba(255,255,255,.72); color: #254737; }
-  .seed-button-secondary:hover { border-color: rgba(66,136,99,.5); background: white; transform: translateY(-1px); }
+  .brand-side:hover .official-logo {
+    transform: translateY(-3px) rotate(-.35deg);
+  }
 
-  .signal-panel::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.96), rgba(242,248,244,.5) 65%, rgba(255,255,255,.72)); }
-  .signal-panel::after { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(66,136,99,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(66,136,99,.045) 1px, transparent 1px); background-size: 28px 28px; }
-  .core-glow { animation: seed-pulse 4s ease-in-out infinite; transform-origin: 300px 300px; }
-  .orbit-a { animation: seed-dash 12s linear infinite; }
-  .orbit-b { animation: seed-dash 18s linear infinite reverse; }
-  .signal-lines path { animation: seed-dash 3.5s linear infinite; }
-  .seed-core, .node, .signal-label { transition: transform .22s ease-out; }
-  .node circle:first-child { transform-origin: center; animation: seed-pulse 3.4s ease-in-out infinite; }
-  .node-interaction circle:first-child { animation-delay: -.7s; }
-  .node-brain circle:first-child { animation-delay: -1.5s; }
-  .node-context circle:first-child { animation-delay: -2.2s; }
-  .node-growth circle:first-child { animation-delay: -2.8s; }
+  .home-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    border-bottom: 1px solid #b9b4a9;
+    padding-bottom: .3rem;
+    color: #293531;
+    transition: border-color .2s ease, color .2s ease;
+  }
 
-  .signal-label { position: absolute; z-index: 4; display: flex; flex-direction: column; gap: .12rem; padding: .48rem .62rem; border: 1px solid rgba(66,136,99,.12); border-radius: .65rem; background: rgba(255,255,255,.78); box-shadow: 0 8px 24px rgba(31,76,57,.055); backdrop-filter: blur(8px); }
-  .signal-label b { font-size: .72rem; color: #17312a; }
-  .signal-label span { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .45rem; letter-spacing: .08em; color: #428863; }
-  .label-gaze { left: 7%; top: 18%; }
-  .label-interaction { right: 4%; top: 18%; }
-  .label-brain { left: 4%; bottom: 18%; }
-  .label-context { right: 4%; bottom: 17%; }
-  .label-growth { left: 50%; top: 8%; transform: translateX(-50%); }
+  .home-link span {
+    color: #77964b;
+    transition: transform .22s ease;
+  }
 
-  .section-kicker { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .65rem; font-weight: 700; letter-spacing: .18em; color: #428863; }
-  .section-title { margin-top: .7rem; font-size: clamp(2rem,4vw,3.6rem); line-height: 1.04; letter-spacing: -.045em; font-weight: 650; color: #17312a; }
-  .section-title span { display: block; margin-top: .35rem; font-size: .38em; line-height: 1.2; letter-spacing: .05em; font-weight: 650; color: #62a57d; text-transform: uppercase; }
-  .text-link { align-items: center; gap: .5rem; font-size: .875rem; font-weight: 650; color: #2b5843; }
-  .text-link span { transition: transform .2s ease; }
-  .text-link:hover span { transform: translateX(4px); }
+  .home-link:hover {
+    border-color: #77964b;
+    color: #77964b;
+  }
 
-  .research-card { position: relative; min-height: 320px; overflow: hidden; border: 1px solid #deeee3; border-radius: 1.35rem; background: white; padding: 1.5rem; transition: all .28s ease; }
-  .research-card::after { content: ""; position: absolute; width: 11rem; height: 11rem; right: -5rem; bottom: -6rem; border-radius: 50%; border: 1px solid #deeee3; transition: all .35s ease; }
-  .research-card:hover { transform: translateY(-5px); border-color: #91c2a3; box-shadow: 0 20px 45px rgba(31,76,57,.09); }
-  .research-card:hover::after { width: 14rem; height: 14rem; border-color: #91c2a3; }
-  .signal-tag { max-width: 10rem; text-align: right; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .52rem; line-height: 1.4; letter-spacing: .08em; color: #62a57d; }
+  .home-link:hover span {
+    transform: translate(2px, -2px);
+  }
 
-  .method-noise { background-image: radial-gradient(rgba(145,194,163,.16) .7px, transparent .7px); background-size: 13px 13px; mask-image: linear-gradient(to bottom right, black, transparent 72%); }
-  .method-line { background: linear-gradient(90deg, transparent, rgba(127,209,197,.45), rgba(214,169,93,.35), transparent); }
-  .method-step { min-height: 245px; padding-right: 1rem; }
+  .growth-path {
+    stroke-dasharray: 950;
+    stroke-dashoffset: 950;
+    animation: grow-line 1.45s .12s cubic-bezier(.2,.7,.2,1) forwards;
+  }
 
-  .project-card { border: 1px solid rgba(66,136,99,.13); border-radius: 1.5rem; background: rgba(255,255,255,.86); padding: 1.65rem; transition: all .3s ease; }
-  .project-card:hover { transform: translateY(-5px); border-color: #91c2a3; box-shadow: 0 20px 48px rgba(31,76,57,.1); }
-  .project-visual { position: relative; height: 72px; overflow: hidden; border-radius: .8rem; background: linear-gradient(135deg, #f2f8f4, #eefaf8); }
-  .project-visual span { position: absolute; top: 50%; height: 1px; background: #91c2a3; transform-origin: left center; }
-  .project-visual span:nth-child(1) { left: 8%; width: 36%; transform: rotate(12deg); }
-  .project-visual span:nth-child(2) { left: 34%; width: 34%; transform: rotate(-16deg); }
-  .project-visual span:nth-child(3) { left: 62%; width: 30%; transform: rotate(9deg); }
-  .project-visual i { position: absolute; left: 47%; top: 33%; width: 18px; height: 18px; border: 5px solid rgba(53,155,144,.18); border-radius: 50%; background: #359b90; box-shadow: -78px 18px 0 -6px #d6a95d, 96px 10px 0 -6px #428863; transition: transform .35s ease; }
-  .project-card:hover .project-visual i { transform: scale(1.15); }
+  .peach-dot {
+    transform-origin: 509px 99px;
+    animation: dot-breathe 4.5s 1.5s ease-in-out infinite;
+  }
 
-  .connect-panel { box-shadow: inset 0 1px rgba(255,255,255,.7); }
-  .connect-orb { pointer-events: none; opacity: .65; }
-  .connect-card { position: relative; display: flex; min-height: 140px; flex-direction: column; justify-content: flex-end; border: 1px solid #deeee3; border-radius: 1.1rem; background: rgba(255,255,255,.82); padding: 1rem; transition: all .25s ease; }
-  .connect-card span { font-size: 1rem; font-weight: 700; color: #17312a; }
-  .connect-card small { margin-top: .15rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .55rem; letter-spacing: .08em; color: #62a57d; text-transform: uppercase; }
-  .connect-card b { position: absolute; right: 1rem; top: 1rem; font-weight: 500; color: #428863; transition: transform .25s ease; }
-  .connect-card:hover { transform: translateY(-4px); border-color: #91c2a3; background: white; box-shadow: 0 14px 28px rgba(31,76,57,.08); }
-  .connect-card:hover b { transform: translate(2px,-2px); }
+  @keyframes grow-line {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes dot-breathe {
+    0%, 100% { transform: scale(1); opacity: .82; }
+    50% { transform: scale(1.16); opacity: 1; }
+  }
+
+  @media (max-width: 1023px) {
+    .growth-line {
+      left: -12rem;
+      width: 80%;
+      opacity: .42;
+    }
+  }
 
   @media (max-width: 640px) {
-    .signal-label { transform: scale(.88); }
-    .label-gaze { left: 3%; }
-    .label-interaction { right: 1%; }
-    .label-brain { left: 1%; }
-    .label-context { right: 1%; }
-    .research-card { min-height: auto; }
+    .home-stage {
+      min-height: auto;
+    }
+
+    .growth-line {
+      left: -16rem;
+      bottom: 8%;
+      width: 120%;
+      opacity: .28;
+    }
+
+    .brand-side {
+      min-height: 17rem;
+    }
+
+    .official-logo {
+      max-width: 17rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .growth-path {
+      stroke-dashoffset: 0;
+      animation: none;
+    }
+
+    .peach-dot {
+      animation: none;
+    }
   }
 </style>
