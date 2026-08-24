@@ -4,28 +4,53 @@ import PageHeader from "../components/PageHeader.astro";
 
 const projects = [
   {
-    tag: "婴幼儿发展",
-    title: "早期社会注意与共同注意",
-    body: "关注婴幼儿如何追随他人的目光、动作与社会线索，并考察这些能力在早期发展中的个体差异。",
-    methods: ["眼动追踪", "行为任务", "发展测量"],
+    tag: "共同注意与自闭症",
+    status: "Ongoing",
+    title: "基于催产素的婴幼儿共同注意发展机制及孤独症风险预测与干预研究",
+    body: "探索共同注意的神经内分泌发展机制，并进一步考察催产素相关指标在自闭症早期风险预测与家庭友好型支持中的研究潜力。",
+    methods: ["共同注意", "催产素", "自闭症风险"],
   },
   {
-    tag: "亲子互动",
-    title: "亲子互动与早期社会发展",
-    body: "通过自然和结构化的亲子互动情境，理解照护者与儿童之间的互动模式如何与儿童早期社会发展相关。",
-    methods: ["互动观察", "行为编码", "纵向追踪"],
+    tag: "人工智能",
+    status: "Ongoing",
+    title: "LLM 项目",
+    body: "该项目的具体研究内容正在进一步整理中，网站将在研究方案确认后更新项目介绍。",
+    methods: ["LLM"],
   },
   {
-    tag: "环境与注意",
-    title: "自然环境中的儿童注意与探索",
-    body: "将实验室测量延伸到更自然的活动环境中，研究儿童如何注意、探索并整合来自周围环境的信息。",
-    methods: ["自然情境", "注意测量", "多模态数据"],
+    tag: "亲子互动与发展",
+    status: "Ongoing",
+    title: "亲子互动与发展项目",
+    body: "结合儿童注意、生理、亲子互动、结构化发展测量与家长报告等多模态信息，研究早期社会发展轨迹及与自闭症相关的早期个体差异。",
+    methods: ["眼动追踪", "EEG / fNIRS", "亲子互动", "多模态建模"],
   },
   {
-    tag: "计算方法",
-    title: "面向儿童研究的多模态行为测量",
-    body: "探索眼动、视频、脑成像和计算方法的结合，以更高效地描述儿童行为并支持个体差异研究。",
-    methods: ["眼动", "脑成像", "计算分析"],
+    tag: "自然情境与福祉",
+    status: "Ongoing",
+    title: "自然童行 Growing with Nature",
+    body: "关注 2–5 岁儿童的自然环境接触如何与幸福感、情绪与行为调节及功能发展相关，并同时关注典型发展与自闭症儿童。",
+    methods: ["自然接触", "纵向追踪", "眼动", "家长报告"],
+  },
+  {
+    tag: "数字化家庭支持",
+    status: "Ongoing",
+    title: "The Gift of the Tenth Month",
+    body: "开发一款伴侣共同参与的孕期教育严肃游戏，将孕期知识、临床决策、情绪体验与家庭支持转化为可探索、可练习的情境化学习体验。",
+    methods: ["严肃游戏", "孕期教育", "伴侣支持", "情境学习"],
+  },
+  {
+    tag: "自闭症早期识别",
+    status: "Ongoing",
+    title: "“1+1+1”联合资助计划重点项目",
+    body: "围绕自然亲子互动中的早期社会沟通特征，发展远程眼动测量，并整合 EEG、眼动与行为数据探索多模态自闭症早期识别方法。",
+    methods: ["远程眼动", "EEG", "亲子互动", "多模态预测"],
+  },
+  {
+    tag: "测量工具",
+    status: "Ongoing",
+    title: "婴幼儿幸福感量表中文版",
+    body: "本土化并验证适用于中国大陆家庭的婴幼儿幸福感问卷，评估其可行性、信度与效度，并关注儿童情绪、行为及互动层面的福祉。",
+    methods: ["量表本土化", "家长报告", "信效度", "儿童福祉"],
   },
 ];
 ---
@@ -37,21 +62,32 @@ const projects = [
   <PageHeader
     eyebrow="当前研究项目"
     title="在研项目 Projects"
-    lead="从实验室中的精细测量到更自然的互动与活动情境，我们通过多个项目持续追踪儿童早期社会发展的不同侧面。"
+    lead="我们通过多个在研项目，从婴幼儿社会发展、亲子互动与自闭症早期识别，延伸到自然情境、人工智能与数字化家庭支持。"
   />
 
   <div class="container-page py-12">
     <div class="grid gap-6 md:grid-cols-2">
       {projects.map((project, index) => (
-        <article class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg">
+        <article
+          class:list={[
+            "group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg",
+            index === projects.length - 1 && "md:col-span-2",
+          ]}
+        >
           <div class="absolute right-5 top-4 font-mono text-5xl font-semibold text-primary-50 transition-colors group-hover:text-primary-100">
             {String(index + 1).padStart(2, "0")}
           </div>
-          <p class="relative text-xs font-semibold tracking-[0.16em] text-accent-600">{project.tag}</p>
-          <h2 class="relative mt-3 max-w-md font-serif text-2xl font-semibold text-slate-900 group-hover:text-primary-700">
+
+          <div class="relative flex flex-wrap items-center gap-x-2 gap-y-1 pr-14">
+            <p class="text-xs font-semibold tracking-[0.16em] text-accent-600">{project.tag}</p>
+            <span class="text-xs text-slate-300">·</span>
+            <span class="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-primary-600">{project.status}</span>
+          </div>
+
+          <h2 class="relative mt-3 max-w-2xl font-serif text-2xl font-semibold text-slate-900 transition-colors group-hover:text-primary-700">
             {project.title}
           </h2>
-          <p class="relative mt-4 max-w-xl leading-7 text-slate-600">{project.body}</p>
+          <p class="relative mt-4 max-w-3xl leading-7 text-slate-600">{project.body}</p>
           <div class="relative mt-6 flex flex-wrap gap-2">
             {project.methods.map((method) => (
               <span class="rounded-full border border-primary-100 bg-primary-50/60 px-3 py-1 text-xs font-medium text-primary-800">
@@ -61,10 +97,6 @@ const projects = [
           </div>
         </article>
       ))}
-    </div>
-
-    <div class="mt-10 rounded-2xl border border-dashed border-primary-200 bg-primary-50/40 p-6 text-sm leading-6 text-slate-600">
-      以上为第一版项目结构。后续可为每个项目增加独立详情页，包括研究问题、适龄范围、研究方法、项目进展、相关成果与家庭参与入口。
     </div>
   </div>
 </BaseLayout>
