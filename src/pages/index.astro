@@ -15,7 +15,7 @@ import { site } from "../data/site";
     <div class="soft-orb soft-orb-a" aria-hidden="true"></div>
     <div class="soft-orb soft-orb-b" aria-hidden="true"></div>
 
-    <div class="container-page grid min-h-[calc(100svh-4.5rem)] items-center gap-10 py-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-20 lg:py-7">
+    <div class="container-page grid min-h-[calc(100svh-4.5rem)] items-center gap-10 py-7 lg:grid-cols-[.9fr_1.1fr] lg:gap-20 lg:py-6">
       <div class="brand-side relative flex min-h-[27rem] flex-col justify-center lg:min-h-0">
         <div class="relative z-10 w-full max-w-[34rem]">
           <SeedLogo />
@@ -30,24 +30,30 @@ import { site } from "../data/site";
       </div>
 
       <div class="copy-side relative max-w-[47rem] lg:justify-self-end">
-        <p class="mb-6 text-[11px] font-semibold tracking-[.14em] text-[#769348]">
+        <p class="mb-4 text-[11px] font-semibold tracking-[.14em] text-[#769348]">
           香港中文大学（深圳） · 儿童发展研究
         </p>
 
-        <h1 class="text-[clamp(2.5rem,5.1vw,5rem)] font-semibold leading-[1.04] tracking-[-.055em] text-[#202c29]">
+        <h1 class="text-[clamp(2.35rem,4.65vw,4.65rem)] font-semibold leading-[1.03] tracking-[-.055em] text-[#202c29]">
           理解儿童如何
           <span class="block text-[#769348]">看见、互动与成长</span>
         </h1>
 
-        <p class="mt-5 font-serif text-[clamp(1.1rem,1.5vw,1.35rem)] italic leading-relaxed text-[#9a7460]">
+        <p class="mt-4 font-serif text-[clamp(1.05rem,1.4vw,1.25rem)] italic leading-relaxed text-[#9a7460]">
           Understanding how children see, connect, and grow.
         </p>
 
-        <p class="mt-8 max-w-[42rem] text-[15px] leading-8 text-[#626a66] sm:text-base">
-          我们关注 0–3 岁婴幼儿的认知、情感与社会发展，并通过行为观察、眼动、脑成像与计算方法，理解早期发展中的共同规律与个体差异。
-        </p>
+        <div class="parent-intro mt-6 max-w-[44rem]">
+          <p class="parent-intro__greeting">亲爱的家长，您好！</p>
+          <p>
+            我们是香港中文大学（深圳）SEED儿童早期社会发展实验室。我们致力于研究0-3岁婴幼儿的认知、情感和社交发展，以及自闭症等发育障碍的预防和评估。
+          </p>
+          <p>
+            实验室由曾广宇教授和他的博士、硕士研究生负责。其中，曾教授拥有美国迈阿密大学博士学位，主攻儿童发展和计量心理学，并有多年国内外特殊儿童言语和行为治疗的经验。目前，曾教授担任香港中文大学（深圳）应用心理学助理教授。我们的研究主要探索儿童早期的个体特征与健康发展之间的关系，多项研究成果已发表在国际顶级学术期刊，如《Behavior Research Methods》《Child Development》《Autism Research》《Infancy》等。
+          </p>
+        </div>
 
-        <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 text-sm font-semibold">
+        <div class="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4 text-sm font-semibold">
           <a href="/research" class="home-link group">
             了解我们的研究
             <span aria-hidden="true">↗</span>
@@ -103,6 +109,23 @@ import { site } from "../data/site";
     transform: translateY(-2px);
   }
 
+  .parent-intro {
+    border-left: 2px solid rgba(119, 150, 75, .32);
+    padding-left: 1rem;
+    color: #626a66;
+    font-size: 13.5px;
+    line-height: 1.82;
+  }
+
+  .parent-intro p + p {
+    margin-top: .65rem;
+  }
+
+  .parent-intro__greeting {
+    font-weight: 700;
+    color: #39463f;
+  }
+
   .home-link {
     display: inline-flex;
     align-items: center;
@@ -127,7 +150,18 @@ import { site } from "../data/site";
     transform: translate(2px, -2px);
   }
 
+  @media (max-width: 1180px) and (min-width: 1024px) {
+    .parent-intro {
+      font-size: 12.8px;
+      line-height: 1.72;
+    }
+  }
+
   @media (max-width: 1023px) {
+    .home-stage {
+      overflow: visible;
+    }
+
     .brand-side {
       align-items: center;
       min-height: 24rem;
@@ -142,6 +176,11 @@ import { site } from "../data/site";
     .brand-side p {
       text-align: center;
     }
+
+    .copy-side {
+      max-width: 46rem;
+      margin: 0 auto;
+    }
   }
 
   @media (max-width: 640px) {
@@ -155,6 +194,11 @@ import { site } from "../data/site";
 
     .garden-wrap {
       margin-top: -.5rem;
+    }
+
+    .parent-intro {
+      font-size: 13px;
+      line-height: 1.8;
     }
   }
 </style>
