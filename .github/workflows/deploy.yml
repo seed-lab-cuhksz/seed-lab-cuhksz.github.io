@@ -1,20 +1,15 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Deploy on every push to the default branch.
   push:
-    branches: [master]
-  # Allow manual runs from the Actions tab.
+    branches: [main]
   workflow_dispatch:
 
-# Permissions required to deploy to GitHub Pages via the official action.
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# One deployment at a time; let an in-progress run finish (don't cancel
-# production deploys mid-flight).
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -26,8 +21,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Build with Astro
-        # Installs deps, runs `astro build`, and uploads ./dist as the
-        # Pages artifact. public/CNAME + public/.nojekyll ship with it.
         uses: withastro/action@v6
         with:
           node-version: 22
