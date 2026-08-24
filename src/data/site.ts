@@ -31,7 +31,7 @@ export const site: SiteConfig = {
   pi: "曾广宇",
   institution: "香港中文大学（深圳）",
   university: "",
-  url: "https://chachacuacua.github.io/seed-lab-website/",
+  url: "https://seed-lab-cuhksz.github.io/",
   description:
     "我们关注婴幼儿早期的认知、情感与社会发展，并结合行为观察、眼动、脑成像与计算方法，理解儿童个体差异及其发展机制。",
   email: "",
