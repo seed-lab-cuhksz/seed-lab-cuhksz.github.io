@@ -1,22 +1,608 @@
 ---
 import BaseLayout from "../../components/BaseLayout.astro";
-import PageHeader from "../../components/PageHeader.astro";
-import PersonGroup from "../../components/PersonGroup.astro";
-import { getGroupedPeople } from "../../lib/content";
 
-const groups = await getGroupedPeople();
+const phdStudents = [
+  {
+    name: "李可",
+    role: "博士研究生",
+    roleEn: "PhD Student",
+    email: "keli4@link.cuhk.edu.cn",
+    bio: "香港中文大学（深圳）应用心理学博士研究生。研究关注面孔社会感知及其影响因素，包括面孔动作单元（AU）与情绪信息，并探索统计建模、机器学习与人工智能等数据科学方法在心理学研究中的应用。",
+    life: "实验室之外，她喜欢旅行、唱歌、跳舞、扬琴和绘画。",
+  },
+  {
+    name: "张丽颖",
+    role: "博士研究生",
+    roleEn: "PhD Student",
+    email: "",
+    bio: "香港中文大学（深圳）应用心理学博士研究生。研究聚焦儿童及婴幼儿的社会认知与情感发展，并关注自闭症儿童的诊断与症状发展。她具有儿童教育经验，也曾在精神卫生中心参与实习与研究。",
+    life: "实验室之外，她喜欢古筝、游泳、滑雪、旅行、做饭和社交。",
+  },
+];
+
+const staff = [
+  {
+    name: "赵伊涵",
+    role: "实验室经理",
+    roleEn: "Lab Manager",
+    email: "",
+    bio: "目前担任 SEED Lab 实验室经理，参与实验室日常运行与研究工作。未来希望继续从事特殊儿童相关的支持与辅导工作，为儿童及其家庭提供帮助。",
+    life: "平时喜欢科幻小说、拼图和做饭，也喜欢偶尔尝试一些新鲜事物。",
+  },
+];
+
+const alumni = [
+  {
+    name: "陈江晗",
+    meta: "心理学 / 应用心理学",
+    bio: "本科毕业于华中师范大学心理学专业。曾在 SEED Lab 参与儿童研究，对人宠关系、宠物依恋与动物辅助疗法等方向感兴趣。",
+    life: "也喜欢摇滚乐、Livehouse，以及猫猫狗狗。",
+  },
+  {
+    name: "王泓",
+    meta: "应用心理学",
+    bio: "毕业于上海政法学院应用心理学专业。曾参与婴幼儿幸福感相关研究，对宝宝表达情绪与心情的行为充满好奇。",
+    life: "喜欢游戏、旅行和小说，对新事物保持很强的好奇心。",
+  },
+  {
+    name: "语扉",
+    meta: "大数据",
+    bio: "香港中文大学（深圳）大数据专业本科生背景。对人的行为研究感兴趣，希望把数据科学训练与心理学问题结合起来。",
+    life: "喜欢阅读和羽毛球。",
+  },
+  {
+    name: "吉旖",
+    meta: "本科研究助理",
+    bio: "曾作为本科研究助理参与 SEED Lab 工作，对认知心理学及相关研究方向感兴趣。",
+    life: "喜欢电影、瑜伽、钢琴和架子鼓，也很享受独处的时间。",
+  },
+  {
+    name: "祉皓",
+    meta: "应用心理学",
+    bio: "香港中文大学（深圳）应用心理学专业本科生背景。关注人类认知机制及其在儿童早期的发展，曾在 SEED Lab 参与儿童面部情绪识别项目。",
+    life: "对学习和探索认知发展问题保持持续兴趣。",
+  },
+  {
+    name: "子玥",
+    meta: "心理学",
+    bio: "香港中文大学（深圳）心理学专业本科生背景。对执行功能等认知领域感兴趣，并希望继续探索认知心理学方向。",
+    life: "喜欢历史、滑雪和骑马。",
+  },
+  {
+    name: "雪莹",
+    meta: "2024 届硕士毕业生",
+    bio: "香港中文大学（深圳）2024 届硕士毕业生。离开实验室后继续探索教育与教学相关方向。",
+    life: "喜欢阅读，也愿意尝试跳伞等极限运动。",
+  },
+  {
+    name: "婧怡",
+    meta: "2025 届硕士毕业生",
+    bio: "香港中文大学（深圳）2025 届硕士毕业生。未来职业兴趣包括组织发展与多元职业路径。",
+    life: "喜欢登山、种花、游泳和八段锦。",
+  },
+  {
+    name: "楚为",
+    meta: "2025 届硕士毕业生",
+    bio: "本科毕业于北京师范大学心理学专业，后于香港中文大学（深圳）完成硕士学习。对行为实验设计、婴幼儿互动和眼动研究等实验过程保持浓厚兴趣。",
+    life: "爱好广泛，也很享受和儿童一起做发展研究。",
+  },
+];
 ---
 
 <BaseLayout
-  title="People"
-  description="Faculty, researchers, and alumni of the lab."
+  title="研究团队 People"
+  description="SEED Lab 研究团队、在读成员与往届成员。"
 >
-  <PageHeader
-    eyebrow="The team"
-    title="People"
-    lead="The faculty, researchers, and alumni who make up the lab."
-  />
-  <div class="container-page py-12">
-    {groups.map((g) => <PersonGroup title={g.group} people={g.people} />)}
-  </div>
+  <main class="people-page">
+    <section class="people-hero">
+      <div class="container-page">
+        <p class="people-eyebrow">SEED LAB · OUR TEAM</p>
+        <h1>研究团队 <span>People</span></h1>
+        <p class="people-lead">我们来自儿童发展、心理学、数据科学与相关交叉领域，一起理解儿童早期发展的共同规律与个体差异。</p>
+      </div>
+    </section>
+
+    <section class="container-page section-block">
+      <div class="section-heading">
+        <p>实验室负责人</p>
+        <h2>曾广宇 <span>Guangyu Zeng</span></h2>
+      </div>
+
+      <article class="pi-card">
+        <div class="portrait portrait--pi" aria-label="曾广宇照片位置">
+          <div class="portrait__seed">曾</div>
+          <span>PHOTO</span>
+        </div>
+
+        <div class="pi-copy">
+          <div class="role-row">
+            <span class="role-pill">首席研究员 PI</span>
+            <span>助理教授 Assistant Professor</span>
+          </div>
+          <p class="pi-bio">曾教授于 2023 年加入香港中文大学（深圳）应用心理学部担任助理教授。他拥有美国迈阿密大学博士学位，主攻儿童发展和计量心理学，并具有多年国内外特殊儿童言语和行为治疗经验。研究关注婴幼儿的发展、生理及行为个体差异，社会认知与情感发展，社会动机，以及自动化行为测量等方向。</p>
+
+          <div class="pi-links">
+            <a href="mailto:zenggy@cuhk.edu.cn">zenggy@cuhk.edu.cn</a>
+            <a href="https://scholar.google.com/citations?user=wwkuG-YAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar ↗</a>
+            <a href="https://myweb.cuhk.edu.cn/zenggy" target="_blank" rel="noreferrer">学校个人主页 ↗</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="container-page section-block">
+      <div class="section-heading compact">
+        <p>在读成员</p>
+        <h2>博士研究生 <span>PhD Students</span></h2>
+      </div>
+      <div class="member-grid two-col">
+        {phdStudents.map((member) => (
+          <article class="member-card">
+            <div class="portrait">
+              <div class="portrait__seed">{member.name.slice(0, 1)}</div>
+              <span>PHOTO</span>
+            </div>
+            <div class="member-copy">
+              <p class="member-role">{member.role} <span>{member.roleEn}</span></p>
+              <h3>{member.name}</h3>
+              <p>{member.bio}</p>
+              <p class="life-note">{member.life}</p>
+              {member.email && <a class="email-link" href={`mailto:${member.email}`}>{member.email}</a>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="container-page section-block section-block--staff">
+      <div class="section-heading compact">
+        <p>实验室团队</p>
+        <h2>研究与运营 <span>Lab Staff</span></h2>
+      </div>
+      <div class="member-grid staff-grid">
+        {staff.map((member) => (
+          <article class="member-card">
+            <div class="portrait">
+              <div class="portrait__seed">{member.name.slice(0, 1)}</div>
+              <span>PHOTO</span>
+            </div>
+            <div class="member-copy">
+              <p class="member-role">{member.role} <span>{member.roleEn}</span></p>
+              <h3>{member.name}</h3>
+              <p>{member.bio}</p>
+              <p class="life-note">{member.life}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="alumni-section">
+      <div class="container-page">
+        <div class="section-heading compact">
+          <p>往届成员</p>
+          <h2>Alumni <span>曾与 SEED 一起成长</span></h2>
+        </div>
+
+        <div class="alumni-grid">
+          {alumni.map((person) => (
+            <article class="alumni-card">
+              <div class="alumni-top">
+                <div class="mini-seed">{person.name.slice(0, 1)}</div>
+                <div>
+                  <h3>{person.name}</h3>
+                  <p>{person.meta}</p>
+                </div>
+              </div>
+              <p class="alumni-bio">{person.bio}</p>
+              <p class="alumni-life">{person.life}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
+
+<style>
+  .people-page {
+    background: #fbf8ef;
+    color: #20312c;
+  }
+
+  .people-hero {
+    padding: 5.5rem 0 4.5rem;
+    border-bottom: 1px solid rgba(39, 64, 53, .09);
+    background:
+      radial-gradient(circle at 78% 22%, rgba(232, 189, 150, .12), transparent 28%),
+      radial-gradient(circle at 16% 74%, rgba(137, 166, 95, .13), transparent 30%);
+  }
+
+  .people-eyebrow {
+    font-size: .73rem;
+    font-weight: 700;
+    letter-spacing: .19em;
+    color: #7b9850;
+  }
+
+  .people-hero h1 {
+    margin-top: .85rem;
+    font-size: clamp(3rem, 7vw, 6.6rem);
+    line-height: .92;
+    letter-spacing: -.055em;
+    font-weight: 800;
+    color: #20312c;
+  }
+
+  .people-hero h1 span {
+    color: #dca37d;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  .people-lead {
+    margin-top: 1.6rem;
+    max-width: 44rem;
+    font-size: 1rem;
+    line-height: 1.9;
+    color: #65716c;
+  }
+
+  .section-block {
+    padding-top: 5.3rem;
+    padding-bottom: 1rem;
+  }
+
+  .section-block--staff {
+    padding-top: 4.6rem;
+    padding-bottom: 5.5rem;
+  }
+
+  .section-heading > p {
+    margin-bottom: .5rem;
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    color: #7b9850;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    line-height: 1;
+    letter-spacing: -.04em;
+    font-weight: 760;
+    color: #20312c;
+  }
+
+  .section-heading h2 span {
+    margin-left: .4rem;
+    color: #b88c74;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .section-heading.compact h2 {
+    font-size: clamp(1.9rem, 3.2vw, 3rem);
+  }
+
+  .pi-card {
+    margin-top: 2.4rem;
+    display: grid;
+    grid-template-columns: minmax(15rem, 24rem) 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: stretch;
+    padding: clamp(1.1rem, 2vw, 1.5rem);
+    border: 1px solid rgba(48, 73, 62, .10);
+    border-radius: 2rem;
+    background: rgba(255,255,255,.55);
+    box-shadow: 0 18px 60px rgba(35, 56, 47, .05);
+  }
+
+  .portrait {
+    min-height: 18.5rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.5rem;
+    background:
+      radial-gradient(circle at 72% 28%, rgba(232, 184, 143, .30), transparent 25%),
+      linear-gradient(145deg, #e7eddc, #d8e2c7 55%, #cbd7b4);
+  }
+
+  .portrait--pi {
+    min-height: 25rem;
+  }
+
+  .portrait::after {
+    content: "";
+    position: absolute;
+    width: 8rem;
+    height: 8rem;
+    left: -2rem;
+    bottom: -2rem;
+    border: 1px solid rgba(255,255,255,.62);
+    border-radius: 999px;
+  }
+
+  .portrait__seed {
+    width: 5.8rem;
+    height: 5.8rem;
+    display: grid;
+    place-items: center;
+    border-radius: 48% 52% 56% 44% / 58% 43% 57% 42%;
+    background: #28483b;
+    color: #fbf8ef;
+    font-size: 2rem;
+    font-weight: 800;
+    transform: rotate(-7deg);
+  }
+
+  .portrait span {
+    position: absolute;
+    right: 1.1rem;
+    bottom: 1rem;
+    font-size: .58rem;
+    letter-spacing: .17em;
+    color: rgba(39, 64, 53, .38);
+  }
+
+  .pi-copy {
+    align-self: center;
+    padding: 1rem 1.2rem 1rem 0;
+  }
+
+  .role-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .8rem 1rem;
+    font-size: .8rem;
+    color: #78817d;
+  }
+
+  .role-pill {
+    padding: .45rem .75rem;
+    border-radius: 999px;
+    background: #eef2e7;
+    color: #5d7e42;
+    font-weight: 700;
+  }
+
+  .pi-bio {
+    margin-top: 1.7rem;
+    max-width: 48rem;
+    font-size: 1rem;
+    line-height: 2;
+    color: #5f6b65;
+  }
+
+  .pi-links {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem 1.6rem;
+  }
+
+  .pi-links a,
+  .email-link {
+    font-size: .82rem;
+    color: #567a43;
+    border-bottom: 1px solid rgba(86,122,67,.25);
+    padding-bottom: .2rem;
+  }
+
+  .member-grid {
+    margin-top: 2.3rem;
+    display: grid;
+    gap: 1.6rem;
+  }
+
+  .two-col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .staff-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: calc(50% - .8rem);
+  }
+
+  .member-card {
+    display: grid;
+    grid-template-columns: 12.5rem 1fr;
+    gap: 1.6rem;
+    padding: 1.1rem;
+    border-radius: 1.6rem;
+    border: 1px solid rgba(48, 73, 62, .09);
+    background: rgba(255,255,255,.44);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+
+  .member-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(123,152,80,.22);
+    box-shadow: 0 16px 42px rgba(35, 56, 47, .06);
+  }
+
+  .member-card .portrait {
+    min-height: 15.5rem;
+  }
+
+  .member-copy {
+    align-self: center;
+    padding: .6rem .5rem .6rem 0;
+  }
+
+  .member-role {
+    font-size: .72rem;
+    font-weight: 700;
+    color: #789054;
+  }
+
+  .member-role span {
+    margin-left: .3rem;
+    color: #b18975;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .member-copy h3 {
+    margin-top: .45rem;
+    font-size: 1.8rem;
+    letter-spacing: -.04em;
+    font-weight: 760;
+    color: #23362f;
+  }
+
+  .member-copy > p:not(.member-role) {
+    margin-top: .9rem;
+    font-size: .86rem;
+    line-height: 1.78;
+    color: #68736e;
+  }
+
+  .member-copy .life-note {
+    color: #91715f !important;
+  }
+
+  .email-link {
+    margin-top: 1rem;
+    display: inline-block;
+  }
+
+  .alumni-section {
+    padding: 5.5rem 0 6rem;
+    background: #273f35;
+  }
+
+  .alumni-section .section-heading > p {
+    color: #b8c99b;
+  }
+
+  .alumni-section .section-heading h2 {
+    color: #f6f3e9;
+  }
+
+  .alumni-section .section-heading h2 span {
+    color: #e3b899;
+    font-size: .64em;
+  }
+
+  .alumni-grid {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .alumni-card {
+    min-height: 16rem;
+    padding: 1.35rem;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 1.35rem;
+    background: rgba(255,255,255,.045);
+    transition: transform .25s ease, background .25s ease;
+  }
+
+  .alumni-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,.07);
+  }
+
+  .alumni-top {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+  }
+
+  .mini-seed {
+    width: 2.7rem;
+    height: 2.7rem;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    border-radius: 46% 54% 58% 42% / 58% 44% 56% 42%;
+    background: #8da862;
+    color: white;
+    font-weight: 800;
+    transform: rotate(-7deg);
+  }
+
+  .alumni-top h3 {
+    color: #fbf8ef;
+    font-size: 1.1rem;
+    font-weight: 750;
+  }
+
+  .alumni-top p {
+    margin-top: .15rem;
+    font-size: .7rem;
+    color: #b9c4be;
+  }
+
+  .alumni-bio,
+  .alumni-life {
+    margin-top: 1rem;
+    font-size: .8rem;
+    line-height: 1.72;
+    color: #d3d9d5;
+  }
+
+  .alumni-life {
+    color: #dfbba1;
+  }
+
+  @media (max-width: 1180px) {
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+
+    .staff-grid {
+      max-width: none;
+    }
+
+    .alumni-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 800px) {
+    .people-hero {
+      padding: 4rem 0 3.4rem;
+    }
+
+    .section-block {
+      padding-top: 4rem;
+    }
+
+    .pi-card,
+    .member-card {
+      grid-template-columns: 1fr;
+    }
+
+    .portrait--pi,
+    .member-card .portrait {
+      min-height: 20rem;
+    }
+
+    .pi-copy,
+    .member-copy {
+      padding: .5rem;
+    }
+
+    .alumni-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .member-card,
+    .alumni-card {
+      transition: none;
+    }
+  }
+</style>
