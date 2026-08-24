@@ -2,76 +2,51 @@
 import { site } from "../data/site";
 
 const year = new Date().getFullYear();
+const hasEmail = Boolean(site.email);
 
-const socialLinks = [
-  { label: "Google Scholar", href: site.social.scholar },
-  { label: "X / Twitter", href: site.social.twitter },
-  { label: "GitHub", href: site.social.github },
-].filter((l): l is { label: string; href: string } => Boolean(l.href));
-
-const linkClass =
-  "text-slate-600 hover:text-primary-700 transition-colors";
+const quickLinks = [
+  { label: "合作交流", href: "/contact#collaborate" },
+  { label: "加入我们", href: "/contact#join" },
+  { label: "家庭参与", href: "/contact#families" },
+];
 ---
 
 <footer class="mt-20 border-t border-slate-200 bg-slate-50">
-  <div
-    class="container-page grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-3"
-  >
+  <div class="container-page grid gap-8 py-12 sm:grid-cols-2 lg:grid-cols-3">
     <div>
       <p class="font-serif text-lg text-slate-900">{site.name}</p>
-      <p class="mt-2 text-sm text-slate-600">
-        {site.institution} · {site.university}
-      </p>
-      <p class="mt-1 text-sm text-slate-600">
-        Principal Investigator: {site.pi}
-      </p>
+      <p class="mt-2 text-sm text-slate-600">{site.institution}</p>
+      <p class="mt-1 text-sm text-slate-600">负责人：{site.pi}</p>
     </div>
 
     <div>
-      <h2 class="text-sm font-semibold tracking-wide text-slate-600 uppercase">
-        Contact
-      </h2>
+      <h2 class="text-sm font-semibold tracking-wide text-slate-600 uppercase">联系我们 Contact</h2>
       <ul class="mt-3 space-y-1 text-sm">
-        <li>
-          <a href={`mailto:${site.email}`} class={linkClass}>{site.email}</a>
-        </li>
-        <li>
-          <a href={`tel:${site.phone.replace(/[^0-9+]/g, "")}`} class={linkClass}>
-            {site.phone}
-          </a>
-        </li>
+        {quickLinks.map((link) => (
+          <li>
+            <a href={link.href} class="text-slate-600 transition-colors hover:text-primary-700">
+              {link.label}
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
 
     <div>
-      <h2 class="text-sm font-semibold tracking-wide text-slate-600 uppercase">
-        Elsewhere
-      </h2>
-      <ul class="mt-3 space-y-1 text-sm">
-        {
-          socialLinks.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                class={linkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+      <h2 class="text-sm font-semibold tracking-wide text-slate-600 uppercase">实验室信息 Lab Info</h2>
+      <p class="mt-3 text-sm leading-6 text-slate-600">香港中文大学（深圳）</p>
+      {hasEmail && (
+        <a href={`mailto:${site.email}`} class="mt-2 block text-sm text-primary-700 hover:underline">
+          {site.email}
+        </a>
+      )}
     </div>
   </div>
 
   <div class="border-t border-slate-200">
-    <div
-      class="container-page flex flex-col gap-1 py-4 text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between"
-    >
-      <p>© {year} {site.name}.</p>
-      <p>Built with Astro &amp; Tailwind CSS.</p>
+    <div class="container-page flex flex-col gap-1 py-4 text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {site.name}</p>
+      <p>香港中文大学（深圳）</p>
     </div>
   </div>
 </footer>

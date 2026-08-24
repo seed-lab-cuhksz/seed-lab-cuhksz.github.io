@@ -5,91 +5,84 @@ import { site } from "../data/site";
 
 const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.mapQuery)}&output=embed`;
 const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.mapQuery)}`;
-const socials = [
-  { label: "Google Scholar", href: site.social.scholar },
-  { label: "X / Twitter", href: site.social.twitter },
-  { label: "GitHub", href: site.social.github },
-].filter((s): s is { label: string; href: string } => Boolean(s.href));
+
+const contactPaths = [
+  {
+    id: "collaborate",
+    number: "01",
+    title: "合作交流 Collaborate with Us",
+    body: "我们欢迎与儿童发展、家庭研究、心理与教育技术、行为测量及相关交叉领域的研究团队开展合作。",
+    note: "如有合作想法，可通过实验室邮箱联系我们。",
+  },
+  {
+    id: "join",
+    number: "02",
+    title: "加入我们 Join the Team",
+    body: "我们欢迎对儿童早期发展研究感兴趣的本科生、研究助理及其他研究伙伴关注实验室机会。",
+    note: "具体岗位、申请要求与开放时间将在此页面持续更新。",
+  },
+  {
+    id: "families",
+    number: "03",
+    title: "家庭参与 For Families",
+    body: "我们长期邀请婴幼儿与家庭参与儿童发展研究及“小小科学家 Kid Scientists”计划，在轻松、安全的活动中一起探索儿童成长。",
+    note: "后续将在这里集中展示适龄活动、参与方式与家庭常见问题。",
+  },
+];
 ---
 
 <BaseLayout
-  title="Contact"
-  description={`Contact ${site.name} at ${site.institution}.`}
+  title="联系我们 Contact"
+  description="与SEED儿童早期社会发展实验室合作、加入团队或参与家庭研究。"
 >
   <PageHeader
-    eyebrow="Get in touch"
-    title="Contact"
-    lead="We welcome inquiries from prospective trainees, collaborators, and research participants' families."
+    eyebrow="联系 SEED"
+    title="联系我们 Contact"
+    lead="无论你希望开展研究合作、加入团队，还是带孩子参与我们的研究，都可以从这里找到对应入口。"
   />
+
   <div class="container-page py-12">
-    <div class="grid gap-8 lg:grid-cols-2 lg:items-stretch">
-      <div class="rounded-xl border border-slate-200 bg-white p-6">
-        <h2 class="font-serif text-xl text-slate-900">{site.shortName}</h2>
-        <address class="mt-3 text-slate-600 not-italic">
-          {site.address.map((line) => <p>{line}</p>)}
-        </address>
-
-        <dl class="mt-6 space-y-2 text-sm">
-          <div class="flex gap-2">
-            <dt class="font-medium text-slate-600">Email</dt>
-            <dd>
-              <a
-                href={`mailto:${site.email}`}
-                class="text-primary-700 hover:underline">{site.email}</a
-              >
-            </dd>
+    <div class="grid gap-5 lg:grid-cols-3">
+      {contactPaths.map((item) => (
+        <section id={item.id} class="group relative scroll-mt-24 overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg">
+          <div class="absolute -right-2 -top-5 font-mono text-7xl font-semibold text-primary-50 transition-colors group-hover:text-primary-100">
+            {item.number}
           </div>
-          <div class="flex gap-2">
-            <dt class="font-medium text-slate-600">Phone</dt>
-            <dd>
-              <a
-                href={`tel:${site.phone.replace(/[^0-9+]/g, "")}`}
-                class="text-primary-700 hover:underline">{site.phone}</a
-              >
-            </dd>
-          </div>
-        </dl>
+          <h2 class="relative max-w-[16rem] font-serif text-2xl font-semibold leading-tight text-slate-900 group-hover:text-primary-700">
+            {item.title}
+          </h2>
+          <p class="relative mt-5 leading-7 text-slate-600">{item.body}</p>
+          <p class="relative mt-6 border-t border-slate-100 pt-4 text-sm leading-6 text-slate-500">{item.note}</p>
+        </section>
+      ))}
+    </div>
 
-        <h3 class="mt-8 text-sm font-semibold tracking-wide text-slate-600 uppercase">
-          Elsewhere
-        </h3>
-        <ul class="mt-2 space-y-1 text-sm">
-          {
-            socials.map((s) => (
-              <li>
-                <a
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-primary-700 hover:underline"
-                >
-                  {s.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-
-      <div class="flex flex-col gap-3">
-        <div class="grow overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+    <section class="mt-10 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
+      <div class="grid lg:grid-cols-[0.85fr_1.15fr]">
+        <div class="p-7 sm:p-9">
+          <p class="text-xs font-semibold tracking-[0.16em] text-accent-600">来访信息</p>
+          <h2 class="mt-3 font-serif text-2xl font-semibold text-slate-900">实验室位置 Location</h2>
+          <p class="mt-4 leading-7 text-slate-600">SEED 儿童早期社会发展实验室位于香港中文大学（深圳）。具体楼宇与来访指引将在正式上线前补充。</p>
+          <a
+            href={mapLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary-700 transition-colors hover:text-accent-600"
+          >
+            在地图中查看
+            <span class="transition-transform group-hover:translate-x-0.5" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+        <div class="min-h-72 overflow-hidden border-t border-slate-200 lg:border-l lg:border-t-0">
           <iframe
-            title={`Map to ${site.shortName}`}
+            title="香港中文大学（深圳）地图"
             src={mapSrc}
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            class="h-80 w-full lg:h-full"></iframe>
+            class="h-full min-h-72 w-full"
+          ></iframe>
         </div>
-        <a
-          href={mapLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group inline-flex items-center gap-1 self-start text-sm font-medium text-primary-700 transition-colors hover:text-accent-600"
-        >
-          Open in Google Maps
-          <span class="transition-transform group-hover:translate-x-0.5" aria-hidden="true">&rarr;</span>
-        </a>
       </div>
-    </div>
+    </section>
   </div>
 </BaseLayout>

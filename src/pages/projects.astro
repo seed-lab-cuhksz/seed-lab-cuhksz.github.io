@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../components/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+
+const projects = [
+  {
+    tag: "婴幼儿发展",
+    title: "早期社会注意与共同注意",
+    body: "关注婴幼儿如何追随他人的目光、动作与社会线索，并考察这些能力在早期发展中的个体差异。",
+    methods: ["眼动追踪", "行为任务", "发展测量"],
+  },
+  {
+    tag: "亲子互动",
+    title: "亲子互动与早期社会发展",
+    body: "通过自然和结构化的亲子互动情境，理解照护者与儿童之间的互动模式如何与儿童早期社会发展相关。",
+    methods: ["互动观察", "行为编码", "纵向追踪"],
+  },
+  {
+    tag: "环境与注意",
+    title: "自然环境中的儿童注意与探索",
+    body: "将实验室测量延伸到更自然的活动环境中，研究儿童如何注意、探索并整合来自周围环境的信息。",
+    methods: ["自然情境", "注意测量", "多模态数据"],
+  },
+  {
+    tag: "计算方法",
+    title: "面向儿童研究的多模态行为测量",
+    body: "探索眼动、视频、脑成像和计算方法的结合，以更高效地描述儿童行为并支持个体差异研究。",
+    methods: ["眼动", "脑成像", "计算分析"],
+  },
+];
+---
+
+<BaseLayout
+  title="在研项目 Projects"
+  description="SEED儿童早期社会发展实验室目前开展的研究项目。"
+>
+  <PageHeader
+    eyebrow="当前研究项目"
+    title="在研项目 Projects"
+    lead="从实验室中的精细测量到更自然的互动与活动情境，我们通过多个项目持续追踪儿童早期社会发展的不同侧面。"
+  />
+
+  <div class="container-page py-12">
+    <div class="grid gap-6 md:grid-cols-2">
+      {projects.map((project, index) => (
+        <article class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg">
+          <div class="absolute right-5 top-4 font-mono text-5xl font-semibold text-primary-50 transition-colors group-hover:text-primary-100">
+            {String(index + 1).padStart(2, "0")}
+          </div>
+          <p class="relative text-xs font-semibold tracking-[0.16em] text-accent-600">{project.tag}</p>
+          <h2 class="relative mt-3 max-w-md font-serif text-2xl font-semibold text-slate-900 group-hover:text-primary-700">
+            {project.title}
+          </h2>
+          <p class="relative mt-4 max-w-xl leading-7 text-slate-600">{project.body}</p>
+          <div class="relative mt-6 flex flex-wrap gap-2">
+            {project.methods.map((method) => (
+              <span class="rounded-full border border-primary-100 bg-primary-50/60 px-3 py-1 text-xs font-medium text-primary-800">
+                {method}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-10 rounded-2xl border border-dashed border-primary-200 bg-primary-50/40 p-6 text-sm leading-6 text-slate-600">
+      以上为第一版项目结构。后续可为每个项目增加独立详情页，包括研究问题、适龄范围、研究方法、项目进展、相关成果与家庭参与入口。
+    </div>
+  </div>
+</BaseLayout>
