@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../components/BaseLayout.astro";
+import PeopleSprout from "../../components/PeopleSprout.astro";
 
 const phdStudents = [
   {
@@ -108,10 +109,11 @@ const alumni = [
         <h2>曾广宇 <span>Guangyu Zeng</span></h2>
       </div>
 
-      <article class="pi-card">
+      <article class="pi-card sprout-card" tabindex="0" data-sprout-card>
+        <span class="edge-sprout" aria-hidden="true"><PeopleSprout /></span>
         <div class="portrait portrait--pi" aria-label="曾广宇照片位置">
           <div class="portrait__seed">曾</div>
-          <span>PHOTO</span>
+          <span>PORTRAIT PHOTO</span>
         </div>
 
         <div class="pi-copy">
@@ -137,10 +139,11 @@ const alumni = [
       </div>
       <div class="member-grid two-col">
         {phdStudents.map((member) => (
-          <article class="member-card">
-            <div class="portrait">
-              <div class="portrait__seed">{member.name.slice(0, 1)}</div>
-              <span>PHOTO</span>
+          <article class="member-card sprout-card" tabindex="0" data-sprout-card>
+            <span class="edge-sprout" aria-hidden="true"><PeopleSprout /></span>
+            <div class="landscape-photo" aria-label={`${member.name}横版照片位置`}>
+              <div class="landscape-photo__mark"><PeopleSprout /></div>
+              <span>LANDSCAPE PHOTO · 16:10</span>
             </div>
             <div class="member-copy">
               <p class="member-role">{member.role} <span>{member.roleEn}</span></p>
@@ -161,10 +164,11 @@ const alumni = [
       </div>
       <div class="member-grid staff-grid">
         {staff.map((member) => (
-          <article class="member-card">
-            <div class="portrait">
-              <div class="portrait__seed">{member.name.slice(0, 1)}</div>
-              <span>PHOTO</span>
+          <article class="member-card sprout-card" tabindex="0" data-sprout-card>
+            <span class="edge-sprout" aria-hidden="true"><PeopleSprout /></span>
+            <div class="landscape-photo" aria-label={`${member.name}横版照片位置`}>
+              <div class="landscape-photo__mark"><PeopleSprout /></div>
+              <span>LANDSCAPE PHOTO · 16:10</span>
             </div>
             <div class="member-copy">
               <p class="member-role">{member.role} <span>{member.roleEn}</span></p>
@@ -186,9 +190,10 @@ const alumni = [
 
         <div class="alumni-grid">
           {alumni.map((person) => (
-            <article class="alumni-card">
+            <article class="alumni-card sprout-card" tabindex="0" data-sprout-card>
+              <span class="edge-sprout edge-sprout--dark" aria-hidden="true"><PeopleSprout /></span>
               <div class="alumni-top">
-                <div class="mini-seed">{person.name.slice(0, 1)}</div>
+                <div class="alumni-sprout" aria-hidden="true"><PeopleSprout /></div>
                 <div>
                   <h3>{person.name}</h3>
                   <p>{person.meta}</p>
@@ -202,6 +207,25 @@ const alumni = [
       </div>
     </section>
   </main>
+
+  <script>
+    const cards = document.querySelectorAll('[data-sprout-card]');
+
+    cards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const wasActive = card.classList.contains('is-grown');
+        cards.forEach((item) => item.classList.remove('is-grown'));
+        if (!wasActive) card.classList.add('is-grown');
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Element) || !target.closest('[data-sprout-card]')) {
+        cards.forEach((item) => item.classList.remove('is-grown'));
+      }
+    });
+  </script>
 </BaseLayout>
 
 <style>
@@ -287,6 +311,42 @@ const alumni = [
     font-size: clamp(1.9rem, 3.2vw, 3rem);
   }
 
+  .sprout-card {
+    position: relative;
+    outline: none;
+  }
+
+  .edge-sprout {
+    position: absolute;
+    z-index: 10;
+    top: -2.2rem;
+    right: 2.2rem;
+    width: 2.7rem;
+    color: #7d9f50;
+    opacity: 0;
+    transform: translateY(1.15rem) scale(.56) rotate(4deg);
+    transform-origin: center bottom;
+    transition: opacity .18s ease, transform .38s cubic-bezier(.18,.8,.25,1.25);
+    pointer-events: none;
+  }
+
+  .edge-sprout :global(svg) {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 5px 5px rgba(44, 70, 56, .08));
+  }
+
+  .sprout-card:hover .edge-sprout,
+  .sprout-card:focus-visible .edge-sprout,
+  .sprout-card.is-grown .edge-sprout {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(-3deg);
+  }
+
+  .edge-sprout--dark {
+    color: #b7cc87;
+  }
+
   .pi-card {
     margin-top: 2.4rem;
     display: grid;
@@ -298,6 +358,15 @@ const alumni = [
     border-radius: 2rem;
     background: rgba(255,255,255,.55);
     box-shadow: 0 18px 60px rgba(35, 56, 47, .05);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+
+  .pi-card:hover,
+  .pi-card:focus-visible,
+  .pi-card.is-grown {
+    transform: translateY(-3px);
+    border-color: rgba(123,152,80,.30);
+    box-shadow: 0 20px 52px rgba(35, 56, 47, .07);
   }
 
   .portrait {
@@ -341,7 +410,8 @@ const alumni = [
     transform: rotate(-7deg);
   }
 
-  .portrait span {
+  .portrait span,
+  .landscape-photo > span {
     position: absolute;
     right: 1.1rem;
     bottom: 1rem;
@@ -398,7 +468,7 @@ const alumni = [
   .member-grid {
     margin-top: 2.3rem;
     display: grid;
-    gap: 1.6rem;
+    gap: 1.7rem;
   }
 
   .two-col {
@@ -406,34 +476,64 @@ const alumni = [
   }
 
   .staff-grid {
-    grid-template-columns: minmax(0, 1fr);
-    max-width: calc(50% - .8rem);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .member-card {
-    display: grid;
-    grid-template-columns: 12.5rem 1fr;
-    gap: 1.6rem;
-    padding: 1.1rem;
-    border-radius: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 1.7rem;
     border: 1px solid rgba(48, 73, 62, .09);
-    background: rgba(255,255,255,.44);
+    background: rgba(255,255,255,.48);
     transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
 
-  .member-card:hover {
+  .member-card:hover,
+  .member-card:focus-visible,
+  .member-card.is-grown {
     transform: translateY(-4px);
-    border-color: rgba(123,152,80,.22);
-    box-shadow: 0 16px 42px rgba(35, 56, 47, .06);
+    border-color: rgba(123,152,80,.28);
+    box-shadow: 0 16px 42px rgba(35, 56, 47, .065);
   }
 
-  .member-card .portrait {
-    min-height: 15.5rem;
+  .landscape-photo {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    display: grid;
+    place-items: center;
+    border-radius: 1.25rem;
+    background:
+      radial-gradient(circle at 76% 24%, rgba(235, 191, 155, .24), transparent 23%),
+      radial-gradient(circle at 18% 78%, rgba(255,255,255,.48), transparent 29%),
+      linear-gradient(145deg, #e9eedf, #dbe5cb 58%, #ccd9b7);
+  }
+
+  .landscape-photo::after {
+    content: "";
+    position: absolute;
+    width: 10rem;
+    height: 10rem;
+    left: -3rem;
+    bottom: -4rem;
+    border: 1px solid rgba(255,255,255,.64);
+    border-radius: 999px;
+  }
+
+  .landscape-photo__mark {
+    width: 3.8rem;
+    color: rgba(78, 116, 57, .56);
+  }
+
+  .landscape-photo__mark :global(svg) {
+    width: 100%;
+    height: auto;
   }
 
   .member-copy {
-    align-self: center;
-    padding: .6rem .5rem .6rem 0;
+    padding: 1.35rem .45rem .55rem;
   }
 
   .member-role {
@@ -505,31 +605,33 @@ const alumni = [
     border: 1px solid rgba(255,255,255,.09);
     border-radius: 1.35rem;
     background: rgba(255,255,255,.045);
-    transition: transform .25s ease, background .25s ease;
+    transition: transform .25s ease, background .25s ease, border-color .25s ease;
   }
 
-  .alumni-card:hover {
+  .alumni-card:hover,
+  .alumni-card:focus-visible,
+  .alumni-card.is-grown {
     transform: translateY(-3px);
     background: rgba(255,255,255,.07);
+    border-color: rgba(183, 204, 135, .22);
   }
 
   .alumni-top {
     display: flex;
     align-items: center;
-    gap: .8rem;
+    gap: .72rem;
   }
 
-  .mini-seed {
-    width: 2.7rem;
-    height: 2.7rem;
+  .alumni-sprout {
+    width: 2.15rem;
     flex: 0 0 auto;
-    display: grid;
-    place-items: center;
-    border-radius: 46% 54% 58% 42% / 58% 44% 56% 42%;
-    background: #8da862;
-    color: white;
-    font-weight: 800;
-    transform: rotate(-7deg);
+    color: #aac17a;
+    transform: rotate(-4deg);
+  }
+
+  .alumni-sprout :global(svg) {
+    width: 100%;
+    height: auto;
   }
 
   .alumni-top h3 {
@@ -557,12 +659,9 @@ const alumni = [
   }
 
   @media (max-width: 1180px) {
-    .two-col {
-      grid-template-columns: 1fr;
-    }
-
+    .two-col,
     .staff-grid {
-      max-width: none;
+      grid-template-columns: 1fr;
     }
 
     .alumni-grid {
@@ -579,29 +678,32 @@ const alumni = [
       padding-top: 4rem;
     }
 
-    .pi-card,
-    .member-card {
+    .pi-card {
       grid-template-columns: 1fr;
     }
 
-    .portrait--pi,
-    .member-card .portrait {
+    .portrait--pi {
       min-height: 20rem;
     }
 
-    .pi-copy,
-    .member-copy {
+    .pi-copy {
       padding: .5rem;
     }
 
     .alumni-grid {
       grid-template-columns: 1fr;
     }
+
+    .edge-sprout {
+      right: 1.4rem;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .member-card,
-    .alumni-card {
+    .alumni-card,
+    .pi-card,
+    .edge-sprout {
       transition: none;
     }
   }
