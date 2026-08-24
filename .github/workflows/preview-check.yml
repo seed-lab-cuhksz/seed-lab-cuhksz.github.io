@@ -3,6 +3,8 @@ name: Preview Build Check
 on:
   push:
     branches: [seed-redesign-v1]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
