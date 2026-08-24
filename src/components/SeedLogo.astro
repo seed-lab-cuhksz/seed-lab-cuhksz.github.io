@@ -1,82 +1,30 @@
-<div class="seed-logo" aria-label="SEED Social Excellence for Early Development Lab">
-  <svg class="seed-logo__mark" viewBox="0 0 190 210" aria-hidden="true">
-    <path d="M92 180c-43-8-73-39-69-82 4-39 32-69 70-75" fill="none" stroke="#6f9846" stroke-width="15" stroke-linecap="round" />
-    <path d="M87 142c-29 5-49-8-54-31-4-21 8-42 29-50 21 7 34 27 31 48-2 15-4 24-6 33Z" fill="#17302a" />
-    <path d="M66 117c5 10 13 18 24 23" fill="none" stroke="#6f9846" stroke-width="5" stroke-linecap="round" />
-    <path d="M92 179c20-28 34-62 40-101" fill="none" stroke="#6f9846" stroke-width="15" stroke-linecap="round" />
-    <path d="M125 69c-29-12-54-9-72 9 27 19 52 17 72-9Z" fill="#6f9846" />
-    <path d="M138 53c28-12 50-8 66 10-26 18-49 15-66-10Z" fill="#6f9846" />
-    <path d="M98 160c-11 12-29 18-50 16" fill="none" stroke="#6f9846" stroke-width="15" stroke-linecap="round" />
-  </svg>
-
-  <div class="seed-logo__type">
-    <div class="seed-logo__word">seed</div>
-    <div class="seed-logo__tagline">
-      <span>Social Excellence for</span>
-      <span>Early Development Lab</span>
-    </div>
-  </div>
+<div class="seed-logo">
+  <img
+    src="/seed-lab-logo.webp"
+    alt="SEED Social Excellence for Early Development Lab"
+    class="seed-logo__image"
+    width="480"
+    height="353"
+    loading="eager"
+    decoding="async"
+  />
 </div>
 
 <style>
   .seed-logo {
-    display: flex;
-    align-items: center;
-    gap: .2rem;
     width: min(100%, 31rem);
   }
 
-  .seed-logo__mark {
-    width: 9.6rem;
+  .seed-logo__image {
+    display: block;
+    width: 100%;
     height: auto;
-    flex: 0 0 auto;
-    overflow: visible;
-  }
-
-  .seed-logo__type {
-    min-width: 0;
-    padding-top: .25rem;
-  }
-
-  .seed-logo__word {
-    color: #efb18e;
-    font-family: "Arial Rounded MT Bold", "Trebuchet MS", "PingFang SC", sans-serif;
-    font-size: clamp(4rem, 7vw, 5.6rem);
-    font-weight: 900;
-    line-height: .8;
-    letter-spacing: -.075em;
-    transform: skew(-5deg);
-  }
-
-  .seed-logo__tagline {
-    margin-top: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: .12rem;
-    color: #101a17;
-    font-family: "Arial Rounded MT Bold", "Trebuchet MS", "PingFang SC", sans-serif;
-    font-size: clamp(.9rem, 1.45vw, 1.2rem);
-    font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: .015em;
+    object-fit: contain;
   }
 
   @media (max-width: 640px) {
     .seed-logo {
       width: min(100%, 22rem);
-    }
-
-    .seed-logo__mark {
-      width: 7.2rem;
-    }
-
-    .seed-logo__word {
-      font-size: 4rem;
-    }
-
-    .seed-logo__tagline {
-      margin-top: .85rem;
-      font-size: .82rem;
     }
   }
 </style>
