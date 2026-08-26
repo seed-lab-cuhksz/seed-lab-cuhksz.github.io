@@ -170,6 +170,45 @@
   font-size: 0.82rem !important;
 }
 
+/* Real member photos uploaded under public/people/. Preserve the source formats. */
+.people-page .portrait--pi {
+  background-image: url('/people/zeng.png') !important;
+  background-size: cover !important;
+  background-position: center 18% !important;
+  background-repeat: no-repeat !important;
+}
+
+.people-page .portrait--pi .portrait__seed,
+.people-page .portrait--pi > span {
+  display: none !important;
+}
+
+.people-page .two-col .member-card:nth-child(1) .landscape-photo {
+  background-image: url('/people/li.jpg') !important;
+}
+
+.people-page .two-col .member-card:nth-child(2) .landscape-photo {
+  background-image: url('/people/zhang.png') !important;
+}
+
+.people-page .staff-grid .member-card:nth-child(1) .landscape-photo {
+  background-image: url('/people/zhao.jpg') !important;
+}
+
+.people-page .two-col .landscape-photo,
+.people-page .staff-grid .landscape-photo {
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+
+.people-page .two-col .landscape-photo__mark,
+.people-page .staff-grid .landscape-photo__mark,
+.people-page .two-col .landscape-photo > span,
+.people-page .staff-grid .landscape-photo > span {
+  display: none !important;
+}
+
 /* Research header: compact academic page header, aligned with Projects. */
 .research-hero {
   padding: 3.7rem 0 3.35rem !important;
