@@ -6,70 +6,80 @@ const projects = [
   {
     tag: "共同注意与自闭症",
     status: "Ongoing",
-    title: "基于催产素的婴幼儿共同注意发展机制及孤独症风险预测与干预研究",
+    titleZh: "基于催产素的婴幼儿共同注意发展机制及孤独症风险预测与干预研究",
+    titleEn: "Oxytocin-Based Mechanisms of Joint Attention Development and Autism Risk Prediction and Intervention in Infants and Toddlers",
     body: "探索共同注意的神经内分泌发展机制，并进一步考察催产素相关指标在自闭症早期风险预测与家庭友好型支持中的研究潜力。",
     methods: ["共同注意", "催产素", "自闭症风险"],
   },
   {
     tag: "亲子互动与发展",
     status: "Ongoing",
-    title: "亲子互动与发展项目",
+    titleZh: "亲子互动与发展项目",
+    titleEn: "Parent–Child Interaction and Development",
     body: "结合儿童注意、生理、亲子互动、结构化发展测量与家长报告等多模态信息，研究早期社会发展轨迹及与自闭症相关的早期个体差异。",
     methods: ["眼动追踪", "EEG / fNIRS", "亲子互动", "多模态建模"],
   },
   {
     tag: "亲子互动与发展",
     status: "Ongoing",
-    title: "Parent-Child Motion Synchrony and Emotional Signals",
+    titleZh: "亲子动作同步与情绪信号",
+    titleEn: "Parent-Child Motion Synchrony and Emotional Signals",
     body: "关注亲子互动中的动作同步与情绪信号，考察母亲与儿童在动作、表情和情绪回应上的同步、引领—跟随关系及其与儿童社会参与和情绪发展的关系。",
     methods: ["亲子互动", "Motion Synchrony", "情绪信号", "Lead-Follow"],
   },
   {
     tag: "情绪沟通与跨通道匹配",
     status: "Ongoing",
-    title: "Infant Vocalization Intermodal Matching",
+    titleZh: "婴儿发声的情绪类别与诱发情境跨通道匹配",
+    titleEn: "Intermodal Matching of Emotional Category and Eliciting Source Context in Infant Vocalizations",
     body: "通过成人与婴幼儿实验，研究人们如何将婴儿哭声与笑声中的情绪类别和诱发情境与视觉信息进行跨通道匹配，并探索这种能力在早期发展中的出现。",
     methods: ["婴儿发声", "Intermodal Matching", "哭声与笑声", "情绪类别"],
   },
   {
     tag: "自闭症早期识别",
     status: "Ongoing",
-    title: "“1+1+1”联合资助计划重点项目",
+    titleZh: "“1+1+1”联合资助计划重点项目",
+    titleEn: "“1+1+1” Joint Funding Program Key Project",
     body: "围绕自然亲子互动中的早期社会沟通特征，发展远程眼动测量，并整合 EEG、眼动与行为数据探索多模态自闭症早期识别方法。",
     methods: ["远程眼动", "EEG", "亲子互动", "多模态预测"],
   },
   {
     tag: "自然情境与福祉",
     status: "Ongoing",
-    title: "自然童行 Growing with Nature",
+    titleZh: "自然童行",
+    titleEn: "Growing with Nature",
     body: "关注 2–5 岁儿童的自然环境接触如何与幸福感、情绪与行为调节及功能发展相关，并同时关注典型发展与自闭症儿童。",
     methods: ["自然接触", "纵向追踪", "眼动", "家长报告"],
   },
   {
     tag: "测量工具",
     status: "Ongoing",
-    title: "婴幼儿幸福感量表中文版",
+    titleZh: "婴幼儿幸福感量表中文版",
+    titleEn: "Chinese Version of the Infant Wellbeing Scale",
     body: "本土化并验证适用于中国大陆家庭的婴幼儿幸福感问卷，评估其可行性、信度与效度，并关注儿童情绪、行为及互动层面的福祉。",
     methods: ["量表本土化", "家长报告", "信效度", "儿童福祉"],
   },
   {
     tag: "人工智能与社会认知",
     status: "Ongoing",
-    title: "VLM Social Understanding",
+    titleZh: "视觉语言模型的社会理解",
+    titleEn: "VLM Social Understanding",
     body: "研究视觉语言模型能否理解动态社会事件中的互动类型与角色关系，并比较直接回答、物理线索提示与社会线索提示下的模型表现。",
     methods: ["VLM", "社会理解", "社会事件推理", "物理提示", "人类-AI一致性"],
   },
   {
     tag: "数字化家庭支持",
     status: "Ongoing",
-    title: "The Gift of the Tenth Month",
+    titleZh: "十月之礼",
+    titleEn: "The Gift of the Tenth Month",
     body: "开发一款伴侣共同参与的孕期教育严肃游戏，将孕期知识、临床决策、情绪体验与家庭支持转化为可探索、可练习的情境化学习体验。",
     methods: ["严肃游戏", "孕期教育", "伴侣支持", "情境学习"],
   },
   {
     tag: "计算建模与互动动力学",
     status: "Upcoming",
-    title: "Chaos Theory-Based Modeling of Synchrony and Interaction",
+    titleZh: "基于混沌理论的同步与互动建模",
+    titleEn: "Chaos Theory-Based Modeling of Synchrony and Interaction",
     body: "拟基于混沌理论与动态系统方法，对亲子互动中的动作同步、情绪信号与心理过程进行建模，探索时间序列中的耦合、非线性变化以及稳定与转变机制。",
     methods: ["Chaos Theory", "同步机制", "互动动力学", "计算建模", "非线性系统"],
   },
@@ -86,35 +96,36 @@ const projects = [
     lead="我们的项目围绕婴幼儿社会发展、亲子互动与自闭症早期识别，并延伸到情绪沟通、自然情境、人工智能、计算建模与数字化家庭支持。"
   />
 
-  <div class="container-page py-12">
-    <div class="grid gap-6 md:grid-cols-2">
+  <div class="container-page py-10">
+    <div class="grid gap-5 md:grid-cols-2">
       {projects.map((project, index) => (
         <article
           class:list={[
-            "group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg",
+            "group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg",
             index === projects.length - 1 && "md:col-span-2",
           ]}
         >
-          <div class="absolute right-5 top-4 font-mono text-5xl font-semibold text-primary-50 transition-colors group-hover:text-primary-100">
+          <div class="absolute right-5 top-4 font-mono text-4xl font-semibold text-primary-50 transition-colors group-hover:text-primary-100">
             {String(index + 1).padStart(2, "0")}
           </div>
 
           <div class="relative flex flex-wrap items-center gap-x-2 gap-y-1 pr-14">
-            <p class="text-xs font-semibold tracking-[0.16em] text-accent-600">{project.tag}</p>
+            <p class="text-[0.68rem] font-semibold tracking-[0.14em] text-accent-600">{project.tag}</p>
             <span class="text-xs text-slate-300">·</span>
             <span class:list={[
-              "text-[0.68rem] font-semibold uppercase tracking-[0.12em]",
+              "text-[0.65rem] font-semibold uppercase tracking-[0.11em]",
               project.status === "Upcoming" ? "text-amber-700" : "text-primary-600",
             ]}>{project.status}</span>
           </div>
 
-          <h2 class="relative mt-3 max-w-2xl font-serif text-2xl font-semibold text-slate-900 transition-colors group-hover:text-primary-700">
-            {project.title}
+          <h2 class="relative mt-3 max-w-3xl text-slate-900 transition-colors group-hover:text-primary-700">
+            <span class="block text-[1.06rem] font-semibold leading-snug sm:text-lg">{project.titleZh}</span>
+            <span class="mt-1 block font-serif text-sm font-normal italic leading-snug text-slate-500">{project.titleEn}</span>
           </h2>
-          <p class="relative mt-4 max-w-3xl leading-7 text-slate-600">{project.body}</p>
-          <div class="relative mt-6 flex flex-wrap gap-2">
+          <p class="relative mt-3 max-w-3xl text-sm leading-6 text-slate-600">{project.body}</p>
+          <div class="relative mt-5 flex flex-wrap gap-1.5">
             {project.methods.map((method) => (
-              <span class="rounded-full border border-primary-100 bg-primary-50/60 px-3 py-1 text-xs font-medium text-primary-800">
+              <span class="rounded-full border border-primary-100 bg-primary-50/60 px-2.5 py-1 text-[0.7rem] font-medium text-primary-800">
                 {method}
               </span>
             ))}
