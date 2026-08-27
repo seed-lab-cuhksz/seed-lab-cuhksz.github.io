@@ -20,6 +20,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
+      - name: Convert Join poster to PNG
+        run: |
+          ffmpeg -hide_banner -loglevel error -y \
+            -i public/contact/join-team-poster.webp \
+            public/contact/join-team-poster.png
+
       - name: Build with Astro
         uses: withastro/action@v6
         with:
