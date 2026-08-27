@@ -23,9 +23,10 @@ jobs:
 
       - name: Convert Join poster to PNG
         run: |
-          ffmpeg -hide_banner -loglevel error -y \
-            -i public/contact/join-team-poster.webp \
-            public/contact/join-team-poster.png
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq webp
+          dwebp public/contact/join-team-poster.webp \
+            -o public/contact/join-team-poster.png
 
       - name: Build with Astro
         uses: withastro/action@v6
