@@ -18,13 +18,13 @@ const splitLabel = (label: string) => {
 ---
 
 <header class="sticky top-0 z-50 border-b border-[#e8e3d9] bg-[#fffdf9]/95 backdrop-blur-md">
-  <nav class="container-page flex h-[4.5rem] items-center justify-between gap-5" aria-label="主导航 Primary navigation">
-    <a href="/" class="group flex shrink-0 items-baseline gap-2" aria-label="SEED Lab 首页">
-      <span class="text-[1.22rem] font-bold tracking-[-.035em] text-[#202c29] transition-colors group-hover:text-[#6f9244]">SEED</span>
-      <span class="text-[.82rem] font-medium tracking-[.04em] text-[#efb487]">Lab</span>
+  <nav class="container-page flex h-[5.35rem] items-center justify-between gap-7" aria-label="主导航 Primary navigation">
+    <a href="/" class="group flex shrink-0 items-baseline gap-2.5" aria-label="SEED Lab 首页">
+      <span class="text-[1.48rem] font-bold tracking-[-.04em] text-[#202c29] transition-colors group-hover:text-[#6f9244]">SEED</span>
+      <span class="text-[.98rem] font-medium tracking-[.04em] text-[#efb487]">Lab</span>
     </a>
 
-    <ul class="hidden h-full items-center gap-6 xl:flex">
+    <ul class="hidden h-full items-center gap-8 xl:flex">
       {site.nav.map((item) => {
         const label = splitLabel(item.label);
         const active = isActive(item.href);
@@ -34,13 +34,13 @@ const splitLabel = (label: string) => {
               href={item.href}
               aria-current={active ? "page" : undefined}
               class:list={[
-                "group relative flex h-full flex-col items-center justify-center px-0.5 transition-colors",
+                "group relative flex h-full min-w-[4rem] flex-col items-center justify-center px-1 transition-colors",
                 active ? "text-[#202c29]" : "text-[#66706d] hover:text-[#202c29]",
               ]}
             >
-              <span class="text-[11px] font-semibold leading-none">{label.cn}</span>
-              <span class="mt-1.5 text-[7px] font-medium tracking-[.12em] text-[#a3a6a1] uppercase">{label.en}</span>
-              <span class:list={["absolute bottom-0 left-1/2 h-[2px] -translate-x-1/2 bg-[#6f9244] transition-all", active ? "w-6" : "w-0 group-hover:w-4"]}></span>
+              <span class="text-[13px] font-semibold leading-none">{label.cn}</span>
+              <span class="mt-1.5 text-[8.5px] font-medium tracking-[.12em] text-[#a3a6a1] uppercase">{label.en}</span>
+              <span class:list={["absolute bottom-0 left-1/2 h-[2px] -translate-x-1/2 bg-[#6f9244] transition-all", active ? "w-7" : "w-0 group-hover:w-5"]}></span>
             </a>
           </li>
         );
@@ -50,7 +50,7 @@ const splitLabel = (label: string) => {
     <button
       type="button"
       id="nav-toggle"
-      class="inline-flex h-10 w-10 items-center justify-center rounded-full text-[#202c29] transition hover:bg-[#f6f1e8] xl:hidden"
+      class="inline-flex h-11 w-11 items-center justify-center rounded-full text-[#202c29] transition hover:bg-[#f6f1e8] xl:hidden"
       aria-controls="mobile-menu"
       aria-expanded="false"
     >
@@ -79,8 +79,8 @@ const splitLabel = (label: string) => {
                 active ? "text-[#6f9244]" : "text-[#303a37] hover:text-[#6f9244]",
               ]}
             >
-              <span class="text-sm font-semibold">{label.cn}</span>
-              <span class="text-[8px] tracking-[.12em] text-[#aaa69f] uppercase">{label.en}</span>
+              <span class="text-base font-semibold">{label.cn}</span>
+              <span class="text-[9px] tracking-[.12em] text-[#aaa69f] uppercase">{label.en}</span>
             </a>
           </li>
         );
