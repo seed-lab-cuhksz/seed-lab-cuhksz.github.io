@@ -10,22 +10,25 @@ const contactPaths = [
   {
     id: "collaborate",
     number: "01",
+    audience: "FOR COLLABORATORS",
     title: "合作交流 Collaborate with Us",
-    body: "我们欢迎与儿童发展、家庭研究、心理与教育技术、行为测量及相关交叉领域的研究团队开展合作。",
+    body: "面向研究者、实验室与相关机构。我们欢迎围绕儿童发展、家庭研究、心理与教育技术、行为测量及相关交叉领域开展合作。",
     note: "如有合作想法，可通过实验室邮箱联系我们。",
   },
   {
     id: "join",
     number: "02",
+    audience: "FOR STUDENTS",
     title: "加入我们 Join the Team",
-    body: "我们欢迎对儿童早期发展研究感兴趣的本科生、研究助理及其他研究伙伴关注实验室机会。",
+    body: "面向希望参与儿童早期发展研究的本科生、研究生及研究助理申请者，欢迎关注实验室研究与项目机会。",
     note: "点击查看申请方式与材料要求。",
   },
   {
     id: "families",
     number: "03",
+    audience: "FOR FAMILIES",
     title: "家庭参与 For Families",
-    body: "我们长期邀请婴幼儿与家庭参与儿童发展研究及“小小科学家 Kid Scientists”计划，在轻松、安全的活动中一起探索儿童成长。",
+    body: "面向婴幼儿与家庭。我们长期开展儿童发展研究及“小小科学家 Kid Scientists”计划，在轻松、安全的活动中一起探索儿童成长。",
     note: "后续将在这里集中展示适龄活动、参与方式与家庭常见问题。",
   },
 ];
@@ -55,12 +58,9 @@ const contactPaths = [
           tabindex={item.id === "join" ? "0" : undefined}
           aria-haspopup={item.id === "join" ? "dialog" : undefined}
         >
-          <div class="absolute -right-2 -top-5 font-mono text-7xl font-semibold text-primary-50 transition-colors group-hover:text-primary-100">
-            {item.number}
-          </div>
-          <h2 class="relative max-w-[16rem] font-serif text-2xl font-semibold leading-tight text-slate-900 group-hover:text-primary-700">
-            {item.title}
-          </h2>
+          <div class="absolute -right-2 -top-5 font-mono text-7xl font-semibold text-primary-50 transition-colors group-hover:text-primary-100">{item.number}</div>
+          <p class="relative text-[0.68rem] font-semibold tracking-[0.14em] text-accent-600">{item.audience}</p>
+          <h2 class="relative mt-3 max-w-[17rem] font-serif text-2xl font-semibold leading-tight text-slate-900 group-hover:text-primary-700">{item.title}</h2>
           <p class="relative mt-5 leading-7 text-slate-600">{item.body}</p>
           <p class="relative mt-6 border-t border-slate-100 pt-4 text-sm leading-6 text-slate-500">{item.note}</p>
         </section>
@@ -68,59 +68,46 @@ const contactPaths = [
     </div>
 
     <section class="mt-10 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
-      <div class="grid lg:grid-cols-[0.85fr_1.15fr]">
+      <div class="grid lg:grid-cols-[0.9fr_1.1fr]">
         <div class="p-7 sm:p-9">
           <p class="text-xs font-semibold tracking-[0.16em] text-accent-600">来访信息</p>
           <h2 class="mt-3 font-serif text-2xl font-semibold text-slate-900">实验室位置 Location</h2>
-          <p class="mt-4 leading-7 text-slate-600">SEED 儿童早期社会发展实验室位于香港中文大学（深圳）。具体楼宇与来访指引将在正式上线前补充。</p>
-          <a
-            href={mapLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary-700 transition-colors hover:text-accent-600"
-          >
-            在地图中查看
-            <span class="transition-transform group-hover:translate-x-0.5" aria-hidden="true">&rarr;</span>
-          </a>
+          <p class="mt-4 leading-7 text-slate-600">SEED 儿童早期社会发展实验室位于香港中文大学（深圳）。</p>
+          <div class="mt-5 space-y-3 text-sm leading-6 text-slate-600">
+            <p><strong class="text-slate-800">地址：</strong>广东省深圳市龙岗区龙翔大道 2001 号，香港中文大学（深圳）。</p>
+            <p><strong class="text-slate-800">地铁：</strong>可乘 16 号线至大运中心站，D 口出站后步行约 800 米到达校园；也可乘 14 号线至大运站，再换乘 16 号线至大运中心站。</p>
+            <p><strong class="text-slate-800">打车 / 自驾：</strong>建议直接导航“香港中文大学（深圳）”。</p>
+          </div>
+          <a href={mapLink} target="_blank" rel="noopener noreferrer" class="group mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary-700 transition-colors hover:text-accent-600">在地图中查看 <span class="transition-transform group-hover:translate-x-0.5" aria-hidden="true">&rarr;</span></a>
         </div>
-        <div class="min-h-72 overflow-hidden border-t border-slate-200 lg:border-l lg:border-t-0">
-          <iframe
-            title="香港中文大学（深圳）地图"
-            src={mapSrc}
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            class="h-full min-h-72 w-full"
-          ></iframe>
+        <div class="min-h-80 overflow-hidden border-t border-slate-200 lg:border-l lg:border-t-0">
+          <iframe title="香港中文大学（深圳）地图" src={mapSrc} loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="h-full min-h-80 w-full"></iframe>
         </div>
+      </div>
+    </section>
+
+    <section class="mt-10" aria-labelledby="lab-gallery-title">
+      <div class="mb-5 flex items-end justify-between gap-5">
+        <div>
+          <p class="text-xs font-semibold tracking-[0.16em] text-accent-600">实验室日常</p>
+          <h2 id="lab-gallery-title" class="mt-2 font-serif text-2xl font-semibold text-slate-900">Lab Gallery</h2>
+        </div>
+        <p class="text-xs text-slate-400">照片后续补充</p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {["儿童行为观察室", "儿童发展研究空间", "眼动实验室", "实验室日常"].map((label) => (
+          <div class="flex aspect-[4/3] items-end rounded-2xl border border-dashed border-primary-200 bg-primary-50/35 p-4">
+            <span class="text-sm font-medium text-primary-700">{label}</span>
+          </div>
+        ))}
       </div>
     </section>
   </div>
 
-  <div
-    id="join-team-modal"
-    class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/55 p-4 backdrop-blur-[2px] sm:p-6"
-    role="dialog"
-    aria-modal="true"
-    aria-label="加入我们申请说明"
-    aria-hidden="true"
-  >
+  <div id="join-team-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/55 p-4 backdrop-blur-[2px] sm:p-6" role="dialog" aria-modal="true" aria-label="加入我们申请说明" aria-hidden="true">
     <div class="relative max-h-[92vh] w-full max-w-[720px] overflow-auto rounded-2xl bg-white p-2 shadow-2xl sm:p-3">
-      <button
-        id="join-team-close"
-        type="button"
-        aria-label="关闭加入我们弹窗"
-        class="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/95 text-2xl font-light leading-none text-slate-600 shadow-sm transition hover:bg-slate-50 hover:text-primary-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
-      >
-        <span aria-hidden="true">×</span>
-      </button>
-
-      <img
-        src="/contact/join-team-poster.png"
-        alt="SEED儿童早期社会发展实验室加入我们申请说明"
-        width="900"
-        height="1125"
-        class="h-auto w-full rounded-xl"
-      />
+      <button id="join-team-close" type="button" aria-label="关闭加入我们弹窗" class="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/95 text-2xl font-light leading-none text-slate-600 shadow-sm transition hover:bg-slate-50 hover:text-primary-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"><span aria-hidden="true">×</span></button>
+      <img src="/contact/join-team-poster.png" alt="SEED儿童早期社会发展实验室加入我们申请说明" width="900" height="1125" class="h-auto w-full rounded-xl" />
     </div>
   </div>
 
@@ -130,9 +117,7 @@ const contactPaths = [
       const closeButton = document.getElementById("join-team-close");
       const triggers = document.querySelectorAll('[data-join-trigger="true"]');
       let lastFocused = null;
-
       if (!modal || !closeButton || triggers.length === 0) return;
-
       const openModal = () => {
         lastFocused = document.activeElement;
         modal.classList.remove("hidden");
@@ -141,7 +126,6 @@ const contactPaths = [
         document.body.style.overflow = "hidden";
         closeButton.focus();
       };
-
       const closeModal = () => {
         modal.classList.add("hidden");
         modal.classList.remove("flex");
@@ -149,7 +133,6 @@ const contactPaths = [
         document.body.style.overflow = "";
         if (lastFocused instanceof HTMLElement) lastFocused.focus();
       };
-
       triggers.forEach((trigger) => {
         trigger.addEventListener("click", openModal);
         trigger.addEventListener("keydown", (event) => {
@@ -159,12 +142,9 @@ const contactPaths = [
           }
         });
       });
-
       closeButton.addEventListener("click", closeModal);
       document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && modal.getAttribute("aria-hidden") === "false") {
-          closeModal();
-        }
+        if (event.key === "Escape" && modal.getAttribute("aria-hidden") === "false") closeModal();
       });
     })();
   </script>
