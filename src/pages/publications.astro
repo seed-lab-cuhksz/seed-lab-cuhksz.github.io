@@ -1,6 +1,41 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
 
+const directions = [
+  {
+    number: "01",
+    title: "早期社会认知与神经行为机制",
+    titleEn: "Early Social Cognition & Neurobehavioral Development",
+    summary: "研究婴幼儿共同注意、目光行为、社会动机与情绪理解如何形成，以及这些早期社会能力背后的行为、生理与神经机制。",
+    methods: ["Behavioral Observation", "Eye Tracking", "Physiology"],
+    projects: ["催产素与共同注意", "亲子互动与发展"],
+  },
+  {
+    number: "02",
+    title: "个体差异、自闭症风险与早期识别",
+    titleEn: "Individual Differences, Autism Risk & Early Identification",
+    summary: "研究儿童早期注意、社会互动与生理反应中的个体差异，并探索更自然、客观的自闭症风险多模态早期识别方法。",
+    methods: ["Parent–Child Interaction", "EEG / fNIRS", "Multimodal Modeling"],
+    projects: ["亲子互动与发展", "“1+1+1”联合资助计划", "催产素与共同注意"],
+  },
+  {
+    number: "03",
+    title: "家庭、自然情境与儿童福祉",
+    titleEn: "Family, Naturalistic Contexts & Child Wellbeing",
+    summary: "研究亲子互动、家庭经验与自然环境接触如何关联儿童的情绪、行为调节、社会适应与整体福祉。",
+    methods: ["Parent–Child Interaction", "Parent Report", "Naturalistic Research"],
+    projects: ["亲子互动与发展", "自然童行", "婴幼儿幸福感量表中文版"],
+  },
+  {
+    number: "04",
+    title: "多模态测量、人工智能与数字化支持",
+    titleEn: "Multimodal Measurement, AI & Digital Support",
+    summary: "结合眼动、EEG、fNIRS、行为与计算方法，发展更客观、低负担且可扩展的儿童发展测量、人工智能研究与数字化支持工具。",
+    methods: ["Multimodal Data", "Machine Learning / AI", "Digital Support"],
+    projects: ["VLM Social Understanding", "“1+1+1”联合资助计划", "十月之礼"],
+  },
+];
+
 const publications = [
   {
     year: 2026,
@@ -145,25 +180,65 @@ const years = [...new Set(publications.map((publication) => publication.year))].
 
 <BaseLayout
   title="研究成果 Publications"
-  description="SEED Lab 负责人曾广宇教授的研究成果与学术发表。"
+  description="SEED Lab 的核心研究方向与曾广宇教授的研究成果和学术发表。"
 >
   <main class="publications-page">
-    <header class="publications-header">
+    <section id="research-directions" class="research-directions scroll-mt-28">
       <div class="container-page">
-        <p class="header-eyebrow">研究成果</p>
-        <span class="header-rule" aria-hidden="true"></span>
-        <h1>研究成果 <span>Publications</span></h1>
-        <p class="header-lead">按年份列出曾广宇教授参与发表的研究成果。作者信息中突出显示 Guangyu Zeng，方便核对。</p>
-      </div>
-    </header>
+        <div class="research-heading">
+          <div>
+            <p class="section-eyebrow">SEED LAB · RESEARCH DIRECTIONS</p>
+            <span class="section-rule" aria-hidden="true"></span>
+            <h1>研究方向 <span>Research Directions</span></h1>
+            <p>我们从发展机制、个体差异、真实生活情境与研究方法四个相互连接的层面，理解儿童早期社会发展的共同规律与差异。</p>
+          </div>
+          <a href="/projects">查看在研项目 <span aria-hidden="true">→</span></a>
+        </div>
 
-    <div class="container-page publications-content">
-      <div class="publication-toolbar">
-        <p>列表以曾广宇教授 Google Scholar 当前记录与学校个人主页发表列表为主要核对依据。</p>
+        <div class="direction-grid">
+          {directions.map((direction) => (
+            <article class="direction-card">
+              <header>
+                <span>{direction.number}</span>
+                <div>
+                  <h2>{direction.title}</h2>
+                  <p class="direction-en">{direction.titleEn}</p>
+                </div>
+              </header>
+              <p class="direction-summary">{direction.summary}</p>
+              <div class="direction-meta">
+                <div>
+                  <strong>Methods</strong>
+                  <p>{direction.methods.join(" · ")}</p>
+                </div>
+                <div>
+                  <strong>Related Projects</strong>
+                  <p>{direction.projects.join(" · ")}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="publication-intro">
+      <div class="container-page publication-intro-inner">
+        <div>
+          <p class="section-eyebrow">PUBLICATIONS</p>
+          <h2>研究成果 <span>Publications</span></h2>
+          <p>按年份列出曾广宇教授参与发表的研究成果。作者信息中突出显示 Guangyu Zeng，方便核对。</p>
+        </div>
         <div class="publication-links">
           <a href="https://scholar.google.com/citations?user=wwkuG-YAAAAJ&hl=en&view_op=list_works&sortby=pubdate" target="_blank" rel="noreferrer">Google Scholar ↗</a>
           <a href="https://myweb.cuhk.edu.cn/zenggy/Home/AcademicPublications" target="_blank" rel="noreferrer">学校发表列表 ↗</a>
         </div>
+      </div>
+    </section>
+
+    <div class="container-page publications-content">
+      <div class="publication-toolbar">
+        <p>列表以曾广宇教授 Google Scholar 当前记录与学校个人主页发表列表为主要核对依据。</p>
       </div>
 
       <div class="year-list">
@@ -197,75 +272,156 @@ const years = [...new Set(publications.map((publication) => publication.year))].
 </BaseLayout>
 
 <style>
-  .publications-page {
-    background: #fff;
-    color: #20312c;
-  }
+  .publications-page { background: #fff; color: #20312c; }
 
-  .publications-header {
-    padding: 3.1rem 0 2.8rem;
-    border-bottom: 1px solid rgba(32, 59, 48, .08);
+  .research-directions {
+    padding: 2.2rem 0 2rem;
+    border-bottom: 1px solid rgba(32, 59, 48, .09);
     background: linear-gradient(to bottom, #f2f8f4 0%, #ffffff 100%);
   }
 
-  .header-eyebrow {
-    margin: 0;
-    color: #297d75;
-    font-size: .72rem;
-    font-weight: 700;
-    letter-spacing: .08em;
+  .research-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 2rem;
   }
 
-  .header-rule {
+  .section-eyebrow {
+    margin: 0;
+    color: #297d75;
+    font-size: .66rem;
+    font-weight: 750;
+    letter-spacing: .11em;
+  }
+
+  .section-rule {
     display: block;
-    width: 2.8rem;
+    width: 2.65rem;
     height: 2px;
-    margin-top: .9rem;
+    margin-top: .65rem;
     border-radius: 999px;
     background: #359b90;
   }
 
-  .publications-header h1 {
-    margin: 1rem 0 0;
+  .research-heading h1,
+  .publication-intro h2 {
+    margin: .7rem 0 0;
     color: #172033;
-    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-size: clamp(1.7rem, 2.7vw, 2.2rem);
     line-height: 1.08;
-    letter-spacing: -.035em;
-    font-weight: 720;
+    letter-spacing: -.03em;
+    font-weight: 690;
   }
 
-  .publications-header h1 span {
-    font-weight: 650;
-  }
+  .research-heading h1 span,
+  .publication-intro h2 span { font-weight: 620; }
 
-  .header-lead {
-    max-width: 46rem;
-    margin: 1rem 0 0;
+  .research-heading > div > p:last-child,
+  .publication-intro-inner > div:first-child > p:last-child {
+    max-width: 50rem;
+    margin: .65rem 0 0;
     color: #64748b;
-    font-size: .95rem;
-    line-height: 1.75;
+    font-size: .8rem;
+    line-height: 1.65;
   }
 
-  .publications-content {
-    padding-top: 1.8rem;
-    padding-bottom: 5rem;
+  .research-heading > a {
+    flex: 0 0 auto;
+    padding-bottom: .2rem;
+    border-bottom: 1px solid rgba(85, 116, 64, .32);
+    color: #557440;
+    font-size: .73rem;
+    text-decoration: none;
+    white-space: nowrap;
   }
 
-  .publication-toolbar {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 2rem;
-    padding-bottom: 1.5rem;
+  .direction-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .8rem;
+    margin-top: 1.35rem;
+  }
+
+  .direction-card {
+    padding: 1rem 1.15rem;
+    border: 1px solid rgba(38, 61, 52, .10);
+    border-radius: .85rem;
+    background: rgba(255,255,255,.72);
+  }
+
+  .direction-card header {
+    display: grid;
+    grid-template-columns: 1.55rem minmax(0, 1fr);
+    gap: .6rem;
+    align-items: start;
+  }
+
+  .direction-card header > span {
+    padding-top: .12rem;
+    color: #a77d66;
+    font-family: var(--font-serif);
+    font-size: .66rem;
+    font-style: italic;
+  }
+
+  .direction-card h2 {
+    margin: 0;
+    color: #22372f;
+    font-size: 1rem;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+
+  .direction-en {
+    margin: .18rem 0 0;
+    color: #a77f69;
+    font-family: var(--font-serif);
+    font-size: .64rem;
+    font-style: italic;
+    line-height: 1.35;
+  }
+
+  .direction-summary {
+    margin: .55rem 0 0 2.15rem;
+    color: #5f6d67;
+    font-size: .72rem;
+    line-height: 1.62;
+  }
+
+  .direction-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .7rem;
+    margin: .65rem 0 0 2.15rem;
+    padding-top: .55rem;
+    border-top: 1px solid rgba(38, 61, 52, .07);
+  }
+
+  .direction-meta strong {
+    color: #6c7d75;
+    font-size: .54rem;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+
+  .direction-meta p {
+    margin: .2rem 0 0;
+    color: #64746c;
+    font-size: .58rem;
+    line-height: 1.45;
+  }
+
+  .publication-intro {
+    padding: 2rem 0 1.55rem;
     border-bottom: 1px solid #e2e8f0;
   }
 
-  .publication-toolbar > p {
-    margin: 0;
-    max-width: 44rem;
-    color: #64748b;
-    font-size: .82rem;
-    line-height: 1.7;
+  .publication-intro-inner {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 2rem;
   }
 
   .publication-links {
@@ -286,6 +442,21 @@ const years = [...new Set(publications.map((publication) => publication.year))].
   .publication-links a:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
+  }
+
+  .publications-content { padding-top: 1.35rem; padding-bottom: 5rem; }
+
+  .publication-toolbar {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .publication-toolbar > p {
+    margin: 0;
+    max-width: 44rem;
+    color: #64748b;
+    font-size: .78rem;
+    line-height: 1.65;
   }
 
   .year-section {
@@ -324,10 +495,7 @@ const years = [...new Set(publications.map((publication) => publication.year))].
     border-top: 1px solid #edf2f7;
   }
 
-  .publication-row:first-child {
-    border-top: 0;
-    padding-top: 0;
-  }
+  .publication-row:first-child { border-top: 0; padding-top: 0; }
 
   .publication-type {
     padding-top: .12rem;
@@ -355,10 +523,7 @@ const years = [...new Set(publications.map((publication) => publication.year))].
     line-height: 1.55;
   }
 
-  .publication-authors :global(strong) {
-    color: #2b5843;
-    font-weight: 750;
-  }
+  .publication-authors :global(strong) { color: #2b5843; font-weight: 750; }
 
   .publication-venue {
     margin: .28rem 0 0;
@@ -387,30 +552,13 @@ const years = [...new Set(publications.map((publication) => publication.year))].
   }
 
   @media (max-width: 760px) {
-    .publications-header {
-      padding: 2.6rem 0 2.3rem;
-    }
-
-    .publication-toolbar {
-      display: grid;
-    }
-
-    .publication-links {
-      justify-content: flex-start;
-    }
-
-    .year-section {
-      grid-template-columns: 1fr;
-      gap: 1.15rem;
-    }
-
-    .publication-row {
-      grid-template-columns: 1fr 1.7rem;
-      gap: .6rem .8rem;
-    }
-
-    .publication-type {
-      grid-column: 1 / -1;
-    }
+    .research-heading,
+    .publication-intro-inner { align-items: flex-start; flex-direction: column; gap: 1rem; }
+    .direction-grid { grid-template-columns: 1fr; }
+    .direction-meta { grid-template-columns: 1fr; }
+    .publication-links { justify-content: flex-start; }
+    .year-section { grid-template-columns: 1fr; gap: 1.15rem; }
+    .publication-row { grid-template-columns: 1fr 1.7rem; gap: .6rem .8rem; }
+    .publication-type { grid-column: 1 / -1; }
   }
 </style>
