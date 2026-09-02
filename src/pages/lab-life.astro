@@ -22,183 +22,91 @@ const photos = [
   />
 
   <main class="container-page py-10 sm:py-12">
-    <section class="lab-carousel" data-lab-carousel data-photos={JSON.stringify(photos)} aria-label="SEED Lab 实验室日常照片轮播">
-      <div class="carousel-stage">
-        <img
-          class="carousel-image"
-          data-carousel-image
-          src={photos[0]}
-          alt="SEED Lab 实验室日常照片"
-          loading="eager"
-          decoding="async"
-        />
-
-        <button class="carousel-arrow carousel-arrow--prev" type="button" data-carousel-prev aria-label="上一张照片">
-          <span aria-hidden="true">←</span>
-        </button>
-        <button class="carousel-arrow carousel-arrow--next" type="button" data-carousel-next aria-label="下一张照片">
-          <span aria-hidden="true">→</span>
-        </button>
-      </div>
+    <section class="photo-wall" data-photo-wall aria-label="SEED Lab 实验室日常照片">
+      {photos.map((photo, index) => (
+        <figure class="photo-card" data-photo-card>
+          <img
+            src={photo}
+            alt="SEED Lab 实验室日常照片"
+            loading={index < 2 ? "eager" : "lazy"}
+            decoding="async"
+          />
+        </figure>
+      ))}
     </section>
   </main>
 
   <script is:inline>
     (() => {
-      const root = document.querySelector('[data-lab-carousel]');
-      if (!root) return;
+      const wall = document.querySelector('[data-photo-wall]');
+      if (!wall) return;
 
-      const image = root.querySelector('[data-carousel-image]');
-      const prev = root.querySelector('[data-carousel-prev]');
-      const next = root.querySelector('[data-carousel-next]');
-      if (!(image instanceof HTMLImageElement) || !(prev instanceof HTMLButtonElement) || !(next instanceof HTMLButtonElement)) return;
-
-      let photos = [];
-      try {
-        photos = JSON.parse(root.getAttribute('data-photos') || '[]');
-      } catch {
-        photos = [];
-      }
-      if (!Array.isArray(photos) || photos.length === 0) return;
-
-      for (let i = photos.length - 1; i > 0; i -= 1) {
+      const cards = Array.from(wall.querySelectorAll('[data-photo-card]'));
+      for (let i = cards.length - 1; i > 0; i -= 1) {
         const j = Math.floor(Math.random() * (i + 1));
-        [photos[i], photos[j]] = [photos[j], photos[i]];
+        [cards[i], cards[j]] = [cards[j], cards[i]];
       }
-
-      let index = 0;
-      let transitionTimer;
-
-      const preload = (src) => {
-        const img = new Image();
-        img.src = src;
-      };
-
-      const show = (newIndex, immediate = false) => {
-        index = (newIndex + photos.length) % photos.length;
-        const src = photos[index];
-
-        window.clearTimeout(transitionTimer);
-        if (immediate) {
-          image.src = src;
-          image.classList.remove('is-changing');
-          return;
-        }
-
-        image.classList.add('is-changing');
-        transitionTimer = window.setTimeout(() => {
-          image.src = src;
-          requestAnimationFrame(() => image.classList.remove('is-changing'));
-        }, 150);
-      };
-
-      show(0, true);
-      preload(photos[(index + 1) % photos.length]);
-
-      prev.addEventListener('click', () => {
-        show(index - 1);
-        preload(photos[(index - 1 + photos.length) % photos.length]);
-      });
-
-      next.addEventListener('click', () => {
-        show(index + 1);
-        preload(photos[(index + 1) % photos.length]);
-      });
-
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowLeft') prev.click();
-        if (event.key === 'ArrowRight') next.click();
-      });
+      cards.forEach((card) => wall.appendChild(card));
     })();
   </script>
 </BaseLayout>
 
 <style>
-  .lab-carousel {
-    width: 100%;
+  .photo-wall {
+    column-count: 2;
+    column-gap: 1.1rem;
+    max-width: 78rem;
+    margin-inline: auto;
   }
 
-  .carousel-stage {
-    position: relative;
-    display: grid;
-    min-height: clamp(26rem, 66vh, 48rem);
-    place-items: center;
+  .photo-card {
+    break-inside: avoid;
+    margin: 0 0 1.1rem;
     overflow: hidden;
-    border: 1px solid rgba(40, 72, 59, .1);
-    border-radius: 1.5rem;
+    border: 1px solid rgba(40, 72, 59, .09);
+    border-radius: 1.25rem;
     background: #f7f5ee;
-    box-shadow: 0 18px 50px rgba(32, 49, 44, .055);
+    box-shadow: 0 10px 30px rgba(32, 49, 44, .045);
+    transform: translateZ(0);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
 
-  .carousel-image {
+  .photo-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(91, 128, 79, .22);
+    box-shadow: 0 16px 38px rgba(32, 49, 44, .07);
+  }
+
+  .photo-card img {
     display: block;
     width: 100%;
-    height: min(70vh, 48rem);
-    object-fit: contain;
-    transition: opacity .28s ease, transform .28s ease;
+    height: auto;
   }
 
-  .carousel-image.is-changing {
-    opacity: 0;
-    transform: scale(.992);
-  }
-
-  .carousel-arrow {
-    position: absolute;
-    top: 50%;
-    z-index: 2;
-    display: grid;
-    width: 3rem;
-    height: 3rem;
-    place-items: center;
-    border: 1px solid rgba(32, 49, 44, .13);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, .9);
-    color: #29483c;
-    font-size: 1.15rem;
-    box-shadow: 0 8px 24px rgba(32, 49, 44, .08);
-    transform: translateY(-50%);
-    transition: transform .2s ease, background .2s ease, border-color .2s ease;
-    backdrop-filter: blur(8px);
-  }
-
-  .carousel-arrow:hover {
-    border-color: rgba(73, 117, 81, .35);
-    background: #fff;
-  }
-
-  .carousel-arrow:focus-visible {
-    outline: 2px solid #789754;
-    outline-offset: 3px;
-  }
-
-  .carousel-arrow--prev {
-    left: clamp(.7rem, 2vw, 1.5rem);
-  }
-
-  .carousel-arrow--next {
-    right: clamp(.7rem, 2vw, 1.5rem);
-  }
-
-  @media (max-width: 640px) {
-    .carousel-stage {
-      min-height: 25rem;
-      border-radius: 1.1rem;
+  @media (min-width: 1280px) {
+    .photo-wall {
+      column-gap: 1.35rem;
     }
 
-    .carousel-image {
-      height: 65vh;
+    .photo-card {
+      margin-bottom: 1.35rem;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .photo-wall {
+      column-count: 1;
+      column-gap: 0;
     }
 
-    .carousel-arrow {
-      width: 2.65rem;
-      height: 2.65rem;
+    .photo-card {
+      margin-bottom: .9rem;
+      border-radius: 1rem;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .carousel-image,
-    .carousel-arrow {
+    .photo-card {
       transition: none;
     }
   }
