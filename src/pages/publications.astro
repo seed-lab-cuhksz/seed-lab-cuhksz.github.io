@@ -1,158 +1,85 @@
 ---
 import BaseLayout from "../components/BaseLayout.astro";
 
+const directions = [
+  {
+    number: "01",
+    title: "早期社会认知与神经行为机制",
+    titleEn: "Early Social Cognition & Neurobehavioral Development",
+    summary: "研究婴幼儿共同注意、目光行为、社会动机与情绪理解如何形成，以及这些早期社会能力背后的行为、生理与神经机制。",
+  },
+  {
+    number: "02",
+    title: "个体差异、自闭症风险与早期识别",
+    titleEn: "Individual Differences, Autism Risk & Early Identification",
+    summary: "研究儿童早期注意、社会互动与生理反应中的个体差异，并探索更自然、客观的自闭症风险多模态早期识别方法。",
+  },
+  {
+    number: "03",
+    title: "家庭、自然情境与儿童福祉",
+    titleEn: "Family, Naturalistic Contexts & Child Wellbeing",
+    summary: "研究亲子互动、家庭经验与自然环境接触如何关联儿童的情绪、行为调节、社会适应与整体福祉。",
+  },
+  {
+    number: "04",
+    title: "多模态测量、人工智能与数字化支持",
+    titleEn: "Multimodal Measurement, AI & Digital Support",
+    summary: "结合眼动、EEG、fNIRS、行为与计算方法，发展更客观、低负担且可扩展的儿童发展测量与数字化支持工具。",
+  },
+];
+
 const publications = [
-  {
-    year: 2026,
-    type: "Registered Report",
-    title: "Children Avoid Sick Faces and Improve With Training: A Stage 2 Registered Report",
-    authors: "Tiffany S. Leung, <strong>Guangyu Zeng</strong>, Sarah E. Maylott, Arushi Malik, Shuo Zhang, Krisztina V. Jakobsen, Elizabeth A. Simpson",
-    venue: "Infant and Child Development, 35(4), e70134",
-    url: "https://doi.org/10.1002/icd.70134",
-  },
-  {
-    year: 2026,
-    type: "Journal Article",
-    title: "Neonatal Mimicry of Caregivers at Home: Feasibility of an Asynchronous Online Paradigm",
-    authors: "Katherine Casey, Benazir Neree, Camila Larrauri, <strong>Guangyu Zeng</strong>, Kira Ashton, Jeff Gill, Elizabeth A. Simpson, Laurie Bayet",
-    venue: "Infancy, 31(1), e70070",
-    url: "https://doi.org/10.1111/infa.70070",
-  },
-  {
-    year: 2025,
-    type: "Journal Article",
-    title: "Newborn Auditory Brainstem Response and Sudden Infant Death Syndrome",
-    authors: "Sarah E. Maylott, <strong>Guangyu Zeng</strong>, Tiffany S. Leung, Catalina Sanchez Montenegro, Alexia Barrios, Arushi Malik, Rafael E. Delgado, Christine F. Delgado, Elizabeth A. Simpson",
-    venue: "Journal of Neuroscience Research, 103(11), e70083",
-    url: "https://doi.org/10.1002/jnr.70083",
-  },
-  {
-    year: 2025,
-    type: "Journal Article",
-    title: "Automated Detection of Mouth Opening in Newborn Infants",
-    authors: "<strong>Guangyu Zeng</strong>, Yeojin Amy Ahn, Tiffany S. Leung, Sarah E. Maylott, Arushi Malik, Daniel S. Messinger, Elizabeth A. Simpson",
-    venue: "Behavior Research Methods, 57(12), 322",
-    url: "https://doi.org/10.3758/s13428-025-02842-9",
-  },
-  {
-    year: 2025,
-    type: "Journal Article",
-    title: "Stability of Individual Differences in Social and Nonsocial Visual Attention From Newborn to 14 Months",
-    authors: "Arushi Malik, Tiffany S. Leung, Shuo Zhang, <strong>Guangyu Zeng</strong>, Sarah E. Maylott, Sierra Bainter, Daniel M. Messinger, Annika Paukner, Elizabeth A. Simpson",
-    venue: "Developmental Psychobiology, 67(4), e70054",
-    url: "https://doi.org/10.1002/dev.70054",
-  },
-  {
-    year: 2025,
-    type: "Registered Report",
-    title: "The Story of Sickness: Improving Children's Sick Face Perception",
-    authors: "Tiffany S. Leung, <strong>Guangyu Zeng</strong>, Sarah E. Maylott, Arushi Malik, Shuo Zhang, Krisztina V. Jakobsen, Elizabeth A. Simpson",
-    venue: "Infant and Child Development, 34(3), e70024",
-    url: "https://doi.org/10.1002/icd.70024",
-  },
-  {
-    year: 2024,
-    type: "Journal Article",
-    title: "Emerging Adults Mirror Infants’ Emotions and Yawns",
-    authors: "Tiffany S. Leung, <strong>Guangyu Zeng</strong>, Sarah E. Maylott, Arushi Malik, Shuo Zhang, E. C. McNamara, Krisztina V. Jakobsen, Elizabeth A. Simpson",
-    venue: "Developmental Psychobiology, 66(6), e22539",
-    url: "https://doi.org/10.1002/dev.22539",
-  },
-  {
-    year: 2024,
-    type: "Journal Article",
-    title: "Infants’ Salivary Oxytocin and Positive Affective Reactions to People",
-    authors: "<strong>Guangyu Zeng</strong>, Tiffany S. Leung, Sarah E. Maylott, Arushi Malik, Alexis A. Adornato, Mendel Lebowitz, Daniel S. Messinger, Angela Szeto, Ruth Feldman, Elizabeth A. Simpson",
-    venue: "Hormones and Behavior, 164, 105579",
-    url: "https://doi.org/10.1016/j.yhbeh.2024.105579",
-  },
-  {
-    year: 2024,
-    type: "Journal Article",
-    title: "Infection Detection in Faces: Children’s Development of Pathogen Avoidance",
-    authors: "Tiffany S. Leung, <strong>Guangyu Zeng</strong>, Sarah E. Maylott, S. N. Martinez, Krisztina V. Jakobsen, Elizabeth A. Simpson",
-    venue: "Child Development, 95(1), e35–e46",
-    url: "https://doi.org/10.1111/cdev.13983",
-  },
-  {
-    year: 2024,
-    type: "Journal Article",
-    title: "Measurement of Emotionality and Emotion Regulation in a Clinical Sample of Children: The Psychometric Properties of the How I Feel Scale",
-    authors: "B. Rich, <strong>Guangyu Zeng</strong>, S. A. Godovich, N. Ridgely, M. K. Alvord",
-    venue: "Journal of Psychoeducational Assessment, 42(1), 110–118",
-    url: "https://doi.org/10.1177/07342829231207923",
-  },
-  {
-    year: 2023,
-    type: "Journal Article",
-    title: "Social Motivation Predicts Gaze Following Development in 2- to 14-Month-Old Infants",
-    authors: "<strong>Guangyu Zeng</strong>, Tiffany S. Leung, Sarah E. Maylott, T. A. Saunders, Daniel S. Messinger, M. M. Llabre, Elizabeth A. Simpson",
-    venue: "Infancy, 28(4), 836–860",
-    url: "https://doi.org/10.1111/infa.12544",
-  },
-  {
-    year: 2023,
-    type: "Journal Article",
-    title: "Behavioral and Physiological Sensitivity to Natural Sick Faces",
-    authors: "Tiffany S. Leung, Sarah E. Maylott, <strong>Guangyu Zeng</strong>, D. N. Nascimben, Krisztina V. Jakobsen, Elizabeth A. Simpson",
-    venue: "Brain, Behavior, and Immunity, 110, 195–211",
-    url: "https://doi.org/10.1016/j.bbi.2023.03.007",
-  },
-  {
-    year: 2023,
-    type: "Journal Article",
-    title: "Maximizing Valid Eye-Tracking Data in Human and Macaque Infants by Optimizing Calibration and Adjusting Areas of Interest",
-    authors: "<strong>Guangyu Zeng</strong>, Elizabeth A. Simpson, Annika Paukner",
-    venue: "Behavior Research Methods, 56, 881–907",
-    url: "https://doi.org/10.3758/s13428-022-02056-3",
-  },
-  {
-    year: 2022,
-    type: "Journal Article",
-    title: "Temperamental Fear, Eye Contact, and Gaze Aversion in Early Infancy",
-    authors: "<strong>Guangyu Zeng</strong>, Sarah E. Maylott, Tiffany S. Leung, Daniel S. Messinger, J. Wang, Elizabeth A. Simpson",
-    venue: "Developmental Psychobiology, 64(7), e22324",
-    url: "https://doi.org/10.1002/dev.22324",
-  },
-  {
-    year: 2021,
-    type: "Journal Article",
-    title: "Newborn Auditory Brainstem Responses of Children With Developmental Disabilities",
-    authors: "Christine F. Delgado, Elizabeth A. Simpson, O. Miron, Rafael E. Delgado, <strong>Guangyu Zeng</strong>, A. Gutierrez",
-    venue: "Journal of Autism and Developmental Disorders, 53, 776–788",
-    url: "https://doi.org/10.1007/s10803-021-05126-1",
-  },
-  {
-    year: 2021,
-    type: "Journal Article",
-    title: "Prolonged Auditory Brainstem Response in Universal Hearing Screening of Newborns With Autism Spectrum Disorder",
-    authors: "O. Miron, Rafael E. Delgado, Christine F. Delgado, Elizabeth A. Simpson, K.-H. Yu, A. Gutierrez, <strong>Guangyu Zeng</strong>, J. N. Gerstenberger, I. S. Kohane",
-    venue: "Autism Research, 14(1), 46–52",
-    url: "https://doi.org/10.1002/aur.2422",
-  },
-  {
-    year: 2020,
-    type: "Journal Article",
-    title: "Face Detection in 2- to 6-Month-Old Infants Is Influenced by Gaze Direction and Species",
-    authors: "Elizabeth A. Simpson, Sarah E. Maylott, S. G. Mitsven, <strong>Guangyu Zeng</strong>, Krisztina V. Jakobsen",
-    venue: "Developmental Science, 23(2), e12902",
-    url: "https://doi.org/10.1111/desc.12902",
-  },
+  { year: 2026, type: "Registered Report", title: "Children Avoid Sick Faces and Improve With Training: A Stage 2 Registered Report", authors: "Tiffany S. Leung, <strong>Guangyu Zeng</strong>, Sarah E. Maylott, Arushi Malik, Shuo Zhang, Krisztina V. Jakobsen, Elizabeth A. Simpson", venue: "Infant and Child Development, 35(4), e70134", url: "https://doi.org/10.1002/icd.70134" },
+  { year: 2026, type: "Journal Article", title: "Neonatal Mimicry of Caregivers at Home: Feasibility of an Asynchronous Online Paradigm", authors: "Katherine Casey, Benazir Neree, Camila Larrauri, <strong>Guangyu Zeng</strong>, Kira Ashton, Jeff Gill, Elizabeth A. Simpson, Laurie Bayet", venue: "Infancy, 31(1), e70070", url: "https://doi.org/10.1111/infa.70070" },
+  { year: 2025, type: "Journal Article", title: "Newborn Auditory Brainstem Response and Sudden Infant Death Syndrome", authors: "Sarah E. Maylott, <strong>Guangyu Zeng</strong>, Tiffany S. Leung, Catalina Sanchez Montenegro, Alexia Barrios, Arushi Malik, Rafael E. Delgado, Christine F. Delgado, Elizabeth A. Simpson", venue: "Journal of Neuroscience Research, 103(11), e70083", url: "https://doi.org/10.1002/jnr.70083" },
+  { year: 2025, type: "Journal Article", title: "Automated Detection of Mouth Opening in Newborn Infants", authors: "<strong>Guangyu Zeng</strong>, Yeojin Amy Ahn, Tiffany S. Leung, Sarah E. Maylott, Arushi Malik, Daniel S. Messinger, Elizabeth A. Simpson", venue: "Behavior Research Methods, 57(12), 322", url: "https://doi.org/10.3758/s13428-025-02842-9" },
+  { year: 2025, type: "Journal Article", title: "Stability of Individual Differences in Social and Nonsocial Visual Attention From Newborn to 14 Months", authors: "Arushi Malik, Tiffany S. Leung, Shuo Zhang, <strong>Guangyu Zeng</strong>, Sarah E. Maylott, Sierra Bainter, Daniel M. Messinger, Annika Paukner, Elizabeth A. Simpson", venue: "Developmental Psychobiology, 67(4), e70054", url: "https://doi.org/10.1002/dev.70054" },
+  { year: 2025, type: "Registered Report", title: "The Story of Sickness: Improving Children's Sick Face Perception", authors: "Tiffany S. Leung, <strong>Guangyu Zeng</strong>, Sarah E. Maylott, Arushi Malik, Shuo Zhang, Krisztina V. Jakobsen, Elizabeth A. Simpson", venue: "Infant and Child Development, 34(3), e70024", url: "https://doi.org/10.1002/icd.70024" },
+  { year: 2024, type: "Journal Article", title: "Emerging Adults Mirror Infants’ Emotions and Yawns", authors: "Tiffany S. Leung, <strong>Guangyu Zeng</strong>, Sarah E. Maylott, Arushi Malik, Shuo Zhang, E. C. McNamara, Krisztina V. Jakobsen, Elizabeth A. Simpson", venue: "Developmental Psychobiology, 66(6), e22539", url: "https://doi.org/10.1002/dev.22539" },
+  { year: 2024, type: "Journal Article", title: "Infants’ Salivary Oxytocin and Positive Affective Reactions to People", authors: "<strong>Guangyu Zeng</strong>, Tiffany S. Leung, Sarah E. Maylott, Arushi Malik, Alexis A. Adornato, Mendel Lebowitz, Daniel S. Messinger, Angela Szeto, Ruth Feldman, Elizabeth A. Simpson", venue: "Hormones and Behavior, 164, 105579", url: "https://doi.org/10.1016/j.yhbeh.2024.105579" },
+  { year: 2024, type: "Journal Article", title: "Infection Detection in Faces: Children’s Development of Pathogen Avoidance", authors: "Tiffany S. Leung, <strong>Guangyu Zeng</strong>, Sarah E. Maylott, S. N. Martinez, Krisztina V. Jakobsen, Elizabeth A. Simpson", venue: "Child Development, 95(1), e35–e46", url: "https://doi.org/10.1111/cdev.13983" },
+  { year: 2024, type: "Journal Article", title: "Measurement of Emotionality and Emotion Regulation in a Clinical Sample of Children: The Psychometric Properties of the How I Feel Scale", authors: "B. Rich, <strong>Guangyu Zeng</strong>, S. A. Godovich, N. Ridgely, M. K. Alvord", venue: "Journal of Psychoeducational Assessment, 42(1), 110–118", url: "https://doi.org/10.1177/07342829231207923" },
+  { year: 2023, type: "Journal Article", title: "Social Motivation Predicts Gaze Following Development in 2- to 14-Month-Old Infants", authors: "<strong>Guangyu Zeng</strong>, Tiffany S. Leung, Sarah E. Maylott, T. A. Saunders, Daniel S. Messinger, M. M. Llabre, Elizabeth A. Simpson", venue: "Infancy, 28(4), 836–860", url: "https://doi.org/10.1111/infa.12544" },
+  { year: 2023, type: "Journal Article", title: "Behavioral and Physiological Sensitivity to Natural Sick Faces", authors: "Tiffany S. Leung, Sarah E. Maylott, <strong>Guangyu Zeng</strong>, D. N. Nascimben, Krisztina V. Jakobsen, Elizabeth A. Simpson", venue: "Brain, Behavior, and Immunity, 110, 195–211", url: "https://doi.org/10.1016/j.bbi.2023.03.007" },
+  { year: 2023, type: "Journal Article", title: "Maximizing Valid Eye-Tracking Data in Human and Macaque Infants by Optimizing Calibration and Adjusting Areas of Interest", authors: "<strong>Guangyu Zeng</strong>, Elizabeth A. Simpson, Annika Paukner", venue: "Behavior Research Methods, 56, 881–907", url: "https://doi.org/10.3758/s13428-022-02056-3" },
+  { year: 2022, type: "Journal Article", title: "Temperamental Fear, Eye Contact, and Gaze Aversion in Early Infancy", authors: "<strong>Guangyu Zeng</strong>, Sarah E. Maylott, Tiffany S. Leung, Daniel S. Messinger, J. Wang, Elizabeth A. Simpson", venue: "Developmental Psychobiology, 64(7), e22324", url: "https://doi.org/10.1002/dev.22324" },
+  { year: 2021, type: "Journal Article", title: "Newborn Auditory Brainstem Responses of Children With Developmental Disabilities", authors: "Christine F. Delgado, Elizabeth A. Simpson, O. Miron, Rafael E. Delgado, <strong>Guangyu Zeng</strong>, A. Gutierrez", venue: "Journal of Autism and Developmental Disorders, 53, 776–788", url: "https://doi.org/10.1007/s10803-021-05126-1" },
+  { year: 2021, type: "Journal Article", title: "Prolonged Auditory Brainstem Response in Universal Hearing Screening of Newborns With Autism Spectrum Disorder", authors: "O. Miron, Rafael E. Delgado, Christine F. Delgado, Elizabeth A. Simpson, K.-H. Yu, A. Gutierrez, <strong>Guangyu Zeng</strong>, J. N. Gerstenberger, I. S. Kohane", venue: "Autism Research, 14(1), 46–52", url: "https://doi.org/10.1002/aur.2422" },
+  { year: 2020, type: "Journal Article", title: "Face Detection in 2- to 6-Month-Old Infants Is Influenced by Gaze Direction and Species", authors: "Elizabeth A. Simpson, Sarah E. Maylott, S. G. Mitsven, <strong>Guangyu Zeng</strong>, Krisztina V. Jakobsen", venue: "Developmental Science, 23(2), e12902", url: "https://doi.org/10.1111/desc.12902" },
 ];
 
 const years = [...new Set(publications.map((publication) => publication.year))].sort((a, b) => b - a);
 ---
 
-<BaseLayout
-  title="研究成果 Publications"
-  description="SEED Lab 负责人曾广宇教授的研究成果与学术发表。"
->
+<BaseLayout title="研究成果 Publications" description="SEED Lab 的研究方向与曾广宇教授的研究成果。">
   <main class="publications-page">
+    <section id="research-directions" class="research-overview">
+      <div class="container-page">
+        <div class="research-heading">
+          <div>
+            <p class="section-kicker">SEED LAB · RESEARCH DIRECTIONS</p>
+            <h1>研究方向 <span>Research Directions</span></h1>
+          </div>
+          <p>我们从发展机制、个体差异、真实生活情境与研究方法四个相互连接的层面，理解儿童早期社会发展的共同规律与差异。</p>
+        </div>
+        <div class="research-grid">
+          {directions.map((direction) => (
+            <article class="research-card">
+              <span class="research-number">{direction.number}</span>
+              <h2>{direction.title}</h2>
+              <p class="research-en">{direction.titleEn}</p>
+              <p class="research-summary">{direction.summary}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <header class="publications-header">
       <div class="container-page">
         <p class="header-eyebrow">研究成果</p>
         <span class="header-rule" aria-hidden="true"></span>
-        <h1>研究成果 <span>Publications</span></h1>
+        <h2>研究成果 <span>Publications</span></h2>
         <p class="header-lead">按年份列出曾广宇教授参与发表的研究成果。作者信息中突出显示 Guangyu Zeng，方便核对。</p>
       </div>
     </header>
@@ -173,21 +100,18 @@ const years = [...new Set(publications.map((publication) => publication.year))].
               <h2 id={`year-${year}`}>{year}</h2>
               <span>{publications.filter((publication) => publication.year === year).length} publications</span>
             </div>
-
             <div class="publication-list">
-              {publications
-                .filter((publication) => publication.year === year)
-                .map((publication) => (
-                  <article class="publication-row">
-                    <div class="publication-type">{publication.type}</div>
-                    <div class="publication-copy">
-                      <h3>{publication.title}</h3>
-                      <p class="publication-authors" set:html={publication.authors}></p>
-                      <p class="publication-venue">{publication.venue}</p>
-                    </div>
-                    <a class="publication-link" href={publication.url} target="_blank" rel="noreferrer" aria-label={`Open ${publication.title}`}>↗</a>
-                  </article>
-                ))}
+              {publications.filter((publication) => publication.year === year).map((publication) => (
+                <article class="publication-row">
+                  <div class="publication-type">{publication.type}</div>
+                  <div class="publication-copy">
+                    <h3>{publication.title}</h3>
+                    <p class="publication-authors" set:html={publication.authors}></p>
+                    <p class="publication-venue">{publication.venue}</p>
+                  </div>
+                  <a class="publication-link" href={publication.url} target="_blank" rel="noreferrer" aria-label={`Open ${publication.title}`}>↗</a>
+                </article>
+              ))}
             </div>
           </section>
         ))}
@@ -197,220 +121,45 @@ const years = [...new Set(publications.map((publication) => publication.year))].
 </BaseLayout>
 
 <style>
-  .publications-page {
-    background: #fff;
-    color: #20312c;
-  }
+  .publications-page { background: #fff; color: #20312c; }
+  .research-overview { scroll-margin-top: 6rem; padding: 2.4rem 0 2rem; background: linear-gradient(to bottom, #f2f8f4 0%, #fff 100%); border-bottom: 1px solid rgba(32,59,48,.08); }
+  .research-heading { display: flex; align-items: end; justify-content: space-between; gap: 2.5rem; margin-bottom: 1.35rem; }
+  .section-kicker { margin: 0 0 .55rem; color: #297d75; font-size: .65rem; font-weight: 750; letter-spacing: .11em; }
+  .research-heading h1 { margin: 0; color: #172033; font-size: clamp(1.75rem, 2.8vw, 2.35rem); line-height: 1.08; letter-spacing: -.03em; }
+  .research-heading h1 span { font-size: .78em; font-weight: 620; }
+  .research-heading > p { max-width: 36rem; margin: 0; color: #64748b; font-size: .78rem; line-height: 1.65; }
+  .research-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); border: 1px solid rgba(38,61,52,.1); }
+  .research-card { position: relative; min-width: 0; padding: 1.05rem 1.1rem 1.15rem; border-right: 1px solid rgba(38,61,52,.1); }
+  .research-card:last-child { border-right: 0; }
+  .research-number { color: #a77d66; font-family: var(--font-serif); font-size: .68rem; font-style: italic; }
+  .research-card h2 { margin: .5rem 0 0; color: #22372f; font-size: .98rem; line-height: 1.35; }
+  .research-en { margin: .25rem 0 0; color: #a77f69; font-family: var(--font-serif); font-size: .64rem; font-style: italic; line-height: 1.4; }
+  .research-summary { margin: .65rem 0 0; color: #64706b; font-size: .7rem; line-height: 1.65; }
 
-  .publications-header {
-    padding: 3.1rem 0 2.8rem;
-    border-bottom: 1px solid rgba(32, 59, 48, .08);
-    background: linear-gradient(to bottom, #f2f8f4 0%, #ffffff 100%);
-  }
-
-  .header-eyebrow {
-    margin: 0;
-    color: #297d75;
-    font-size: .72rem;
-    font-weight: 700;
-    letter-spacing: .08em;
-  }
-
-  .header-rule {
-    display: block;
-    width: 2.8rem;
-    height: 2px;
-    margin-top: .9rem;
-    border-radius: 999px;
-    background: #359b90;
-  }
-
-  .publications-header h1 {
-    margin: 1rem 0 0;
-    color: #172033;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    line-height: 1.08;
-    letter-spacing: -.035em;
-    font-weight: 720;
-  }
-
-  .publications-header h1 span {
-    font-weight: 650;
-  }
-
-  .header-lead {
-    max-width: 46rem;
-    margin: 1rem 0 0;
-    color: #64748b;
-    font-size: .95rem;
-    line-height: 1.75;
-  }
-
-  .publications-content {
-    padding-top: 1.8rem;
-    padding-bottom: 5rem;
-  }
-
-  .publication-toolbar {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #e2e8f0;
-  }
-
-  .publication-toolbar > p {
-    margin: 0;
-    max-width: 44rem;
-    color: #64748b;
-    font-size: .82rem;
-    line-height: 1.7;
-  }
-
-  .publication-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: .65rem 1rem;
-  }
-
-  .publication-links a {
-    color: #336d50;
-    font-size: .79rem;
-    font-weight: 650;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .publication-links a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-
-  .year-section {
-    display: grid;
-    grid-template-columns: 6.5rem minmax(0, 1fr);
-    gap: clamp(1.5rem, 4vw, 3.25rem);
-    padding: 2.6rem 0;
-    border-bottom: 1px solid #e2e8f0;
-  }
-
-  .year-heading h2 {
-    margin: 0;
-    color: #17312a;
-    font-size: clamp(1.55rem, 2.5vw, 2rem);
-    line-height: 1;
-    letter-spacing: -.03em;
-    font-weight: 650;
-  }
-
-  .year-heading span {
-    display: block;
-    margin-top: .55rem;
-    color: #94a3b8;
-    font-size: .61rem;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-  }
-
-  .publication-row {
-    display: grid;
-    grid-template-columns: 7.4rem minmax(0, 1fr) 1.7rem;
-    gap: 1rem;
-    align-items: start;
-    padding: 1.15rem 0;
-    border-top: 1px solid #edf2f7;
-  }
-
-  .publication-row:first-child {
-    border-top: 0;
-    padding-top: 0;
-  }
-
-  .publication-type {
-    padding-top: .12rem;
-    color: #428863;
-    font-size: .59rem;
-    font-weight: 750;
-    letter-spacing: .07em;
-    line-height: 1.45;
-    text-transform: uppercase;
-  }
-
-  .publication-copy h3 {
-    margin: 0;
-    color: #1e293b;
-    font-family: var(--font-sans);
-    font-size: clamp(.92rem, 1.25vw, 1.05rem);
-    font-weight: 650;
-    line-height: 1.5;
-  }
-
-  .publication-authors {
-    margin: .38rem 0 0;
-    color: #64748b;
-    font-size: .76rem;
-    line-height: 1.55;
-  }
-
-  .publication-authors :global(strong) {
-    color: #2b5843;
-    font-weight: 750;
-  }
-
-  .publication-venue {
-    margin: .28rem 0 0;
-    color: #81909e;
-    font-size: .76rem;
-    line-height: 1.5;
-  }
-
-  .publication-link {
-    display: grid;
-    width: 1.65rem;
-    height: 1.65rem;
-    place-items: center;
-    border: 1px solid #dbe5df;
-    border-radius: 999px;
-    color: #336d50;
-    font-size: .8rem;
-    text-decoration: none;
-    transition: transform .2s ease, border-color .2s ease, background .2s ease;
-  }
-
-  .publication-row:hover .publication-link {
-    transform: translate(2px, -2px);
-    border-color: #91c2a3;
-    background: #f2f8f4;
-  }
-
-  @media (max-width: 760px) {
-    .publications-header {
-      padding: 2.6rem 0 2.3rem;
-    }
-
-    .publication-toolbar {
-      display: grid;
-    }
-
-    .publication-links {
-      justify-content: flex-start;
-    }
-
-    .year-section {
-      grid-template-columns: 1fr;
-      gap: 1.15rem;
-    }
-
-    .publication-row {
-      grid-template-columns: 1fr 1.7rem;
-      gap: .6rem .8rem;
-    }
-
-    .publication-type {
-      grid-column: 1 / -1;
-    }
-  }
+  .publications-header { padding: 2rem 0 1.8rem; border-bottom: 1px solid rgba(32,59,48,.08); background: #fff; }
+  .header-eyebrow { margin: 0; color: #297d75; font-size: .72rem; font-weight: 700; letter-spacing: .08em; }
+  .header-rule { display: block; width: 2.8rem; height: 2px; margin-top: .75rem; border-radius: 999px; background: #359b90; }
+  .publications-header h2 { margin: .8rem 0 0; color: #172033; font-size: clamp(1.75rem, 3vw, 2.45rem); line-height: 1.08; letter-spacing: -.035em; font-weight: 720; }
+  .publications-header h2 span { font-weight: 650; }
+  .header-lead { max-width: 46rem; margin: .75rem 0 0; color: #64748b; font-size: .9rem; line-height: 1.7; }
+  .publications-content { padding-top: 1.8rem; padding-bottom: 5rem; }
+  .publication-toolbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0; }
+  .publication-toolbar > p { margin: 0; max-width: 44rem; color: #64748b; font-size: .82rem; line-height: 1.7; }
+  .publication-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .65rem 1rem; }
+  .publication-links a { color: #336d50; font-size: .79rem; font-weight: 650; text-decoration: none; white-space: nowrap; }
+  .publication-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .year-section { display: grid; grid-template-columns: 6.5rem minmax(0,1fr); gap: clamp(1.5rem,4vw,3.25rem); padding: 2.6rem 0; border-bottom: 1px solid #e2e8f0; }
+  .year-heading h2 { margin: 0; color: #17312a; font-size: clamp(1.55rem,2.5vw,2rem); line-height: 1; letter-spacing: -.03em; font-weight: 650; }
+  .year-heading span { display: block; margin-top: .55rem; color: #94a3b8; font-size: .61rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .publication-row { display: grid; grid-template-columns: 7.4rem minmax(0,1fr) 1.7rem; gap: 1rem; align-items: start; padding: 1.15rem 0; border-top: 1px solid #edf2f7; }
+  .publication-row:first-child { border-top: 0; padding-top: 0; }
+  .publication-type { padding-top: .12rem; color: #428863; font-size: .59rem; font-weight: 750; letter-spacing: .07em; line-height: 1.45; text-transform: uppercase; }
+  .publication-copy h3 { margin: 0; color: #1e293b; font-family: var(--font-sans); font-size: clamp(.92rem,1.25vw,1.05rem); font-weight: 650; line-height: 1.5; }
+  .publication-authors { margin: .38rem 0 0; color: #64748b; font-size: .76rem; line-height: 1.55; }
+  .publication-authors :global(strong) { color: #2b5843; font-weight: 750; }
+  .publication-venue { margin: .28rem 0 0; color: #81909e; font-size: .76rem; line-height: 1.5; }
+  .publication-link { display: grid; width: 1.65rem; height: 1.65rem; place-items: center; border: 1px solid #dbe5df; border-radius: 999px; color: #336d50; font-size: .8rem; text-decoration: none; transition: transform .2s ease,border-color .2s ease,background .2s ease; }
+  .publication-row:hover .publication-link { transform: translate(2px,-2px); border-color: #91c2a3; background: #f2f8f4; }
+  @media (max-width: 980px) { .research-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .research-card:nth-child(2) { border-right: 0; } .research-card:nth-child(-n+2) { border-bottom: 1px solid rgba(38,61,52,.1); } .research-heading { align-items: flex-start; flex-direction: column; gap: .75rem; } }
+  @media (max-width: 760px) { .research-grid { grid-template-columns: 1fr; } .research-card { border-right: 0; border-bottom: 1px solid rgba(38,61,52,.1); } .research-card:last-child { border-bottom: 0; } .publications-header { padding: 1.7rem 0 1.5rem; } .publication-toolbar { display: grid; } .publication-links { justify-content: flex-start; } .year-section { grid-template-columns: 1fr; gap: 1.15rem; } .publication-row { grid-template-columns: 1fr 1.7rem; gap: .6rem .8rem; } .publication-type { grid-column: 1/-1; } }
 </style>

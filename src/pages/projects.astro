@@ -16,16 +16,8 @@ const projects = [
     status: "Ongoing",
     titleZh: "亲子互动与发展项目",
     titleEn: "Parent–Child Interaction and Development",
-    body: "结合儿童注意、生理、亲子互动、结构化发展测量与家长报告等多模态信息，研究早期社会发展轨迹及与自闭症相关的早期个体差异。",
-    methods: ["眼动追踪", "EEG / fNIRS", "亲子互动", "多模态建模"],
-  },
-  {
-    tag: "亲子互动与发展",
-    status: "Ongoing",
-    titleZh: "亲子动作同步与情绪信号",
-    titleEn: "Parent-Child Motion Synchrony and Emotional Signals",
-    body: "关注亲子互动中的动作同步与情绪信号，考察母亲与儿童在动作、表情和情绪回应上的同步、引领—跟随关系及其与儿童社会参与和情绪发展的关系。",
-    methods: ["亲子互动", "Motion Synchrony", "情绪信号", "Lead-Follow"],
+    body: "结合儿童注意、生理、亲子互动、结构化发展测量与家长报告等多模态信息，研究早期社会发展轨迹及与自闭症相关的早期个体差异；同时关注亲子动作同步、情绪信号与引领—跟随关系及其与儿童社会参与和情绪发展的联系。",
+    methods: ["眼动追踪", "EEG / fNIRS", "亲子互动", "Motion Synchrony", "Lead-Follow", "多模态建模"],
   },
   {
     tag: "情绪沟通与跨通道匹配",
@@ -75,14 +67,6 @@ const projects = [
     body: "开发一款伴侣共同参与的孕期教育严肃游戏，将孕期知识、临床决策、情绪体验与家庭支持转化为可探索、可练习的情境化学习体验。",
     methods: ["严肃游戏", "孕期教育", "伴侣支持", "情境学习"],
   },
-  {
-    tag: "计算建模与互动动力学",
-    status: "Upcoming",
-    titleZh: "基于混沌理论的同步与互动建模",
-    titleEn: "Chaos Theory-Based Modeling of Synchrony and Interaction",
-    body: "拟基于混沌理论与动态系统方法，对亲子互动中的动作同步、情绪信号与心理过程进行建模，探索时间序列中的耦合、非线性变化以及稳定与转变机制。",
-    methods: ["Chaos Theory", "同步机制", "互动动力学", "计算建模", "非线性系统"],
-  },
 ];
 ---
 
@@ -93,18 +77,13 @@ const projects = [
   <PageHeader
     eyebrow="当前研究项目"
     title="在研项目 Projects"
-    lead="我们的项目围绕婴幼儿社会发展、亲子互动与自闭症早期识别，并延伸到情绪沟通、自然情境、人工智能、计算建模与数字化家庭支持。"
+    lead="我们的项目围绕婴幼儿社会发展、亲子互动与自闭症早期识别，并延伸到情绪沟通、自然情境、人工智能与数字化家庭支持。"
   />
 
   <div class="container-page py-10">
     <div class="grid gap-5 md:grid-cols-2">
       {projects.map((project, index) => (
-        <article
-          class:list={[
-            "group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg",
-            index === projects.length - 1 && "md:col-span-2",
-          ]}
-        >
+        <article class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg">
           <div class="absolute right-5 top-4 font-mono text-4xl font-semibold text-primary-50 transition-colors group-hover:text-primary-100">
             {String(index + 1).padStart(2, "0")}
           </div>
@@ -112,10 +91,7 @@ const projects = [
           <div class="relative flex flex-wrap items-center gap-x-2 gap-y-1 pr-14">
             <p class="text-[0.68rem] font-semibold tracking-[0.14em] text-accent-600">{project.tag}</p>
             <span class="text-xs text-slate-300">·</span>
-            <span class:list={[
-              "text-[0.65rem] font-semibold uppercase tracking-[0.11em]",
-              project.status === "Upcoming" ? "text-amber-700" : "text-primary-600",
-            ]}>{project.status}</span>
+            <span class="text-[0.65rem] font-semibold uppercase tracking-[0.11em] text-primary-600">{project.status}</span>
           </div>
 
           <h2 class="relative mt-3 max-w-3xl text-slate-900 transition-colors group-hover:text-primary-700">
@@ -125,9 +101,7 @@ const projects = [
           <p class="relative mt-3 max-w-3xl text-sm leading-6 text-slate-600">{project.body}</p>
           <div class="relative mt-5 flex flex-wrap gap-1.5">
             {project.methods.map((method) => (
-              <span class="rounded-full border border-primary-100 bg-primary-50/60 px-2.5 py-1 text-[0.7rem] font-medium text-primary-800">
-                {method}
-              </span>
+              <span class="rounded-full border border-primary-100 bg-primary-50/60 px-2.5 py-1 text-[0.7rem] font-medium text-primary-800">{method}</span>
             ))}
           </div>
         </article>

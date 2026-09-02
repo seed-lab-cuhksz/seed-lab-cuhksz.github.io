@@ -15,7 +15,7 @@ import { site } from "../data/site";
     <div class="soft-orb soft-orb-a" aria-hidden="true"></div>
     <div class="soft-orb soft-orb-b" aria-hidden="true"></div>
 
-    <div class="container-page grid min-h-[calc(100svh-4.5rem)] items-center gap-10 py-7 lg:grid-cols-[.9fr_1.1fr] lg:gap-20 lg:py-6">
+    <div class="container-page grid min-h-[calc(100svh-5.35rem)] items-center gap-10 py-7 lg:grid-cols-[.9fr_1.1fr] lg:gap-20 lg:py-6">
       <div class="brand-side relative flex min-h-[27rem] flex-col justify-center lg:min-h-0">
         <div class="relative z-10 w-full max-w-[34rem]">
           <SeedLogo />
@@ -54,7 +54,7 @@ import { site } from "../data/site";
         </div>
 
         <div class="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4 text-sm font-semibold">
-          <a href="/research" class="home-link group">
+          <a href="/publications#research-directions" class="home-link group">
             了解我们的研究
             <span aria-hidden="true">↗</span>
           </a>
@@ -69,136 +69,32 @@ import { site } from "../data/site";
 </BaseLayout>
 
 <style>
-  .home-stage {
-    min-height: calc(100svh - 4.5rem);
-  }
-
-  .soft-orb {
-    position: absolute;
-    z-index: -10;
-    border-radius: 999px;
-    filter: blur(65px);
-    pointer-events: none;
-  }
-
-  .soft-orb-a {
-    left: -8rem;
-    bottom: -7rem;
-    width: 28rem;
-    height: 23rem;
-    background: rgba(201, 216, 174, .24);
-  }
-
-  .soft-orb-b {
-    left: 28%;
-    bottom: -11rem;
-    width: 22rem;
-    height: 17rem;
-    background: rgba(239, 190, 151, .10);
-  }
-
-  .brand-side {
-    transform-origin: 40% 55%;
-  }
-
-  .garden-wrap {
-    transition: transform .35s cubic-bezier(.2,.7,.2,1);
-  }
-
-  .brand-side:hover .garden-wrap {
-    transform: translateY(-2px);
-  }
-
-  .parent-intro {
-    border-left: 2px solid rgba(119, 150, 75, .32);
-    padding-left: 1rem;
-    color: #626a66;
-    font-size: 13.5px;
-    line-height: 1.82;
-  }
-
-  .parent-intro p + p {
-    margin-top: .65rem;
-  }
-
-  .parent-intro__greeting {
-    font-weight: 700;
-    color: #39463f;
-  }
-
-  .home-link {
-    display: inline-flex;
-    align-items: center;
-    gap: .45rem;
-    border-bottom: 1px solid #b9b4a9;
-    padding-bottom: .3rem;
-    color: #293531;
-    transition: border-color .2s ease, color .2s ease;
-  }
-
-  .home-link span {
-    color: #77964b;
-    transition: transform .22s ease;
-  }
-
-  .home-link:hover {
-    border-color: #77964b;
-    color: #77964b;
-  }
-
-  .home-link:hover span {
-    transform: translate(2px, -2px);
-  }
-
-  @media (max-width: 1180px) and (min-width: 1024px) {
-    .parent-intro {
-      font-size: 12.8px;
-      line-height: 1.72;
-    }
-  }
-
+  .home-stage { min-height: calc(100svh - 5.35rem); }
+  .soft-orb { position: absolute; z-index: -10; border-radius: 999px; filter: blur(65px); pointer-events: none; }
+  .soft-orb-a { left: -8rem; bottom: -7rem; width: 28rem; height: 23rem; background: rgba(201, 216, 174, .24); }
+  .soft-orb-b { left: 28%; bottom: -11rem; width: 22rem; height: 17rem; background: rgba(239, 190, 151, .10); }
+  .brand-side { transform-origin: 40% 55%; }
+  .garden-wrap { transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+  .brand-side:hover .garden-wrap { transform: translateY(-2px); }
+  .parent-intro { border-left: 2px solid rgba(119, 150, 75, .32); padding-left: 1rem; color: #626a66; font-size: 13.5px; line-height: 1.82; }
+  .parent-intro p + p { margin-top: .65rem; }
+  .parent-intro__greeting { font-weight: 700; color: #39463f; }
+  .home-link { display: inline-flex; align-items: center; gap: .45rem; border-bottom: 1px solid #b9b4a9; padding-bottom: .3rem; color: #293531; transition: border-color .2s ease, color .2s ease; }
+  .home-link span { color: #77964b; transition: transform .22s ease; }
+  .home-link:hover { border-color: #77964b; color: #77964b; }
+  .home-link:hover span { transform: translate(2px, -2px); }
+  @media (max-width: 1180px) and (min-width: 1024px) { .parent-intro { font-size: 12.8px; line-height: 1.72; } }
   @media (max-width: 1023px) {
-    .home-stage {
-      overflow: visible;
-    }
-
-    .brand-side {
-      align-items: center;
-      min-height: 24rem;
-    }
-
-    .brand-side > div,
-    .garden-wrap {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .brand-side p {
-      text-align: center;
-    }
-
-    .copy-side {
-      max-width: 46rem;
-      margin: 0 auto;
-    }
+    .home-stage { overflow: visible; }
+    .brand-side { align-items: center; min-height: 24rem; }
+    .brand-side > div, .garden-wrap { margin-left: auto; margin-right: auto; }
+    .brand-side p { text-align: center; }
+    .copy-side { max-width: 46rem; margin: 0 auto; }
   }
-
   @media (max-width: 640px) {
-    .home-stage {
-      min-height: auto;
-    }
-
-    .brand-side {
-      min-height: 19rem;
-    }
-
-    .garden-wrap {
-      margin-top: -.5rem;
-    }
-
-    .parent-intro {
-      font-size: 13px;
-      line-height: 1.8;
-    }
+    .home-stage { min-height: auto; }
+    .brand-side { min-height: 19rem; }
+    .garden-wrap { margin-top: -.5rem; }
+    .parent-intro { font-size: 13px; line-height: 1.8; }
   }
 </style>
