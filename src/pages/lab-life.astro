@@ -1,46 +1,205 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../components/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
-import GalleryGrid from "../components/GalleryGrid.astro";
 
-const items = (await getCollection("gallery")).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
-);
+const photos = [
+  "/lab-gallery/7e827fe8f779facc9816bbaa1d88e100.jpg",
+  "/lab-gallery/b0451d00f9aae79d4d96cb2d4d85d363.jpg",
+  "/lab-gallery/d50300555d964b024c47afdd5339421a.jpg",
+  "/lab-gallery/e25934463f17e18d4d48cde70981c52f.jpg",
+  "/lab-gallery/fa785d4e14b37173a56e592d9af3aadd.jpg",
+];
 ---
 
 <BaseLayout
-  title="Lab Life"
-  description="Photos from life in the lab."
+  title="实验室日常 Lab Life"
+  description="SEED Lab 的实验室日常照片。"
 >
   <PageHeader
-    eyebrow="Beyond the bench"
-    title="Lab Life"
-    lead="Conferences, celebrations, and everyday life in the lab."
+    eyebrow="SEED LAB · LAB LIFE"
+    title="实验室日常 Lab Life"
+    lead="记录研究、活动与实验室里的日常片段。"
   />
-  <div class="container-page py-12">
-    {
-      items.length > 0 ? (
-        <GalleryGrid items={items} />
-      ) : (
-        <div class="mx-auto flex max-w-md flex-col items-center rounded-2xl border border-dashed border-slate-300 bg-slate-50/60 px-6 py-14 text-center">
-          <svg class="h-10 w-10 text-primary-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <rect x="3" y="5" width="18" height="14" rx="2" />
-            <circle cx="8.5" cy="10" r="1.5" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="m4 17 4.5-4.5 3 3L15 12l5 5" />
-          </svg>
-          <p class="mt-4 font-serif text-lg text-slate-900">Photos coming soon</p>
-          <p class="mt-1 text-sm text-slate-600">
-            We're putting together snapshots of conferences, celebrations, and everyday life in the lab.
-          </p>
-          <a
-            href="/people"
-            class="mt-5 text-sm font-medium text-primary-700 hover:text-accent-600"
-          >
-            Meet the team &rarr;
-          </a>
-        </div>
-      )
-    }
-  </div>
+
+  <main class="container-page py-10 sm:py-12">
+    <section class="lab-carousel" data-lab-carousel data-photos={JSON.stringify(photos)} aria-label="SEED Lab 实验室日常照片轮播">
+      <div class="carousel-stage">
+        <img
+          class="carousel-image"
+          data-carousel-image
+          src={photos[0]}
+          alt="SEED Lab 实验室日常照片"
+          loading="eager"
+          decoding="async"
+        />
+
+        <button class="carousel-arrow carousel-arrow--prev" type="button" data-carousel-prev aria-label="上一张照片">
+          <span aria-hidden="true">←</span>
+        </button>
+        <button class="carousel-arrow carousel-arrow--next" type="button" data-carousel-next aria-label="下一张照片">
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+    (() => {
+      const root = document.querySelector('[data-lab-carousel]');
+      if (!root) return;
+
+      const image = root.querySelector('[data-carousel-image]');
+      const prev = root.querySelector('[data-carousel-prev]');
+      const next = root.querySelector('[data-carousel-next]');
+      if (!(image instanceof HTMLImageElement) || !(prev instanceof HTMLButtonElement) || !(next instanceof HTMLButtonElement)) return;
+
+      let photos = [];
+      try {
+        photos = JSON.parse(root.getAttribute('data-photos') || '[]');
+      } catch {
+        photos = [];
+      }
+      if (!Array.isArray(photos) || photos.length === 0) return;
+
+      for (let i = photos.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [photos[i], photos[j]] = [photos[j], photos[i]];
+      }
+
+      let index = 0;
+      let transitionTimer;
+
+      const preload = (src) => {
+        const img = new Image();
+        img.src = src;
+      };
+
+      const show = (newIndex, immediate = false) => {
+        index = (newIndex + photos.length) % photos.length;
+        const src = photos[index];
+
+        window.clearTimeout(transitionTimer);
+        if (immediate) {
+          image.src = src;
+          image.classList.remove('is-changing');
+          return;
+        }
+
+        image.classList.add('is-changing');
+        transitionTimer = window.setTimeout(() => {
+          image.src = src;
+          requestAnimationFrame(() => image.classList.remove('is-changing'));
+        }, 150);
+      };
+
+      show(0, true);
+      preload(photos[(index + 1) % photos.length]);
+
+      prev.addEventListener('click', () => {
+        show(index - 1);
+        preload(photos[(index - 1 + photos.length) % photos.length]);
+      });
+
+      next.addEventListener('click', () => {
+        show(index + 1);
+        preload(photos[(index + 1) % photos.length]);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') prev.click();
+        if (event.key === 'ArrowRight') next.click();
+      });
+    })();
+  </script>
 </BaseLayout>
+
+<style>
+  .lab-carousel {
+    width: 100%;
+  }
+
+  .carousel-stage {
+    position: relative;
+    display: grid;
+    min-height: clamp(26rem, 66vh, 48rem);
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(40, 72, 59, .1);
+    border-radius: 1.5rem;
+    background: #f7f5ee;
+    box-shadow: 0 18px 50px rgba(32, 49, 44, .055);
+  }
+
+  .carousel-image {
+    display: block;
+    width: 100%;
+    height: min(70vh, 48rem);
+    object-fit: contain;
+    transition: opacity .28s ease, transform .28s ease;
+  }
+
+  .carousel-image.is-changing {
+    opacity: 0;
+    transform: scale(.992);
+  }
+
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border: 1px solid rgba(32, 49, 44, .13);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .9);
+    color: #29483c;
+    font-size: 1.15rem;
+    box-shadow: 0 8px 24px rgba(32, 49, 44, .08);
+    transform: translateY(-50%);
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    backdrop-filter: blur(8px);
+  }
+
+  .carousel-arrow:hover {
+    border-color: rgba(73, 117, 81, .35);
+    background: #fff;
+  }
+
+  .carousel-arrow:focus-visible {
+    outline: 2px solid #789754;
+    outline-offset: 3px;
+  }
+
+  .carousel-arrow--prev {
+    left: clamp(.7rem, 2vw, 1.5rem);
+  }
+
+  .carousel-arrow--next {
+    right: clamp(.7rem, 2vw, 1.5rem);
+  }
+
+  @media (max-width: 640px) {
+    .carousel-stage {
+      min-height: 25rem;
+      border-radius: 1.1rem;
+    }
+
+    .carousel-image {
+      height: 65vh;
+    }
+
+    .carousel-arrow {
+      width: 2.65rem;
+      height: 2.65rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-image,
+    .carousel-arrow {
+      transition: none;
+    }
+  }
+</style>
