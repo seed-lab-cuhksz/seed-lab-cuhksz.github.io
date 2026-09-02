@@ -42,7 +42,6 @@ export const site: SiteConfig = {
   nav: [
     { label: "首页 Home", href: "/" },
     { label: "研究团队 People", href: "/people" },
-    { label: "研究方向 Research", href: "/research" },
     { label: "在研项目 Projects", href: "/projects" },
     { label: "研究成果 Publications", href: "/publications" },
     { label: "实验室日常 Lab Life", href: "/lab-life" },
