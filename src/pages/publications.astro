@@ -80,13 +80,11 @@ const years = [...new Set(publications.map((publication) => publication.year))].
         <p class="header-eyebrow">研究成果</p>
         <span class="header-rule" aria-hidden="true"></span>
         <h2>研究成果 <span>Publications</span></h2>
-        <p class="header-lead">按年份列出曾广宇教授参与发表的研究成果。作者信息中突出显示 Guangyu Zeng，方便核对。</p>
       </div>
     </header>
 
     <div class="container-page publications-content">
       <div class="publication-toolbar">
-        <p>列表以曾广宇教授 Google Scholar 当前记录与学校个人主页发表列表为主要核对依据。</p>
         <div class="publication-links">
           <a href="https://scholar.google.com/citations?user=wwkuG-YAAAAJ&hl=en&view_op=list_works&sortby=pubdate" target="_blank" rel="noreferrer">Google Scholar ↗</a>
           <a href="https://myweb.cuhk.edu.cn/zenggy/Home/AcademicPublications" target="_blank" rel="noreferrer">学校发表列表 ↗</a>
@@ -141,10 +139,8 @@ const years = [...new Set(publications.map((publication) => publication.year))].
   .header-rule { display: block; width: 2.8rem; height: 2px; margin-top: .75rem; border-radius: 999px; background: #359b90; }
   .publications-header h2 { margin: .8rem 0 0; color: #172033; font-size: clamp(1.75rem, 3vw, 2.45rem); line-height: 1.08; letter-spacing: -.035em; font-weight: 720; }
   .publications-header h2 span { font-weight: 650; }
-  .header-lead { max-width: 46rem; margin: .75rem 0 0; color: #64748b; font-size: .9rem; line-height: 1.7; }
-  .publications-content { padding-top: 1.8rem; padding-bottom: 5rem; }
-  .publication-toolbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0; }
-  .publication-toolbar > p { margin: 0; max-width: 44rem; color: #64748b; font-size: .82rem; line-height: 1.7; }
+  .publications-content { padding-top: 1.2rem; padding-bottom: 5rem; }
+  .publication-toolbar { display: flex; justify-content: flex-end; padding-bottom: 1.25rem; border-bottom: 1px solid #e2e8f0; }
   .publication-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .65rem 1rem; }
   .publication-links a { color: #336d50; font-size: .79rem; font-weight: 650; text-decoration: none; white-space: nowrap; }
   .publication-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
@@ -161,5 +157,5 @@ const years = [...new Set(publications.map((publication) => publication.year))].
   .publication-link { display: grid; width: 1.65rem; height: 1.65rem; place-items: center; border: 1px solid #dbe5df; border-radius: 999px; color: #336d50; font-size: .8rem; text-decoration: none; transition: transform .2s ease,border-color .2s ease,background .2s ease; }
   .publication-row:hover .publication-link { transform: translate(2px,-2px); border-color: #91c2a3; background: #f2f8f4; }
   @media (max-width: 980px) { .research-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .research-card:nth-child(2) { border-right: 0; } .research-card:nth-child(-n+2) { border-bottom: 1px solid rgba(38,61,52,.1); } .research-heading { align-items: flex-start; flex-direction: column; gap: .75rem; } }
-  @media (max-width: 760px) { .research-grid { grid-template-columns: 1fr; } .research-card { border-right: 0; border-bottom: 1px solid rgba(38,61,52,.1); } .research-card:last-child { border-bottom: 0; } .publications-header { padding: 1.7rem 0 1.5rem; } .publication-toolbar { display: grid; } .publication-links { justify-content: flex-start; } .year-section { grid-template-columns: 1fr; gap: 1.15rem; } .publication-row { grid-template-columns: 1fr 1.7rem; gap: .6rem .8rem; } .publication-type { grid-column: 1/-1; } }
+  @media (max-width: 760px) { .research-grid { grid-template-columns: 1fr; } .research-card { border-right: 0; border-bottom: 1px solid rgba(38,61,52,.1); } .research-card:last-child { border-bottom: 0; } .publications-header { padding: 1.7rem 0 1.5rem; } .publication-toolbar { justify-content: flex-start; } .publication-links { justify-content: flex-start; } .year-section { grid-template-columns: 1fr; gap: 1.15rem; } .publication-row { grid-template-columns: 1fr 1.7rem; gap: .6rem .8rem; } .publication-type { grid-column: 1/-1; } }
 </style>
