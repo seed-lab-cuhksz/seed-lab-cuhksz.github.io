@@ -13,7 +13,8 @@ const contactPaths = [
     audience: "FOR COLLABORATORS",
     title: "合作交流 Collaborate with Us",
     body: "面向研究者、实验室与相关机构。我们欢迎围绕儿童发展、家庭研究、心理与教育技术、行为测量及相关交叉领域开展合作。",
-    note: "如有合作想法，可通过实验室邮箱联系我们。",
+    note: "点击查看合作联系方式。",
+    modal: "collaborate-modal",
   },
   {
     id: "join",
@@ -21,7 +22,8 @@ const contactPaths = [
     audience: "FOR STUDENTS",
     title: "加入我们 Join the Team",
     body: "面向希望参与儿童早期发展研究的本科生、研究生及研究助理申请者，欢迎关注实验室研究与项目机会。",
-    note: "点击查看申请方式与材料要求。",
+    note: "点击填写 SEED Lab 新成员申请表。",
+    modal: "join-modal",
   },
   {
     id: "families",
@@ -29,7 +31,8 @@ const contactPaths = [
     audience: "FOR FAMILIES",
     title: "家庭参与 For Families",
     body: "面向婴幼儿与家庭。我们长期开展儿童发展研究及“小小科学家 Kid Scientists”计划，在轻松、安全的活动中一起探索儿童成长。",
-    note: "后续将在这里集中展示适龄活动、参与方式与家庭常见问题。",
+    note: "点击查看目前可参与的家庭研究。",
+    modal: "families-modal",
   },
 ];
 ---
@@ -49,14 +52,11 @@ const contactPaths = [
       {contactPaths.map((item) => (
         <section
           id={item.id}
-          class:list={[
-            "group relative scroll-mt-24 overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg",
-            item.id === "join" && "cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2",
-          ]}
-          data-join-trigger={item.id === "join" ? "true" : undefined}
-          role={item.id === "join" ? "button" : undefined}
-          tabindex={item.id === "join" ? "0" : undefined}
-          aria-haspopup={item.id === "join" ? "dialog" : undefined}
+          class="group relative scroll-mt-24 cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-primary-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2"
+          data-modal-target={item.modal}
+          role="button"
+          tabindex="0"
+          aria-haspopup="dialog"
         >
           <div class="absolute -right-2 -top-5 font-mono text-7xl font-semibold text-primary-50 transition-colors group-hover:text-primary-100">{item.number}</div>
           <p class="relative text-[0.68rem] font-semibold tracking-[0.14em] text-accent-600">{item.audience}</p>
@@ -104,47 +104,113 @@ const contactPaths = [
     </section>
   </div>
 
-  <div id="join-team-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/55 p-4 backdrop-blur-[2px] sm:p-6" role="dialog" aria-modal="true" aria-label="加入我们申请说明" aria-hidden="true">
-    <div class="relative max-h-[92vh] w-full max-w-[720px] overflow-auto rounded-2xl bg-white p-2 shadow-2xl sm:p-3">
-      <button id="join-team-close" type="button" aria-label="关闭加入我们弹窗" class="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/95 text-2xl font-light leading-none text-slate-600 shadow-sm transition hover:bg-slate-50 hover:text-primary-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"><span aria-hidden="true">×</span></button>
-      <img src="/contact/join-team-poster.png" alt="SEED儿童早期社会发展实验室加入我们申请说明" width="900" height="1125" class="h-auto w-full rounded-xl" />
+  <div id="collaborate-modal" class="contact-modal fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/55 p-4 backdrop-blur-[2px] sm:p-6" role="dialog" aria-modal="true" aria-label="合作交流" aria-hidden="true">
+    <div class="relative w-full max-w-[560px] rounded-2xl bg-white p-7 shadow-2xl sm:p-9">
+      <button type="button" data-modal-close aria-label="关闭合作交流弹窗" class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-2xl font-light leading-none text-slate-600 transition hover:bg-slate-50 hover:text-primary-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"><span aria-hidden="true">×</span></button>
+      <p class="text-[0.68rem] font-semibold tracking-[0.14em] text-accent-600">FOR COLLABORATORS</p>
+      <h2 class="mt-3 pr-12 font-serif text-2xl font-semibold text-slate-900">合作交流 <span class="text-lg font-normal italic text-slate-500">Collaborate with Us</span></h2>
+      <p class="mt-6 leading-7 text-slate-600">如果您有研究、机构或其他合作想法，欢迎添加 SEED Lab 微信：</p>
+      <p class="mt-4 text-xl font-semibold tracking-wide text-primary-800">seedlab-cuhksz</p>
+      <p class="mt-4 text-sm leading-6 text-slate-500">添加时请简单注明所在机构 / 身份及合作来意，方便我们了解您的需求并进一步联系。</p>
+    </div>
+  </div>
+
+  <div id="join-modal" class="contact-modal fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/55 p-4 backdrop-blur-[2px] sm:p-6" role="dialog" aria-modal="true" aria-label="加入我们" aria-hidden="true">
+    <div class="relative w-full max-w-[650px] rounded-2xl bg-white p-7 shadow-2xl sm:p-9">
+      <button type="button" data-modal-close aria-label="关闭加入我们弹窗" class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-2xl font-light leading-none text-slate-600 transition hover:bg-slate-50 hover:text-primary-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"><span aria-hidden="true">×</span></button>
+      <p class="text-[0.68rem] font-semibold tracking-[0.14em] text-accent-600">FOR STUDENTS</p>
+      <h2 class="mt-3 pr-12 font-serif text-2xl font-semibold text-slate-900">加入我们 <span class="text-lg font-normal italic text-slate-500">Join the Team</span></h2>
+      <p class="mt-6 leading-7 text-slate-600">感谢你对 SEED Lab 的兴趣。如果你希望参与实验室的研究项目或其他研究工作，请填写下方的 <strong class="font-semibold text-slate-800">SEED Lab 新成员申请表</strong>：</p>
+      <p class="mt-5 break-words rounded-xl border border-primary-100 bg-primary-50/45 p-4 text-sm leading-7 text-slate-700">
+        <a href="https://www.credamo.com/s/fqIRbu/" target="_blank" rel="noreferrer" class="font-semibold text-primary-700 underline decoration-primary-300 underline-offset-4">https://www.credamo.com/s/fqIRbu/</a> cdmyJ8haGSqa 邀请您作答问卷《SEED Lab 新成员申请表》，点击链接开始作答
+      </p>
+    </div>
+  </div>
+
+  <div id="families-modal" class="contact-modal fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/55 p-4 backdrop-blur-[2px] sm:p-6" role="dialog" aria-modal="true" aria-label="家庭参与" aria-hidden="true">
+    <div class="relative max-h-[90vh] w-full max-w-[720px] overflow-auto rounded-2xl bg-white p-7 shadow-2xl sm:p-9">
+      <button type="button" data-modal-close aria-label="关闭家庭参与弹窗" class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-2xl font-light leading-none text-slate-600 transition hover:bg-slate-50 hover:text-primary-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"><span aria-hidden="true">×</span></button>
+      <p class="text-[0.68rem] font-semibold tracking-[0.14em] text-accent-600">FOR FAMILIES</p>
+      <h2 class="mt-3 pr-12 font-serif text-2xl font-semibold text-slate-900">家庭参与 <span class="text-lg font-normal italic text-slate-500">For Families</span></h2>
+      <p class="mt-5 leading-7 text-slate-600">目前有 3 个项目可联系参与：</p>
+
+      <div class="mt-5 space-y-4">
+        <article class="rounded-xl border border-slate-200 p-4 sm:p-5">
+          <p class="text-xs font-semibold tracking-[0.1em] text-accent-600">5–15 月龄宝宝</p>
+          <h3 class="mt-2 font-semibold text-slate-900">线下亲子互动研究</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">宝宝与爸爸或妈妈参加线下亲子互动活动，约每 3 个月参加一次，每次约 1 小时。每次参与补贴约 100–200 元。</p>
+        </article>
+
+        <article class="rounded-xl border border-slate-200 p-4 sm:p-5">
+          <p class="text-xs font-semibold tracking-[0.1em] text-accent-600">2–5 岁儿童</p>
+          <h3 class="mt-2 font-semibold text-slate-900">自然童行 Growing with Nature</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">连续 12 周完成线上问卷，全部完成后参加 1 次户外科研活动。完成全程后补贴 150 元。</p>
+        </article>
+
+        <article class="rounded-xl border border-slate-200 p-4 sm:p-5">
+          <p class="text-xs font-semibold tracking-[0.1em] text-accent-600">游戏试玩</p>
+          <h3 class="mt-2 font-semibold text-slate-900">《十月之礼》游戏小样试玩</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">体验 SEED Lab 开发的孕期教育严肃游戏《十月之礼》小样，免费参与。</p>
+        </article>
+      </div>
+
+      <div class="mt-6 border-t border-slate-100 pt-5">
+        <p class="text-sm leading-6 text-slate-600">感兴趣的家庭欢迎添加 SEED Lab 微信：</p>
+        <p class="mt-2 text-xl font-semibold tracking-wide text-primary-800">seedlab-cuhksz</p>
+        <p class="mt-2 text-sm leading-6 text-slate-500">添加时可以简单说明宝宝年龄 / 想参加的项目。</p>
+      </div>
     </div>
   </div>
 
   <script is:inline>
     (() => {
-      const modal = document.getElementById("join-team-modal");
-      const closeButton = document.getElementById("join-team-close");
-      const triggers = document.querySelectorAll('[data-join-trigger="true"]');
+      const triggers = document.querySelectorAll('[data-modal-target]');
+      const modals = document.querySelectorAll('.contact-modal');
       let lastFocused = null;
-      if (!modal || !closeButton || triggers.length === 0) return;
-      const openModal = () => {
-        lastFocused = document.activeElement;
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
-        modal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-        closeButton.focus();
-      };
-      const closeModal = () => {
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
-        modal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
+
+      const closeModal = (modal) => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
         if (lastFocused instanceof HTMLElement) lastFocused.focus();
       };
+
+      const openModal = (modal) => {
+        lastFocused = document.activeElement;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        modal.querySelector('[data-modal-close]')?.focus();
+      };
+
       triggers.forEach((trigger) => {
-        trigger.addEventListener("click", openModal);
-        trigger.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
+        const activate = () => {
+          const id = trigger.getAttribute('data-modal-target');
+          const modal = id ? document.getElementById(id) : null;
+          if (modal) openModal(modal);
+        };
+        trigger.addEventListener('click', activate);
+        trigger.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
-            openModal();
+            activate();
           }
         });
       });
-      closeButton.addEventListener("click", closeModal);
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && modal.getAttribute("aria-hidden") === "false") closeModal();
+
+      modals.forEach((modal) => {
+        modal.querySelector('[data-modal-close]')?.addEventListener('click', () => closeModal(modal));
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) closeModal(modal);
+        });
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        const activeModal = Array.from(modals).find((modal) => modal.getAttribute('aria-hidden') === 'false');
+        if (activeModal) closeModal(activeModal);
       });
     })();
   </script>
