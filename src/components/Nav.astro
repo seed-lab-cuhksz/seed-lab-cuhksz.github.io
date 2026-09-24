@@ -1,5 +1,6 @@
 ---
 import { site } from "../data/site";
+import PeopleSprout from "./PeopleSprout.astro";
 
 const pathname = Astro.url.pathname;
 const isActive = (href: string) =>
@@ -18,10 +19,16 @@ const splitLabel = (label: string) => {
 ---
 
 <header class="sticky top-0 z-50 border-b border-[#e8e3d9] bg-[#fffdf9]/95 backdrop-blur-md">
-  <nav class="container-page flex h-[5.35rem] items-center justify-between gap-7" aria-label="主导航 Primary navigation">
-    <a href="/" class="group flex shrink-0 items-baseline gap-2.5" aria-label="SEED Lab 首页">
-      <span class="text-[1.48rem] font-bold tracking-[-.04em] text-[#202c29] transition-colors group-hover:text-[#6f9244]">SEED</span>
-      <span class="text-[.98rem] font-medium tracking-[.04em] text-[#efb487]">Lab</span>
+  <nav class="container-page flex h-[5.9rem] items-center justify-between gap-7" aria-label="主导航 Primary navigation">
+    <a href="/" class="group flex shrink-0 flex-col items-start" aria-label="SEED Lab 首页">
+      <span class="flex items-center gap-2.5">
+        <span class="text-[1.48rem] font-bold tracking-[-.04em] text-[#202c29] transition-colors group-hover:text-[#6f9244]">SEED</span>
+        <span class="text-[.98rem] font-medium tracking-[.04em] text-[#efb487]">Lab</span>
+        <span class="ml-0.5 inline-flex h-[1.45rem] w-[1.15rem] items-center justify-center text-[#6f9244] transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105" aria-hidden="true">
+          <PeopleSprout class="h-full w-full" />
+        </span>
+      </span>
+      <span class="mt-1 text-[.66rem] font-medium tracking-[.055em] text-[#7c8580]">香港中文大学（深圳）</span>
     </a>
 
     <ul class="hidden h-full items-center gap-8 xl:flex">
